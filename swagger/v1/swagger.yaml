@@ -1,0 +1,519 @@
+openapi: 3.0.1
+info:
+  title: Climbing Fantasy API
+  version: v1
+  description: JSON API for World Climbing (IFSC) competition results
+servers:
+  - url: http://localhost:3000
+    description: Development
+
+paths:
+  /api/v1/seasons:
+    get:
+      summary: List all seasons
+      tags:
+        - Seasons
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Seasons listed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Season"
+                  meta:
+                    $ref: "#/components/schemas/Pagination"
+                required:
+                  - data
+                  - meta
+
+  /api/v1/seasons/{id}:
+    get:
+      summary: Get season detail with competitions
+      tags:
+        - Seasons
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Season found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/Season"
+                      - type: object
+                        properties:
+                          competitions:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/Competition"
+                required:
+                  - data
+        "404":
+          description: Season not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/competitions:
+    get:
+      summary: List competitions
+      tags:
+        - Competitions
+      parameters:
+        - name: season_id
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: discipline
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [boulder, lead, speed, combined, boulder_and_lead]
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [upcoming, in_progress, completed]
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Competitions listed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Competition"
+                  meta:
+                    $ref: "#/components/schemas/Pagination"
+                required:
+                  - data
+                  - meta
+
+  /api/v1/competitions/{id}:
+    get:
+      summary: Get competition detail with categories
+      tags:
+        - Competitions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Competition found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/Competition"
+                      - type: object
+                        properties:
+                          season:
+                            $ref: "#/components/schemas/Season"
+                          categories:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/Category"
+                required:
+                  - data
+        "404":
+          description: Competition not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/categories/{id}:
+    get:
+      summary: Get category detail with rounds
+      tags:
+        - Categories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Category found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/Category"
+                      - type: object
+                        properties:
+                          rounds:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/Round"
+                required:
+                  - data
+        "404":
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/rounds/{id}:
+    get:
+      summary: Get round detail with results
+      tags:
+        - Rounds
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Round found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/Round"
+                      - type: object
+                        properties:
+                          round_results:
+                            type: array
+                            items:
+                              allOf:
+                                - $ref: "#/components/schemas/RoundResult"
+                                - type: object
+                                  properties:
+                                    athlete:
+                                      $ref: "#/components/schemas/Athlete"
+                required:
+                  - data
+        "404":
+          description: Round not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/athletes:
+    get:
+      summary: List athletes
+      tags:
+        - Athletes
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Search by name (case-insensitive)
+          schema:
+            type: string
+        - name: country
+          in: query
+          required: false
+          description: Filter by country code
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Athletes listed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Athlete"
+                  meta:
+                    $ref: "#/components/schemas/Pagination"
+                required:
+                  - data
+                  - meta
+
+  /api/v1/athletes/{id}:
+    get:
+      summary: Get athlete detail with recent results
+      tags:
+        - Athletes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Athlete found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    allOf:
+                      - $ref: "#/components/schemas/Athlete"
+                      - type: object
+                        properties:
+                          round_results:
+                            type: array
+                            items:
+                              $ref: "#/components/schemas/RoundResult"
+                required:
+                  - data
+        "404":
+          description: Athlete not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Season:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        year:
+          type: integer
+        external_id:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - name
+        - year
+
+    Competition:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        location:
+          type: string
+        starts_on:
+          type: string
+          format: date
+        ends_on:
+          type: string
+          format: date
+        discipline:
+          type: string
+          enum: [boulder, lead, speed, combined, boulder_and_lead]
+        status:
+          type: string
+          enum: [upcoming, in_progress, completed]
+        season_id:
+          type: integer
+        external_event_id:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - name
+        - location
+        - starts_on
+        - ends_on
+        - discipline
+        - status
+        - season_id
+
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        discipline:
+          type: string
+          enum: [boulder, lead, speed, combined, boulder_and_lead]
+        gender:
+          type: string
+          enum: [male, female]
+        external_category_id:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - name
+        - discipline
+        - gender
+
+    Round:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        round_type:
+          type: string
+          enum: [qualification, semi_final, final]
+        status:
+          type: string
+          enum: [pending, in_progress, completed]
+        external_round_id:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - name
+        - round_type
+        - status
+
+    RoundResult:
+      type: object
+      properties:
+        id:
+          type: integer
+        rank:
+          type: integer
+          nullable: true
+        score_raw:
+          type: string
+          nullable: true
+        tops:
+          type: integer
+          nullable: true
+        zones:
+          type: integer
+          nullable: true
+        top_attempts:
+          type: integer
+          nullable: true
+        zone_attempts:
+          type: integer
+          nullable: true
+        lead_height:
+          type: string
+          nullable: true
+        lead_plus:
+          type: boolean
+        speed_time:
+          type: string
+          nullable: true
+        speed_eliminated_stage:
+          type: string
+          nullable: true
+      required:
+        - id
+
+    Athlete:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        country_code:
+          type: string
+        gender:
+          type: string
+          enum: [male, female]
+        external_athlete_id:
+          type: integer
+          nullable: true
+      required:
+        - id
+        - first_name
+        - last_name
+        - country_code
+        - gender
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        per_page:
+          type: integer
+        total:
+          type: integer
+      required:
+        - page
+        - per_page
+        - total
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
