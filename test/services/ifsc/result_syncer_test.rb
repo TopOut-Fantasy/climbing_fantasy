@@ -2,19 +2,35 @@ require "test_helper"
 
 class Ifsc::ResultSyncerTest < ActiveSupport::TestCase
   test "syncs seasons from API response" do
-    data = JSON.parse(File.read(Rails.root.join("test/fixtures/files/ifsc_seasons_response.json")))
+    data = {
+      "seasons" => [
+        {
+          "id" => 99,
+          "name" => "IFSC World Cup 2026",
+          "leagues" => []
+        }
+      ]
+    }
 
     assert_difference "Season.count", 1 do
       Ifsc::ResultSyncer.sync_seasons(data)
     end
 
-    season = Season.find_by(external_id: 37)
-    assert_equal "IFSC World Cup 2025", season.name
-    assert_equal 2025, season.year
+    season = Season.find_by(external_id: 99)
+    assert_equal "IFSC World Cup 2026", season.name
+    assert_equal 2026, season.year
   end
 
   test "syncs seasons idempotently" do
-    data = JSON.parse(File.read(Rails.root.join("test/fixtures/files/ifsc_seasons_response.json")))
+    data = {
+      "seasons" => [
+        {
+          "id" => 99,
+          "name" => "IFSC World Cup 2026",
+          "leagues" => []
+        }
+      ]
+    }
 
     Ifsc::ResultSyncer.sync_seasons(data)
     assert_no_difference "Season.count" do
@@ -24,9 +40,13 @@ class Ifsc::ResultSyncerTest < ActiveSupport::TestCase
 
   test "syncs competitions from season data" do
     data = JSON.parse(File.read(Rails.root.join("test/fixtures/files/ifsc_seasons_response.json")))
+
+    # Use a new external_id to avoid fixture conflicts
+    data["seasons"].first["id"] = 99
+
     Ifsc::ResultSyncer.sync_seasons(data)
 
-    season = Season.find_by(external_id: 37)
+    season = Season.find_by(external_id: 99)
     assert_equal 1, season.competitions.count
 
     comp = season.competitions.first
@@ -36,12 +56,26 @@ class Ifsc::ResultSyncerTest < ActiveSupport::TestCase
 
   test "syncs categories from event results" do
     competition = competitions(:innsbruck_boulder)
-    data = JSON.parse(File.read(Rails.root.join("test/fixtures/files/ifsc_event_results_response.json")))
+    data = {
+      "d_cats" => [
+        {
+          "dcat_id" => 9001,
+          "dcat_name" => "Speed - Men",
+          "discipline" => "speed",
+          "category" => "men",
+          "status" => "finished"
+        }
+      ]
+    }
 
-    initial_count = competition.categories.count
-    Ifsc::ResultSyncer.sync_categories(competition, data)
+    assert_difference -> { competition.categories.count }, 1 do
+      Ifsc::ResultSyncer.sync_categories(competition, data)
+    end
 
-    assert competition.categories.count > initial_count
+    cat = competition.categories.find_by(external_category_id: 9001)
+    assert_equal "Speed - Men", cat.name
+    assert_equal "speed", cat.discipline
+    assert_equal "male", cat.gender
   end
 
   test "syncs round results from category data" do
@@ -50,7 +84,6 @@ class Ifsc::ResultSyncerTest < ActiveSupport::TestCase
 
     Ifsc::ResultSyncer.sync_results(category, data)
 
-    # Should have created/updated results
     assert category.rounds.any?
   end
 end

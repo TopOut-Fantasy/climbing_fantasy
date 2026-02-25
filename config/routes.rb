@@ -1,6 +1,13 @@
+require "sidekiq/web"
+require "sidekiq/cron/web"
+
 Rails.application.routes.draw do
   devise_for :admin_users
   ActiveAdmin.routes(self)
+
+  authenticate :admin_user, ->(u) { u.super_admin? } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 
   namespace :api do
     namespace :v1 do
