@@ -1,6 +1,9 @@
 # Climbing Fantasy
 
-A JSON API serving World Climbing (formerly IFSC) competition results. Data is scraped from `ifsc.results.info` via recurring background jobs. The data model is designed to support a future fantasy league layer.
+A JSON API serving World Climbing (formerly IFSC) competition
+results. Data is scraped from `ifsc.results.info` via recurring
+background jobs. The data model is designed to support a future
+fantasy league layer.
 
 ## Tech Stack
 
@@ -22,13 +25,14 @@ A JSON API serving World Climbing (formerly IFSC) competition results. Data is s
 ## Prerequisites
 
 - Ruby 4.0.0 (via rbenv or asdf)
+- Node.js (for Tailwind CSS and ActiveAdmin assets)
 - PostgreSQL 17
 - Redis
 
 ### macOS Setup
 
 ```bash
-brew install postgresql@17 redis
+brew install postgresql@17 redis node
 brew services start postgresql@17
 brew services start redis
 ```
@@ -42,6 +46,7 @@ cd climbing_fantasy
 
 # Install dependencies
 bundle install
+npm install
 
 # Create and migrate the database
 bin/rails db:create db:migrate
@@ -56,7 +61,7 @@ bin/rails db:seed
 # Start the Rails server
 bin/rails server
 
-# In a separate terminal, start Sidekiq for background jobs
+# In a separate terminal, start Sidekiq
 bundle exec sidekiq
 ```
 
@@ -74,115 +79,142 @@ bin/rails test
 
 ## API Endpoints
 
-All endpoints are prefixed with `/api/v1`. Responses return JSON with `data` and `meta` keys.
+All endpoints are prefixed with `/api/v1`. Responses return
+JSON with `data` and `meta` keys.
 
 ### Seasons
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/v1/seasons` | List all seasons |
-| GET | `/api/v1/seasons/:id` | Season detail with competitions |
+
+| Method | Path                  | Description                     |
+|--------|-----------------------|---------------------------------|
+| GET    | `/api/v1/seasons`     | List all seasons                |
+| GET    | `/api/v1/seasons/:id` | Season detail with competitions |
 
 ### Competitions
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/v1/competitions` | List competitions (filterable) |
-| GET | `/api/v1/competitions/:id` | Competition detail with categories |
+
+| Method | Path                       | Description                        |
+|--------|----------------------------|------------------------------------|
+| GET    | `/api/v1/competitions`     | List competitions (filterable)     |
+| GET    | `/api/v1/competitions/:id` | Competition detail with categories |
 
 **Filters:** `?season_id=`, `?discipline=`, `?status=`, `?year=`
 
 ### Categories
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/v1/categories/:id` | Category detail with rounds |
+
+| Method | Path                      | Description                 |
+|--------|---------------------------|-----------------------------|
+| GET    | `/api/v1/categories/:id`  | Category detail with rounds |
 
 ### Rounds
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/v1/rounds/:id` | Round detail with results and athletes |
+
+| Method | Path                  | Description                     |
+|--------|-----------------------|---------------------------------|
+| GET    | `/api/v1/rounds/:id`  | Round detail with results       |
 
 ### Athletes
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/api/v1/athletes` | List athletes (searchable) |
-| GET | `/api/v1/athletes/:id` | Athlete detail with recent results |
 
-**Filters:** `?q=` (name search, case-insensitive), `?country=` (country code)
+| Method | Path                   | Description                 |
+|--------|------------------------|-----------------------------|
+| GET    | `/api/v1/athletes`     | List athletes (searchable)  |
+| GET    | `/api/v1/athletes/:id` | Athlete detail with results |
+
+**Filters:** `?q=` (name search), `?country=` (country code)
 
 ### Pagination
 
 All list endpoints support pagination:
+
 - `?page=1` (default: 1)
 - `?per_page=25` (default: 25)
 
 Response includes metadata:
+
 ```json
 {
-  "data": [...],
+  "data": ["..."],
   "meta": { "page": 1, "per_page": 25, "total": 142 }
 }
 ```
 
 ## API Documentation
 
-Swagger UI is available at `/api-docs` when the server is running. The OpenAPI 3.0 spec is at `swagger/v1/swagger.yaml`.
+Swagger UI is available at `/api-docs` when the server is
+running. The OpenAPI 3.0 spec is at
+`swagger/v1/swagger.yaml`.
 
 ## Admin Dashboard
 
-ActiveAdmin is available at `/admin`. Log in with the seeded super_admin account:
+ActiveAdmin is available at `/admin`. Log in with the seeded
+super_admin account:
 
 - **Email:** `admin@climbingfantasy.com`
 - **Password:** `password123456`
 
 ### Admin Roles
 
-| Role | Permissions |
-|------|-------------|
+| Role          | Permissions                                    |
+|---------------|------------------------------------------------|
 | `super_admin` | Full CRUD on all resources, manage admin users |
-| `admin` | Full CRUD on competition data |
-| `viewer` | Read-only access to admin dashboard |
+| `admin`       | Full CRUD on competition data                  |
+| `viewer`      | Read-only access to admin dashboard            |
 
 ## Background Jobs
 
 Sidekiq processes recurring scraping jobs via sidekiq-cron:
 
-| Job | Schedule | Description |
-|-----|----------|-------------|
-| `SyncSeasonsJob` | Weekly (Mon 6am UTC) | Fetch seasons and competitions from IFSC |
-| `SyncEventResultsJob` | Daily (8am UTC) | Fetch results for in-progress/completed events |
-| `SyncUpcomingEventsJob` | Daily (7am UTC) | Update categories for upcoming events |
+| Job                     | Schedule         | Description                    |
+|-------------------------|------------------|--------------------------------|
+| `SyncSeasonsJob`        | Weekly (Mon 6am) | Fetch seasons and competitions |
+| `SyncEventResultsJob`   | Daily (8am UTC)  | Fetch results for events       |
+| `SyncUpcomingEventsJob` | Daily (7am UTC)  | Update upcoming event details  |
 
-The Sidekiq Web UI is available at `/sidekiq` (super_admin only).
+The Sidekiq Web UI is at `/sidekiq` (super_admin only).
 
 ## Data Import
 
-Bulk import athletes from CSV:
+Import athletes and results from
+[Kaggle IFSC dataset](https://www.kaggle.com/) CSV files:
 
 ```bash
+# Import athletes
 rake import:athletes[path/to/athletes.csv]
+
+# Import results (athletes must be imported first)
+rake import:results[path/to/results.csv]
+
+# Import both in one step
+rake import:all[athletes.csv,results.csv]
 ```
 
-Expected CSV format:
+Expected athlete CSV format:
+
+```csv
+athlete_id,firstname,lastname,age,gender,country,height,arm_span,paraclimbing_sport_class,birthday
+8677,Kokoro,Fujii,25.0,male,JPN,170.0,175.0,,1999-06-22
 ```
-athlete_id,first_name,last_name,country,gender
-8677,Kokoro,Fujii,JPN,M
+
+Expected results CSV format:
+
+```csv
+athlete_id,rank,discipline,season,date,event_id,event_location,d_cat
+8677,1,boulder,2024,2024-06-15,1291,Innsbruck,5001
 ```
 
 ## Data Model
 
-```
+```txt
 Season -< Competition -< Category -< Round -< RoundResult >- Athlete
 ```
 
 - **Season** - A competition year (e.g., "IFSC World Cup 2024")
-- **Competition** - A single event (e.g., "IFSC World Cup Innsbruck 2024")
-- **Category** - Discipline + gender grouping (e.g., "Boulder - Men")
+- **Competition** - A single event (e.g., "Innsbruck 2024")
+- **Category** - Discipline + gender (e.g., "Boulder - Men")
 - **Round** - Qualification, Semi-Final, or Final
-- **RoundResult** - An athlete's score in a round (supports boulder, lead, and speed scoring)
+- **RoundResult** - An athlete's score in a round
 - **Athlete** - A competitor with name, country, and gender
 
 ## Project Structure
 
-```
+```txt
 app/
   admin/            # ActiveAdmin resource definitions
   blueprints/       # Blueprinter JSON serializers
