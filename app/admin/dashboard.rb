@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    columns do
-      column do
+    div class: "grid grid-cols-1 lg:grid-cols-2 gap-6" do
+      div do
         panel "Recent Competitions" do
           table_for Competition.order(starts_on: :desc).limit(10) do
             column(:name) { |c| link_to c.name, admin_competition_path(c) }
@@ -15,20 +16,15 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
-      column do
+      div do
         panel "Stats" do
-          ul do
-            li "Seasons: #{Season.count}"
-            li "Competitions: #{Competition.count}"
-            li "Athletes: #{Athlete.count}"
-            li "Results: #{RoundResult.count}"
-          end
-        end
-
-        panel "Upcoming Events" do
-          table_for Competition.upcoming.order(:starts_on).limit(5) do
-            column(:name) { |c| link_to c.name, admin_competition_path(c) }
-            column :starts_on
+          div class: "space-y-2 p-4" do
+            para "Seasons: #{Season.count}"
+            para "Competitions: #{Competition.count}"
+            para "Athletes: #{Athlete.count}"
+            para "Categories: #{Category.count}"
+            para "Rounds: #{Round.count}"
+            para "Results: #{RoundResult.count}"
           end
         end
       end

@@ -54,7 +54,7 @@ gem "sidekiq"
 gem "sidekiq-cron"
 
 # Admin dashboard
-gem "activeadmin"
+gem "activeadmin", "~> 4.0.0.beta21"
 
 # Authentication
 gem "devise"

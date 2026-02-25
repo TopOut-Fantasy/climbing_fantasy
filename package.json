@@ -1,0 +1,13 @@
+{
+  "name": "climbing_fantasy",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@activeadmin/activeadmin": "4.0.0-beta21",
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  },
+  "scripts": {
+    "build:css:admin": "npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
+  }
+}

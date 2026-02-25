@@ -1,2 +1,3 @@
 web: bin/rails server
 css: bin/rails tailwindcss:watch
+css_admin: npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --watch --minify
