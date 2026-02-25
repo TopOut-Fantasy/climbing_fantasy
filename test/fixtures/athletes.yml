@@ -4,6 +4,9 @@ janja_garnbret:
   last_name: "Garnbret"
   country_code: "SLO"
   gender: 1
+  height: 164.0
+  arm_span: 166.0
+  birthday: "1999-03-12"
 
 tomoa_narasaki:
   external_athlete_id: 6280
@@ -11,6 +14,9 @@ tomoa_narasaki:
   last_name: "Narasaki"
   country_code: "JPN"
   gender: 0
+  height: 170.0
+  arm_span: 175.0
+  birthday: "1996-06-22"
 
 kokoro_fujii:
   external_athlete_id: 8677

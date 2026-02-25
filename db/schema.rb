@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_24_224230) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_25_035831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,11 +47,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_24_224230) do
   end
 
   create_table "athletes", force: :cascade do |t|
+    t.float "arm_span"
+    t.date "birthday"
     t.string "country_code", limit: 3, null: false
     t.datetime "created_at", null: false
     t.integer "external_athlete_id"
     t.string "first_name", null: false
     t.integer "gender", null: false
+    t.float "height"
     t.string "last_name", null: false
     t.datetime "updated_at", null: false
     t.index ["external_athlete_id"], name: "index_athletes_on_external_athlete_id", unique: true

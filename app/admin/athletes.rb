@@ -2,7 +2,7 @@ ActiveAdmin.register Athlete do
   menu priority: 4
 
   permit_params :external_athlete_id, :first_name, :last_name,
-                :country_code, :gender
+                :country_code, :gender, :height, :arm_span, :birthday
 
   index do
     selectable_column
@@ -11,6 +11,9 @@ ActiveAdmin.register Athlete do
     column :last_name
     column :country_code
     column :gender
+    column :height
+    column :arm_span
+    column :birthday
     column :external_athlete_id
     column("Results") { |a| a.round_results.count }
     actions
@@ -20,6 +23,9 @@ ActiveAdmin.register Athlete do
   filter :last_name
   filter :country_code
   filter :gender, as: :select, collection: Athlete.genders
+  filter :height
+  filter :arm_span
+  filter :birthday
   filter :external_athlete_id
 
   show do
@@ -28,6 +34,9 @@ ActiveAdmin.register Athlete do
       row :last_name
       row :country_code
       row :gender
+      row :height
+      row :arm_span
+      row :birthday
       row :external_athlete_id
       row :created_at
     end

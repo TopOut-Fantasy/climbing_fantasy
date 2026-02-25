@@ -403,7 +403,7 @@ components:
           enum: [boulder, lead, speed, combined, boulder_and_lead]
         gender:
           type: string
-          enum: [male, female]
+          enum: [male, female, non_binary, other, mixed]
         external_category_id:
           type: integer
           nullable: true
@@ -485,9 +485,21 @@ components:
           type: string
         gender:
           type: string
-          enum: [male, female]
+          enum: [male, female, non_binary, other]
         external_athlete_id:
           type: integer
+          nullable: true
+        height:
+          type: number
+          format: float
+          nullable: true
+        arm_span:
+          type: number
+          format: float
+          nullable: true
+        birthday:
+          type: string
+          format: date
           nullable: true
       required:
         - id
