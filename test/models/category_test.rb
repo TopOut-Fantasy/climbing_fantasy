@@ -13,7 +13,7 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "gender enum values" do
-    assert_equal %w[male female], Category.genders.keys
+    assert_equal %w[male female non_binary other mixed], Category.genders.keys
   end
 
   test "belongs to competition" do
