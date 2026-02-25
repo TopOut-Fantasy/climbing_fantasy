@@ -1,13 +1,29 @@
 require "test_helper"
 
 class SeasonTest < ActiveSupport::TestCase
-  # Associations
-  should have_many(:competitions)
+  test "validates presence of name" do
+    season = Season.new(year: 2024)
+    assert_not season.valid?
+    assert_includes season.errors[:name], "can't be blank"
+  end
 
-  # Validations
-  should validate_presence_of(:name)
-  should validate_presence_of(:year)
-  should validate_numericality_of(:year).only_integer
+  test "validates presence of year" do
+    season = Season.new(name: "Test Season")
+    assert_not season.valid?
+    assert_includes season.errors[:year], "can't be blank"
+  end
+
+  test "validates year is an integer" do
+    season = Season.new(name: "Test", year: 20.5)
+    assert_not season.valid?
+    assert_includes season.errors[:year], "must be an integer"
+  end
+
+  test "has many competitions" do
+    season = seasons(:season_2024)
+    assert_includes season.competitions, competitions(:innsbruck_boulder)
+    assert_includes season.competitions, competitions(:chamonix_lead)
+  end
 
   test "season has expected attributes" do
     season = seasons(:season_2024)

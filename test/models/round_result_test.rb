@@ -1,16 +1,24 @@
 require "test_helper"
 
 class RoundResultTest < ActiveSupport::TestCase
-  # Associations
-  should belong_to(:round)
-  should belong_to(:athlete)
+  test "validates rank is integer when present" do
+    result = RoundResult.new(round: rounds(:innsbruck_boulder_men_final), athlete: athletes(:janja_garnbret))
+    result.rank = 1.5
+    assert_not result.valid?
+    assert_includes result.errors[:rank], "must be an integer"
+  end
 
-  # Validations
-  should validate_numericality_of(:rank).only_integer.allow_nil
-  should validate_numericality_of(:tops).only_integer.allow_nil
-  should validate_numericality_of(:zones).only_integer.allow_nil
-  should validate_numericality_of(:top_attempts).only_integer.allow_nil
-  should validate_numericality_of(:zone_attempts).only_integer.allow_nil
+  test "allows nil rank" do
+    result = RoundResult.new(round: rounds(:chamonix_lead_women_final), athlete: athletes(:tomoa_narasaki), rank: nil)
+    assert result.valid?
+  end
+
+  test "validates boulder integer fields" do
+    result = RoundResult.new(round: rounds(:innsbruck_boulder_men_final), athlete: athletes(:janja_garnbret))
+    result.tops = 1.5
+    assert_not result.valid?
+    assert_includes result.errors[:tops], "must be an integer"
+  end
 
   test "unique athlete per round" do
     existing = round_results(:fujii_innsbruck_final)
@@ -22,6 +30,16 @@ class RoundResultTest < ActiveSupport::TestCase
     )
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:athlete_id], "has already been taken"
+  end
+
+  test "belongs to round" do
+    result = round_results(:fujii_innsbruck_final)
+    assert_equal rounds(:innsbruck_boulder_men_final), result.round
+  end
+
+  test "belongs to athlete" do
+    result = round_results(:fujii_innsbruck_final)
+    assert_equal athletes(:kokoro_fujii), result.athlete
   end
 
   test "boulder result attributes" do

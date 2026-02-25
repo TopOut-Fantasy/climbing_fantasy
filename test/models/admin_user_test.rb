@@ -1,10 +1,12 @@
 require "test_helper"
 
 class AdminUserTest < ActiveSupport::TestCase
-  # Validations (Devise handles email/password)
-  should validate_presence_of(:role)
+  test "validates presence of role" do
+    user = AdminUser.new(email: "test@example.com", password: "password123456", role: nil)
+    assert_not user.valid?
+    assert_includes user.errors[:role], "can't be blank"
+  end
 
-  # Enums
   test "role enum values" do
     assert_equal %w[viewer admin super_admin], AdminUser.roles.keys
   end
