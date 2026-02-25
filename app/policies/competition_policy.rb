@@ -1,0 +1,2 @@
+class CompetitionPolicy < ApplicationPolicy
+end

@@ -1,0 +1,2 @@
+class RoundResultPolicy < ApplicationPolicy
+end

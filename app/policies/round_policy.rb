@@ -1,0 +1,2 @@
+class RoundPolicy < ApplicationPolicy
+end

@@ -1,0 +1,2 @@
+class AthletePolicy < ApplicationPolicy
+end

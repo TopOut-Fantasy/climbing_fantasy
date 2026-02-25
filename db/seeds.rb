@@ -1,9 +1,8 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Create super_admin account
+AdminUser.find_or_create_by!(email: "admin@climbingfantasy.com") do |user|
+  user.password = "password123456"
+  user.password_confirmation = "password123456"
+  user.role = :super_admin
+end
+
+puts "Seeded AdminUser: admin@climbingfantasy.com (super_admin)"
