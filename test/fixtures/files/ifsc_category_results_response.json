@@ -1,0 +1,42 @@
+{
+  "ranking": [
+    {
+      "athlete_id": 8677,
+      "firstname": "Kokoro",
+      "lastname": "Fujii",
+      "country": "JPN",
+      "rank": 1,
+      "rounds": [
+        {
+          "round_id": 7002,
+          "round_name": "Final",
+          "rank": 1,
+          "score": "4T5z 4 4",
+          "tops": 4,
+          "zones": 4,
+          "top_attempts": 5,
+          "zone_attempts": 4
+        }
+      ]
+    },
+    {
+      "athlete_id": 6280,
+      "firstname": "Tomoa",
+      "lastname": "Narasaki",
+      "country": "JPN",
+      "rank": 2,
+      "rounds": [
+        {
+          "round_id": 7003,
+          "round_name": "Final",
+          "rank": 2,
+          "score": "3T4z 4 5",
+          "tops": 3,
+          "zones": 4,
+          "top_attempts": 4,
+          "zone_attempts": 5
+        }
+      ]
+    }
+  ]
+}
