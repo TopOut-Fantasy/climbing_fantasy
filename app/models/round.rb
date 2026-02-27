@@ -1,8 +1,16 @@
 class Round < ApplicationRecord
   belongs_to :category
   has_many :round_results, dependent: :destroy
+  has_many :climbs, dependent: :destroy
 
-  enum :round_type, { qualification: 0, semi_final: 1, final: 2 }
+  enum :round_type, {
+    qualification: "qualification",
+    round_of_16:   "round_of_16",
+    quarter_final: "quarter_final",
+    semi_final:    "semi_final",
+    small_final:   "small_final",
+    final:         "final"
+  }
   enum :status, { pending: 0, in_progress: 1, completed: 2 }
 
   validates :name, presence: true
@@ -16,7 +24,7 @@ end
 #
 #  id                :bigint           not null, primary key
 #  name              :string           not null
-#  round_type        :integer          not null
+#  round_type        :string           not null
 #  status            :integer          default("pending"), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null

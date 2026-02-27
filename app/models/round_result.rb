@@ -1,6 +1,9 @@
 class RoundResult < ApplicationRecord
   belongs_to :round
   belongs_to :athlete
+  has_many :climb_results, dependent: :destroy
+
+  enum :group_label, { a: "A", b: "B" }, prefix: :group
 
   validates :rank, numericality: { only_integer: true }, allow_nil: true
   validates :tops, numericality: { only_integer: true }, allow_nil: true
@@ -15,6 +18,7 @@ end
 # Table name: round_results
 #
 #  id                     :bigint           not null, primary key
+#  group_label            :string
 #  lead_height            :decimal(, )
 #  lead_plus              :boolean          default(FALSE)
 #  rank                   :integer

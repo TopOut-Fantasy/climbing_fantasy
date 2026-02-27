@@ -1,8 +1,9 @@
 ActiveAdmin.register Category do
   menu priority: 5
 
-  permit_params :competition_id, :external_category_id, :name,
-                :discipline, :gender
+  permit_params :event_id, :external_id, :name,
+                :discipline, :gender, :age_category,
+                :para_classification, :para_intensity
 
   index do
     selectable_column
@@ -10,11 +11,12 @@ ActiveAdmin.register Category do
     column :name
     column :discipline
     column :gender
-    column(:competition) { |c| link_to c.competition.name, admin_competition_path(c.competition) }
+    column :age_category
+    column(:event) { |c| link_to c.event.name, admin_event_path(c.event) }
     actions
   end
 
-  filter :competition
+  filter :event
   filter :name
   filter :discipline, as: :select, collection: Category.disciplines
   filter :gender, as: :select, collection: Category.genders
@@ -24,8 +26,11 @@ ActiveAdmin.register Category do
       row :name
       row :discipline
       row :gender
-      row(:competition) { |c| link_to c.competition.name, admin_competition_path(c.competition) }
-      row :external_category_id
+      row :age_category
+      row :para_classification
+      row :para_intensity
+      row(:event) { |c| link_to c.event.name, admin_event_path(c.event) }
+      row :external_id
     end
 
     panel "Rounds" do
