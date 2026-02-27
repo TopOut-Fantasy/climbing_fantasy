@@ -5,4 +5,4 @@ AdminUser.find_or_create_by!(email: "admin@climbingfantasy.com") do |user|
   user.role = :super_admin
 end
 
-puts "Seeded AdminUser: admin@climbingfantasy.com (super_admin)"
+Rails.logger.debug("Seeded AdminUser: admin@climbingfantasy.com (super_admin)")

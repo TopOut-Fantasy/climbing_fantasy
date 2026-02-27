@@ -38,7 +38,7 @@ class AthleteTest < ActiveSupport::TestCase
   end
 
   test "gender enum values" do
-    assert_equal %w[male female non_binary other], Athlete.genders.keys
+    assert_equal ["male", "female", "non_binary", "other"], Athlete.genders.keys
   end
 
   test "has many round_results" do

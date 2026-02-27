@@ -1,54 +1,58 @@
 require "test_helper"
 
-class Api::V1::AthletesControllerTest < ActionDispatch::IntegrationTest
-  test "GET /api/v1/athletes returns paginated athletes" do
-    get api_v1_athletes_path
-    assert_response :success
+module Api
+  module V1
+    class AthletesControllerTest < ActionDispatch::IntegrationTest
+      test "GET /api/v1/athletes returns paginated athletes" do
+        get api_v1_athletes_path
+        assert_response :success
 
-    json = JSON.parse(response.body)
-    assert json.key?("data")
-    assert json.key?("meta")
-    assert_equal Athlete.count, json["meta"]["total"]
-  end
+        json = response.parsed_body
+        assert json.key?("data")
+        assert json.key?("meta")
+        assert_equal Athlete.count, json["meta"]["total"]
+      end
 
-  test "GET /api/v1/athletes searches by name" do
-    get api_v1_athletes_path(q: "garnbret")
-    json = JSON.parse(response.body)
+      test "GET /api/v1/athletes searches by name" do
+        get api_v1_athletes_path(q: "garnbret")
+        json = response.parsed_body
 
-    assert_equal 1, json["data"].length
-    assert_equal "Garnbret", json["data"].first["last_name"]
-  end
+        assert_equal 1, json["data"].length
+        assert_equal "Garnbret", json["data"].first["last_name"]
+      end
 
-  test "GET /api/v1/athletes searches case-insensitively" do
-    get api_v1_athletes_path(q: "GARNBRET")
-    json = JSON.parse(response.body)
+      test "GET /api/v1/athletes searches case-insensitively" do
+        get api_v1_athletes_path(q: "GARNBRET")
+        json = response.parsed_body
 
-    assert_equal 1, json["data"].length
-  end
+        assert_equal 1, json["data"].length
+      end
 
-  test "GET /api/v1/athletes filters by country" do
-    get api_v1_athletes_path(country: "JPN")
-    json = JSON.parse(response.body)
+      test "GET /api/v1/athletes filters by country" do
+        get api_v1_athletes_path(country: "JPN")
+        json = response.parsed_body
 
-    assert json["data"].length > 0
-    json["data"].each do |athlete|
-      assert_equal "JPN", athlete["country_code"]
+        assert_not json["data"].empty?
+        json["data"].each do |athlete|
+          assert_equal "JPN", athlete["country_code"]
+        end
+      end
+
+      test "GET /api/v1/athletes/:id returns athlete with recent results" do
+        athlete = athletes(:kokoro_fujii)
+        get api_v1_athlete_path(athlete)
+        assert_response :success
+
+        json = response.parsed_body
+        assert_equal athlete.id, json["data"]["id"]
+        assert_equal athlete.first_name, json["data"]["first_name"]
+        assert json["data"].key?("round_results")
+      end
+
+      test "GET /api/v1/athletes/:id returns 404 for missing" do
+        get api_v1_athlete_path(id: 999999)
+        assert_response :not_found
+      end
     end
-  end
-
-  test "GET /api/v1/athletes/:id returns athlete with recent results" do
-    athlete = athletes(:kokoro_fujii)
-    get api_v1_athlete_path(athlete)
-    assert_response :success
-
-    json = JSON.parse(response.body)
-    assert_equal athlete.id, json["data"]["id"]
-    assert_equal athlete.first_name, json["data"]["first_name"]
-    assert json["data"].key?("round_results")
-  end
-
-  test "GET /api/v1/athletes/:id returns 404 for missing" do
-    get api_v1_athlete_path(id: 999999)
-    assert_response :not_found
   end
 end

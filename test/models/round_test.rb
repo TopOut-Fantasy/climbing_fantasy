@@ -9,11 +9,11 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "round_type enum values" do
-    assert_equal %w[qualification round_of_16 quarter_final semi_final small_final final], Round.round_types.keys
+    assert_equal ["qualification", "round_of_16", "quarter_final", "semi_final", "small_final", "final"], Round.round_types.keys
   end
 
   test "status enum values" do
-    assert_equal %w[pending in_progress completed], Round.statuses.keys
+    assert_equal ["pending", "in_progress", "completed"], Round.statuses.keys
   end
 
   test "belongs to category" do

@@ -13,13 +13,13 @@ class SyncSeasonsJobTest < ActiveJob::TestCase
         {
           "id" => 99,
           "name" => "IFSC World Cup 2026",
-          "leagues" => []
-        }
-      ]
+          "leagues" => [],
+        },
+      ],
     }
     stub_response = stub_data.to_json
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
-      stub.get("/results-api.php?api=index") { [ 200, { "Content-Type" => "application/json" }, stub_response ] }
+      stub.get("/results-api.php?api=index") { [200, { "Content-Type" => "application/json" }, stub_response] }
     end
 
     assert_difference "Season.count", 1 do

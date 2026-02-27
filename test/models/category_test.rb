@@ -9,15 +9,15 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "discipline enum values" do
-    assert_equal %w[boulder lead speed combined boulder_and_lead], Category.disciplines.keys
+    assert_equal ["boulder", "lead", "speed", "combined", "boulder_and_lead"], Category.disciplines.keys
   end
 
   test "gender enum values" do
-    assert_equal %w[male female non_binary other mixed], Category.genders.keys
+    assert_equal ["male", "female", "non_binary", "other", "mixed"], Category.genders.keys
   end
 
   test "age_category enum values" do
-    assert_equal %w[open u17 u19 u21], Category.age_categories.keys
+    assert_equal ["open", "u17", "u19", "u21"], Category.age_categories.keys
   end
 
   test "belongs to event" do
@@ -38,7 +38,7 @@ class CategoryTest < ActiveSupport::TestCase
       external_id: existing.external_id,
       name: "Duplicate",
       discipline: :boulder,
-      gender: :male
+      gender: :male,
     )
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:external_id], "has already been taken"

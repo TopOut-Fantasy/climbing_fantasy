@@ -2,39 +2,39 @@ require "test_helper"
 
 class EventTest < ActiveSupport::TestCase
   test "validates presence of name" do
-    event = Event.new(season: seasons(:season_2024), location: "X", starts_on: Date.today, ends_on: Date.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2024), location: "X", starts_on: Time.zone.today, ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.name = nil
     assert_not event.valid?
     assert_includes event.errors[:name], "can't be blank"
   end
 
   test "validates presence of location" do
-    event = Event.new(season: seasons(:season_2024), name: "X", starts_on: Date.today, ends_on: Date.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2024), name: "X", starts_on: Time.zone.today, ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.location = nil
     assert_not event.valid?
     assert_includes event.errors[:location], "can't be blank"
   end
 
   test "validates presence of starts_on" do
-    event = Event.new(season: seasons(:season_2024), name: "X", location: "X", ends_on: Date.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2024), name: "X", location: "X", ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.starts_on = nil
     assert_not event.valid?
     assert_includes event.errors[:starts_on], "can't be blank"
   end
 
   test "validates presence of ends_on" do
-    event = Event.new(season: seasons(:season_2024), name: "X", location: "X", starts_on: Date.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2024), name: "X", location: "X", starts_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.ends_on = nil
     assert_not event.valid?
     assert_includes event.errors[:ends_on], "can't be blank"
   end
 
   test "discipline enum values" do
-    assert_equal %w[boulder lead speed combined boulder_and_lead], Event.disciplines.keys
+    assert_equal ["boulder", "lead", "speed", "combined", "boulder_and_lead"], Event.disciplines.keys
   end
 
   test "status enum values" do
-    assert_equal %w[upcoming in_progress completed], Event.statuses.keys
+    assert_equal ["upcoming", "in_progress", "completed"], Event.statuses.keys
   end
 
   test "belongs to season" do

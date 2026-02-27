@@ -8,7 +8,7 @@ class AdminUserTest < ActiveSupport::TestCase
   end
 
   test "role enum values" do
-    assert_equal %w[viewer admin super_admin], AdminUser.roles.keys
+    assert_equal ["viewer", "admin", "super_admin"], AdminUser.roles.keys
   end
 
   test "default role is viewer" do

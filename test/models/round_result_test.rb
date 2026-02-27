@@ -26,7 +26,7 @@ class RoundResultTest < ActiveSupport::TestCase
       round: existing.round,
       athlete: existing.athlete,
       rank: 2,
-      score_raw: "duplicate"
+      score_raw: "duplicate",
     )
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:athlete_id], "has already been taken"
