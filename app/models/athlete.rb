@@ -10,3 +10,24 @@ class Athlete < ApplicationRecord
   validates :external_athlete_id, uniqueness: true, allow_nil: true
   validates :height, :arm_span, numericality: { greater_than: 0 }, allow_nil: true
 end
+
+# == Schema Information
+#
+# Table name: athletes
+#
+#  id                  :bigint           not null, primary key
+#  arm_span            :float
+#  birthday            :date
+#  country_code        :string(3)        not null
+#  first_name          :string           not null
+#  gender              :integer          not null
+#  height              :float
+#  last_name           :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  external_athlete_id :integer
+#
+# Indexes
+#
+#  index_athletes_on_external_athlete_id  (external_athlete_id) UNIQUE
+#

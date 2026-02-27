@@ -31,3 +31,15 @@ class SeasonTest < ActiveSupport::TestCase
     assert_equal 2024, season.year
   end
 end
+
+# == Schema Information
+#
+# Table name: seasons
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  year        :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  external_id :integer
+#

@@ -100,3 +100,24 @@ class AthleteTest < ActiveSupport::TestCase
     assert_equal Date.parse("1999-03-12"), athlete.birthday
   end
 end
+
+# == Schema Information
+#
+# Table name: athletes
+#
+#  id                  :bigint           not null, primary key
+#  arm_span            :float
+#  birthday            :date
+#  country_code        :string(3)        not null
+#  first_name          :string           not null
+#  gender              :integer          not null
+#  height              :float
+#  last_name           :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  external_athlete_id :integer
+#
+# Indexes
+#
+#  index_athletes_on_external_athlete_id  (external_athlete_id) UNIQUE
+#

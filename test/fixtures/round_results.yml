@@ -33,3 +33,35 @@ speed_result:
   score_raw: "6.53"
   speed_time: 6.53
   speed_eliminated_stage: "quarter_final"
+
+# == Schema Information
+#
+# Table name: round_results
+#
+#  id                     :bigint           not null, primary key
+#  lead_height            :decimal(, )
+#  lead_plus              :boolean          default(FALSE)
+#  rank                   :integer
+#  score_raw              :string
+#  speed_eliminated_stage :string
+#  speed_time             :decimal(, )
+#  top_attempts           :integer
+#  tops                   :integer
+#  zone_attempts          :integer
+#  zones                  :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  athlete_id             :bigint           not null
+#  round_id               :bigint           not null
+#
+# Indexes
+#
+#  index_round_results_on_athlete_id               (athlete_id)
+#  index_round_results_on_round_id                 (round_id)
+#  index_round_results_on_round_id_and_athlete_id  (round_id,athlete_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (athlete_id => athletes.id)
+#  fk_rails_...  (round_id => rounds.id)
+#

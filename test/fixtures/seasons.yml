@@ -7,3 +7,15 @@ season_2025:
   external_id: 37
   name: "IFSC World Cup 2025"
   year: 2025
+
+# == Schema Information
+#
+# Table name: seasons
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  year        :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  external_id :integer
+#
