@@ -10,6 +10,9 @@ class RoundResult < ApplicationRecord
   validates :zones, numericality: { only_integer: true }, allow_nil: true
   validates :top_attempts, numericality: { only_integer: true }, allow_nil: true
   validates :zone_attempts, numericality: { only_integer: true }, allow_nil: true
+  validates :high_zones, numericality: { only_integer: true }, allow_nil: true
+  validates :high_zone_attempts, numericality: { only_integer: true }, allow_nil: true
+  validates :boulder_points, numericality: true, allow_nil: true
   validates :athlete_id, uniqueness: { scope: :round_id }
 end
 

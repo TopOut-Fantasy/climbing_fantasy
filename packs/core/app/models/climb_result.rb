@@ -2,9 +2,12 @@ class ClimbResult < ApplicationRecord
   belongs_to :round_result
   belongs_to :climb
 
+  alias_attribute :low_zone_attempts, :zone_attempts
+
   validates :round_result_id, uniqueness: { scope: :climb_id }
   validates :top_attempts, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :zone_attempts, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :high_zone_attempts, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
 end
 
 # == Schema Information

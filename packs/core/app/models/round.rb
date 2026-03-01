@@ -1,6 +1,7 @@
 class Round < ApplicationRecord
   belongs_to :category
   has_many :round_results, dependent: :destroy
+  has_many :athletes, through: :round_results
   has_many :climbs, dependent: :destroy
 
   enum :round_type, {

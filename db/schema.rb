@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_26_000003) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_01_000011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,15 +47,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_000003) do
   end
 
   create_table "athletes", force: :cascade do |t|
+    t.integer "active_since_year"
+    t.integer "age_last_seen"
+    t.date "age_last_seen_at"
     t.float "arm_span"
+    t.integer "birth_year_estimate"
+    t.string "birth_year_source"
     t.date "birthday"
+    t.string "club"
     t.string "country_code", limit: 3, null: false
     t.datetime "created_at", null: false
     t.integer "external_athlete_id"
     t.string "first_name", null: false
     t.integer "gender", null: false
     t.float "height"
+    t.string "hometown"
     t.string "last_name", null: false
+    t.integer "participations_count"
+    t.string "photo_url"
+    t.datetime "profile_last_synced_at"
     t.datetime "updated_at", null: false
     t.index ["external_athlete_id"], name: "index_athletes_on_external_athlete_id", unique: true
   end
@@ -75,11 +85,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_000003) do
     t.index ["event_id"], name: "index_categories_on_event_id"
   end
 
+  create_table "category_registrations", force: :cascade do |t|
+    t.bigint "athlete_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "registered_at_source"
+    t.string "status"
+    t.datetime "updated_at", null: false
+    t.index ["athlete_id"], name: "index_category_registrations_on_athlete_id"
+    t.index ["category_id", "athlete_id"], name: "index_category_registrations_category_athlete_unique", unique: true
+    t.index ["category_id"], name: "index_category_registrations_on_category_id"
+  end
+
   create_table "climb_results", force: :cascade do |t|
     t.bigint "climb_id", null: false
     t.datetime "created_at", null: false
     t.string "disqualification"
     t.decimal "height", precision: 5, scale: 2
+    t.integer "high_zone_attempts"
     t.boolean "plus"
     t.integer "rank"
     t.bigint "round_result_id", null: false
@@ -108,20 +131,42 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_000003) do
     t.integer "discipline", null: false
     t.date "ends_on", null: false
     t.integer "external_id"
+    t.string "info_sheet_url"
     t.string "location", null: false
     t.string "name", null: false
+    t.datetime "officials_last_synced_at"
+    t.datetime "registrations_last_checked_at"
+    t.datetime "results_last_synced_at"
     t.datetime "results_synced_at"
     t.bigint "season_id", null: false
     t.date "starts_on", null: false
     t.integer "status", default: 0, null: false
+    t.integer "sync_state", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["season_id"], name: "index_events_on_season_id"
+    t.index ["sync_state"], name: "index_events_on_sync_state"
+  end
+
+  create_table "officials", force: :cascade do |t|
+    t.string "country_code", limit: 3
+    t.datetime "created_at", null: false
+    t.bigint "event_id", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.integer "role", null: false
+    t.string "source_url"
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "role", "first_name", "last_name"], name: "idx_on_event_id_role_first_name_last_name_be5e297904", unique: true
+    t.index ["event_id"], name: "index_officials_on_event_id"
   end
 
   create_table "round_results", force: :cascade do |t|
     t.bigint "athlete_id", null: false
+    t.decimal "boulder_points"
     t.datetime "created_at", null: false
     t.string "group_label"
+    t.integer "high_zone_attempts"
+    t.integer "high_zones"
     t.decimal "lead_height"
     t.boolean "lead_plus", default: false
     t.integer "rank"
@@ -150,6 +195,34 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_000003) do
     t.index ["category_id"], name: "index_rounds_on_category_id"
   end
 
+  create_table "routesetters", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.string "country_code", limit: 3
+    t.datetime "created_at", null: false
+    t.integer "discipline_focus", null: false
+    t.string "first_name", null: false
+    t.boolean "inferred", default: false, null: false
+    t.string "last_name", null: false
+    t.integer "role", null: false
+    t.string "source_url"
+    t.datetime "updated_at", null: false
+    t.index ["category_id", "role", "discipline_focus", "first_name", "last_name"], name: "index_routesetters_unique_assignment", unique: true
+    t.index ["category_id"], name: "index_routesetters_on_category_id"
+  end
+
+  create_table "scrape_page_snapshots", force: :cascade do |t|
+    t.string "content_sha256"
+    t.datetime "created_at", null: false
+    t.string "error_class"
+    t.datetime "last_fetched_at"
+    t.datetime "last_parsed_at"
+    t.integer "scope", null: false
+    t.integer "status_code"
+    t.datetime "updated_at", null: false
+    t.string "url", null: false
+    t.index ["url", "scope"], name: "index_scrape_page_snapshots_on_url_and_scope", unique: true
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "external_id"
@@ -159,11 +232,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_26_000003) do
   end
 
   add_foreign_key "categories", "events"
+  add_foreign_key "category_registrations", "athletes"
+  add_foreign_key "category_registrations", "categories"
   add_foreign_key "climb_results", "climbs"
   add_foreign_key "climb_results", "round_results"
   add_foreign_key "climbs", "rounds"
   add_foreign_key "events", "seasons"
+  add_foreign_key "officials", "events"
   add_foreign_key "round_results", "athletes"
   add_foreign_key "round_results", "rounds"
   add_foreign_key "rounds", "categories"
+  add_foreign_key "routesetters", "categories"
 end

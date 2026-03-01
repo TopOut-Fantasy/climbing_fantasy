@@ -1,5 +1,9 @@
 class Athlete < ApplicationRecord
   has_many :round_results, dependent: :destroy
+  has_many :category_registrations, dependent: :destroy
+  has_many :rounds, through: :round_results
+  has_many :categories, through: :category_registrations
+  has_many :climb_results, through: :round_results
 
   enum :gender, { male: 0, female: 1, non_binary: 2, other: 3 }
 
@@ -12,7 +16,17 @@ class Athlete < ApplicationRecord
 
   class << self
     def ransackable_attributes(_auth_object = nil)
-      ["first_name", "last_name", "country_code", "gender"]
+      [
+        "first_name",
+        "last_name",
+        "country_code",
+        "gender",
+        "club",
+        "active_since_year",
+        "participations_count",
+        "age_last_seen",
+        "birth_year_estimate",
+      ]
     end
   end
 end
