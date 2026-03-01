@@ -164,36 +164,6 @@ Recurring job schedules will be configured as sync jobs are built.
 
 The Sidekiq Web UI is at `/sidekiq` (super_admin only).
 
-## Data Import
-
-Import athletes and results from
-[Kaggle IFSC dataset](https://www.kaggle.com/) CSV files:
-
-```bash
-# Import athletes
-rake import:athletes[path/to/athletes.csv]
-
-# Import results (athletes must be imported first)
-rake import:results[path/to/results.csv]
-
-# Import both in one step
-rake import:all[athletes.csv,results.csv]
-```
-
-Expected athlete CSV format:
-
-```csv
-athlete_id,firstname,lastname,age,gender,country,height,arm_span,paraclimbing_sport_class,birthday
-8677,Kokoro,Fujii,25.0,male,JPN,170.0,175.0,,1999-06-22
-```
-
-Expected results CSV format:
-
-```csv
-athlete_id,rank,discipline,season,date,event_id,event_location,d_cat
-8677,1,boulder,2024,2024-06-15,1291,Innsbruck,5001
-```
-
 ## Data Model
 
 ```txt
@@ -220,7 +190,6 @@ app/
   policies/         # Pundit authorization policies
   services/
     ifsc/           # IFSC API client and sync services
-    csv_importer/   # CSV import services
 config/
   sidekiq.yml       # Sidekiq queue configuration
 swagger/

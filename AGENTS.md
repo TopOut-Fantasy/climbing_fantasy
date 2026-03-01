@@ -115,18 +115,6 @@ Sidekiq + sidekiq-cron. Queues: `default`, `scraping`.
 
 Sidekiq Web UI at `/sidekiq` (super_admin only).
 
-### CSV import
-
-Bulk import from Kaggle IFSC dataset:
-
-```bash
-rake import:athletes[path/to/athletes.csv]
-rake import:results[path/to/results.csv]
-rake import:all[athletes.csv,results.csv]
-```
-
-Services: `CsvImporter::AthleteImporter`, `CsvImporter::ResultImporter`.
-
 ## Project structure
 
 ```txt
@@ -151,7 +139,6 @@ packs/
   sync/                       # Data sync — depends on core
     app/jobs/                 # Sidekiq background jobs
     app/services/ifsc/        # IFSC API client and data syncers
-    app/services/csv_importer/ # CSV import services
     lib/tasks/sync.rake       # Rake tasks for backfill/sync
 config/
   database.yml        # PostgreSQL, multi-db in production (primary, cache, queue, cable)
@@ -177,7 +164,7 @@ packwerk.yml          # Packwerk configuration (include_paths: app, packs/*/app)
 - **Filtering:** API filtering goes through query objects (`packs/api/app/queries/`). Use Ransack predicates — pass enum integer values (e.g., `Event.statuses[status_string]`) not strings.
 - **Testing:** Minitest with parallel workers. Shoulda-matchers for model validations. Committee for API schema conformance. Query tests in `test/queries/`.
 - **Models:** Enums for discipline, status, gender, round_type, role. Each model declares explicit `ransackable_attributes`/`ransackable_associations` allowlists.
-- **Services:** Class method interfaces via `class << self` (e.g., `CsvImporter::AthleteImporter.import(path)`). IFSC services take a client in the initializer for testability.
+- **Services:** Class method interfaces via `class << self`. IFSC services take a client in the initializer for testability.
 - **Controllers:** Thin controllers — delegate filtering to query objects, pagination via Pagy.
 - **Serialization:** Blueprinter with default and extended views. No inline JSON rendering.
 - **Jobs:** Rescue from `ApiError`, log, and continue processing remaining items.
