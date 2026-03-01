@@ -1,9 +1,9 @@
 # Climbing Fantasy
 
 A JSON API serving World Climbing (formerly IFSC) competition
-results. Data is scraped from `ifsc.results.info` via recurring
-background jobs. The data model is designed to support a future
-fantasy league layer.
+results. Data is synced from the IFSC JSON API at
+`ifsc.results.info` via background jobs. The data model is
+designed to support a future fantasy league layer.
 
 ## Tech Stack
 
@@ -11,8 +11,8 @@ fantasy league layer.
 - **Rails** 8.1.2
 - **PostgreSQL** 17
 - **Redis** (Sidekiq backend)
-- **Sidekiq** + **sidekiq-cron** (background jobs)
-- **Faraday** (HTTP client for IFSC scraping)
+- **Sidekiq** (background jobs)
+- **Faraday** (HTTP client for IFSC API)
 - **Blueprinter** (JSON serialization)
 - **Pagy** (pagination)
 - **Devise** (authentication)
@@ -159,13 +159,8 @@ super_admin account:
 
 ## Background Jobs
 
-Sidekiq processes recurring scraping jobs via sidekiq-cron:
-
-| Job                     | Schedule         | Description                    |
-|-------------------------|------------------|--------------------------------|
-| `SyncSeasonsJob`        | Weekly (Mon 6am) | Fetch seasons and competitions |
-| `SyncEventResultsJob`   | Daily (8am UTC)  | Fetch results for events       |
-| `SyncUpcomingEventsJob` | Daily (7am UTC)  | Update upcoming event details  |
+Data sync jobs in `packs/sync` fetch from the IFSC JSON API.
+Recurring job schedules will be configured as sync jobs are built.
 
 The Sidekiq Web UI is at `/sidekiq` (super_admin only).
 
@@ -224,7 +219,7 @@ app/
   models/           # ActiveRecord models
   policies/         # Pundit authorization policies
   services/
-    ifsc/           # IFSC API client and data syncer
+    ifsc/           # IFSC API client and sync services
     csv_importer/   # CSV import services
 config/
   sidekiq.yml       # Sidekiq queue configuration

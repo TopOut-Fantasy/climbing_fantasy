@@ -1,10 +1,12 @@
 class Event < ApplicationRecord
   belongs_to :season
   has_many :categories, dependent: :destroy
+  has_many :category_registrations, through: :categories
+  has_many :athletes, through: :category_registrations
+  has_many :rounds, through: :categories
 
   enum :discipline, { boulder: 0, lead: 1, speed: 2, combined: 3, boulder_and_lead: 4 }
   enum :status, { upcoming: 0, in_progress: 1, completed: 2 }
-
   validates :name, presence: true
   validates :location, presence: true
   validates :starts_on, presence: true
@@ -14,11 +16,21 @@ class Event < ApplicationRecord
 
   class << self
     def ransackable_attributes(_auth_object = nil)
-      ["name", "location", "discipline", "status", "starts_on", "ends_on", "results_synced_at", "season_id"]
+      [
+        "name",
+        "location",
+        "discipline",
+        "status",
+        "starts_on",
+        "ends_on",
+        "results_synced_at",
+        "results_last_synced_at",
+        "season_id",
+      ]
     end
 
     def ransackable_associations(_auth_object = nil)
-      ["season", "categories"]
+      ["season", "categories", "category_registrations", "athletes", "rounds"]
     end
   end
 end

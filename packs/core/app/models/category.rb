@@ -1,6 +1,9 @@
 class Category < ApplicationRecord
   belongs_to :event
   has_many :rounds, dependent: :destroy
+  has_many :category_registrations, dependent: :destroy
+  has_many :athletes, through: :category_registrations
+  has_many :round_results, through: :rounds
 
   enum :discipline, { boulder: 0, lead: 1, speed: 2, combined: 3, boulder_and_lead: 4 }
   enum :gender, { male: 0, female: 1, non_binary: 2, other: 3, mixed: 4 }
@@ -50,7 +53,7 @@ class Category < ApplicationRecord
     end
 
     def ransackable_associations(_auth_object = nil)
-      ["event", "rounds"]
+      ["event", "rounds", "category_registrations", "athletes", "round_results"]
     end
   end
 end
