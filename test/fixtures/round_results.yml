@@ -1,38 +1,240 @@
-fujii_innsbruck_final:
-  round: innsbruck_boulder_men_final
-  athlete: kokoro_fujii
+# === Keqiao 2025 Boulder Men Final ===
+anraku_keqiao_boulder_final:
+  round: keqiao_boulder_men_final
+  athlete: sorato_anraku
   rank: 1
-  score_raw: "4T5z 4 4"
+  score_raw: "99.7"
   tops: 4
+  zones: 4
+  top_attempts: 7
+  zone_attempts: 4
+
+lee_keqiao_boulder_final:
+  round: keqiao_boulder_men_final
+  athlete: dohyun_lee
+  rank: 2
+  score_raw: "99.3"
+  tops: 4
+  zones: 4
+  top_attempts: 13
+  zone_attempts: 7
+
+meichi_keqiao_boulder_final:
+  round: keqiao_boulder_men_final
+  athlete: meichi_narasaki
+  rank: 3
+  score_raw: "83.9"
+  tops: 3
+  zones: 4
+  top_attempts: 6
+  zone_attempts: 4
+
+tomoa_keqiao_boulder_final:
+  round: keqiao_boulder_men_final
+  athlete: tomoa_narasaki
+  rank: 4
+  score_raw: "69.6"
+  tops: 2
   zones: 4
   top_attempts: 5
   zone_attempts: 4
 
-narasaki_innsbruck_final:
-  round: innsbruck_boulder_men_final
-  athlete: tomoa_narasaki
-  rank: 2
-  score_raw: "3T4z 4 5"
-  tops: 3
+# === Keqiao 2025 Boulder Women Final ===
+sanders_keqiao_boulder_final:
+  round: keqiao_boulder_women_final
+  athlete: annie_sanders
+  rank: 1
+  score_raw: "54.7"
+  tops: 1
   zones: 4
-  top_attempts: 4
+  top_attempts: 2
   zone_attempts: 5
 
-garnbret_chamonix_final:
-  round: chamonix_lead_women_final
-  athlete: janja_garnbret
+bertone_keqiao_boulder_final:
+  round: keqiao_boulder_women_final
+  athlete: oriane_bertone
+  rank: 2
+  score_raw: "44.9"
+  tops: 1
+  zones: 3
+  top_attempts: 1
+  zone_attempts: 4
+
+mcneice_keqiao_boulder_final:
+  round: keqiao_boulder_women_final
+  athlete: erin_mcneice
+  rank: 3
+  score_raw: "44.8"
+  tops: 1
+  zones: 3
+  top_attempts: 2
+  zone_attempts: 5
+
+# === Wujiang 2025 Lead Men Final ===
+anraku_wujiang_lead_final:
+  round: wujiang_lead_men_final
+  athlete: sorato_anraku
   rank: 1
-  score_raw: "42+"
-  lead_height: 42.5
+  score_raw: "TOP"
+  lead_height: 50.0
+  lead_plus: false
+
+suzuki_wujiang_lead_final:
+  round: wujiang_lead_men_final
+  athlete: neo_suzuki
+  rank: 2
+  score_raw: "40+"
+  lead_height: 40.0
   lead_plus: true
 
-speed_result:
-  round: innsbruck_boulder_men_qual
-  athlete: speed_athlete
-  rank: 5
-  score_raw: "6.53"
-  speed_time: 6.53
+gines_wujiang_lead_final:
+  round: wujiang_lead_men_final
+  athlete: alberto_gines_lopez
+  rank: 3
+  score_raw: "39+"
+  lead_height: 39.0
+  lead_plus: true
+
+# === Wujiang 2025 Lead Women Final ===
+mcneice_wujiang_lead_final:
+  round: wujiang_lead_women_final
+  athlete: erin_mcneice
+  rank: 1
+  score_raw: "41"
+  lead_height: 41.0
+  lead_plus: false
+
+seo_wujiang_lead_final:
+  round: wujiang_lead_women_final
+  athlete: chaehyun_seo
+  rank: 1
+  score_raw: "41"
+  lead_height: 41.0
+  lead_plus: false
+
+sanders_wujiang_lead_final:
+  round: wujiang_lead_women_final
+  athlete: annie_sanders
+  rank: 3
+  score_raw: "39+"
+  lead_height: 39.0
+  lead_plus: true
+
+# === Wujiang 2025 Speed Men Final ===
+long_wujiang_speed_final:
+  round: wujiang_speed_men_final
+  athlete: jianguo_long
+  rank: 1
+  score_raw: "4.88"
+  speed_time: 4.88
+
+ilchyshyn_wujiang_speed_final:
+  round: wujiang_speed_men_final
+  athlete: hryhorii_ilchyshyn
+  rank: 2
+  score_raw: "4.98"
+  speed_time: 4.98
+
+katibin_wujiang_speed_final:
+  round: wujiang_speed_men_final
+  athlete: kiromal_katibin
+  rank: 3
+  score_raw: "4.75"
+  speed_time: 4.75
+  speed_eliminated_stage: "semi_final"
+
+watson_wujiang_speed_final:
+  round: wujiang_speed_men_final
+  athlete: samuel_watson
+  rank: 4
+  score_raw: "5.04"
+  speed_time: 5.04
   speed_eliminated_stage: "quarter_final"
+
+# === Wujiang 2025 Speed Women Final ===
+shaoqin_wujiang_speed_final:
+  round: wujiang_speed_women_final
+  athlete: shaoqin_zhang
+  rank: 1
+  score_raw: "6.32"
+  speed_time: 6.32
+
+jeong_wujiang_speed_final:
+  round: wujiang_speed_women_final
+  athlete: jimin_jeong
+  rank: 2
+  score_raw: "6.37"
+  speed_time: 6.37
+
+deng_wujiang_speed_final:
+  round: wujiang_speed_women_final
+  athlete: lijuan_deng
+  rank: 3
+  score_raw: "6.34"
+  speed_time: 6.34
+  speed_eliminated_stage: "semi_final"
+
+# === NSW Oceania 2026 Boulder Men Final ===
+thomas_nsw_boulder_final:
+  round: nsw_boulder_men_final
+  athlete: max_thomas
+  rank: 1
+  score_raw: "74.8"
+  tops: 3
+  zones: 4
+  top_attempts: 5
+  zone_attempts: 3
+
+parks_nsw_boulder_final:
+  round: nsw_boulder_men_final
+  athlete: dylan_parks
+  rank: 2
+  score_raw: "69.5"
+  tops: 2
+  zones: 4
+  top_attempts: 6
+  zone_attempts: 5
+
+harrison_nsw_boulder_final:
+  round: nsw_boulder_men_final
+  athlete: campbell_harrison
+  rank: 3
+  score_raw: "54.9"
+  tops: 1
+  zones: 4
+  top_attempts: 2
+  zone_attempts: 5
+
+# === NSW Oceania 2026 Boulder Women Final ===
+stasiuk_nsw_boulder_final:
+  round: nsw_boulder_women_final
+  athlete: maya_stasiuk
+  rank: 1
+  score_raw: "84.5"
+  tops: 3
+  zones: 4
+  top_attempts: 7
+  zone_attempts: 4
+
+scott_nsw_boulder_final:
+  round: nsw_boulder_women_final
+  athlete: emily_scott
+  rank: 2
+  score_raw: "69.6"
+  tops: 2
+  zones: 4
+  top_attempts: 5
+  zone_attempts: 8
+
+harris_nsw_boulder_final:
+  round: nsw_boulder_women_final
+  athlete: tahnia_harris
+  rank: 3
+  score_raw: "69.1"
+  tops: 2
+  zones: 4
+  top_attempts: 6
+  zone_attempts: 10
 
 # == Schema Information
 #

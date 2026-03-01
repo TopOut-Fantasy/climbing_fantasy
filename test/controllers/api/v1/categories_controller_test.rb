@@ -4,7 +4,7 @@ module Api
   module V1
     class CategoriesControllerTest < ActionDispatch::IntegrationTest
       test "GET /api/v1/categories/:id returns category with rounds" do
-        cat = categories(:innsbruck_boulder_men)
+        cat = categories(:keqiao_boulder_men)
         get api_v1_category_path(cat)
         assert_response :success
 

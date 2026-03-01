@@ -2,28 +2,28 @@ require "test_helper"
 
 class EventTest < ActiveSupport::TestCase
   test "validates presence of name" do
-    event = Event.new(season: seasons(:season_2024), location: "X", starts_on: Time.zone.today, ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2025), location: "X", starts_on: Time.zone.today, ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.name = nil
     assert_not event.valid?
     assert_includes event.errors[:name], "can't be blank"
   end
 
   test "validates presence of location" do
-    event = Event.new(season: seasons(:season_2024), name: "X", starts_on: Time.zone.today, ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2025), name: "X", starts_on: Time.zone.today, ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.location = nil
     assert_not event.valid?
     assert_includes event.errors[:location], "can't be blank"
   end
 
   test "validates presence of starts_on" do
-    event = Event.new(season: seasons(:season_2024), name: "X", location: "X", ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2025), name: "X", location: "X", ends_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.starts_on = nil
     assert_not event.valid?
     assert_includes event.errors[:starts_on], "can't be blank"
   end
 
   test "validates presence of ends_on" do
-    event = Event.new(season: seasons(:season_2024), name: "X", location: "X", starts_on: Time.zone.today, discipline: :boulder, status: :upcoming)
+    event = Event.new(season: seasons(:season_2025), name: "X", location: "X", starts_on: Time.zone.today, discipline: :boulder, status: :upcoming)
     event.ends_on = nil
     assert_not event.valid?
     assert_includes event.errors[:ends_on], "can't be blank"
@@ -38,17 +38,17 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "belongs to season" do
-    event = events(:innsbruck_boulder)
-    assert_equal seasons(:season_2024), event.season
+    event = events(:keqiao_boulder)
+    assert_equal seasons(:season_2025), event.season
   end
 
   test "has many categories" do
-    event = events(:innsbruck_boulder)
-    assert_includes event.categories, categories(:innsbruck_boulder_men)
+    event = events(:keqiao_boulder)
+    assert_includes event.categories, categories(:keqiao_boulder_men)
   end
 
   test "results_synced_at is nil by default" do
-    event = events(:innsbruck_boulder)
+    event = events(:keqiao_boulder)
     assert_nil event.results_synced_at
   end
 end

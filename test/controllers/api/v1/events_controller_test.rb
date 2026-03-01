@@ -28,7 +28,7 @@ module Api
       end
 
       test "GET /api/v1/events filters by season_id" do
-        season = seasons(:season_2024)
+        season = seasons(:season_2025)
         get api_v1_events_path(season_id: season.id)
         json = response.parsed_body
 
@@ -56,17 +56,17 @@ module Api
       end
 
       test "GET /api/v1/events filters by year" do
-        get api_v1_events_path(year: 2024)
+        get api_v1_events_path(year: 2025)
         json = response.parsed_body
 
         assert_not json["data"].empty?
         json["data"].each do |event|
-          assert_equal seasons(:season_2024).id, event["season_id"]
+          assert_equal seasons(:season_2025).id, event["season_id"]
         end
       end
 
       test "GET /api/v1/events/:id returns event with categories" do
-        event = events(:innsbruck_boulder)
+        event = events(:keqiao_boulder)
         get api_v1_event_path(event)
         assert_response :success
 

@@ -1,15 +1,28 @@
-janja_garnbret:
-  external_athlete_id: 5765
-  first_name: "Janja"
-  last_name: "Garnbret"
-  country_code: "SLO"
-  gender: 1
-  height: 164.0
-  arm_span: 166.0
-  birthday: "1999-03-12"
+# --- Boulder Men (Keqiao 2025 finalists) ---
+sorato_anraku:
+  external_athlete_id: 13040
+  first_name: "Sorato"
+  last_name: "Anraku"
+  country_code: "JPN"
+  gender: 0
+  birthday: "2005-07-22"
+
+dohyun_lee:
+  external_athlete_id: 2101
+  first_name: "Dohyun"
+  last_name: "Lee"
+  country_code: "KOR"
+  gender: 0
+
+meichi_narasaki:
+  external_athlete_id: 2307
+  first_name: "Meichi"
+  last_name: "Narasaki"
+  country_code: "JPN"
+  gender: 0
 
 tomoa_narasaki:
-  external_athlete_id: 6280
+  external_athlete_id: 2276
   first_name: "Tomoa"
   last_name: "Narasaki"
   country_code: "JPN"
@@ -18,19 +31,273 @@ tomoa_narasaki:
   arm_span: 175.0
   birthday: "1996-06-22"
 
-kokoro_fujii:
-  external_athlete_id: 8677
-  first_name: "Kokoro"
-  last_name: "Fujii"
+mejdi_schalck:
+  external_athlete_id: 11675
+  first_name: "Mejdi"
+  last_name: "Schalck"
+  country_code: "FRA"
+  gender: 0
+
+sam_avezou:
+  external_athlete_id: 532
+  first_name: "Sam"
+  last_name: "Avezou"
+  country_code: "FRA"
+  gender: 0
+
+paul_jenft:
+  external_athlete_id: 547
+  first_name: "Paul"
+  last_name: "Jenft"
+  country_code: "FRA"
+  gender: 0
+
+oren_prihed:
+  external_athlete_id: 13210
+  first_name: "Oren"
+  last_name: "Prihed"
+  country_code: "ISR"
+  gender: 0
+
+# --- Boulder Women (Keqiao 2025 finalists) ---
+annie_sanders:
+  external_athlete_id: 13021
+  first_name: "Annie"
+  last_name: "Sanders"
+  country_code: "USA"
+  gender: 1
+
+oriane_bertone:
+  external_athlete_id: 11462
+  first_name: "Oriane"
+  last_name: "Bertone"
+  country_code: "FRA"
+  gender: 1
+
+erin_mcneice:
+  external_athlete_id: 11468
+  first_name: "Erin"
+  last_name: "McNeice"
+  country_code: "GBR"
+  gender: 1
+
+mao_nakamura:
+  external_athlete_id: 2327
+  first_name: "Mao"
+  last_name: "Nakamura"
+  country_code: "JPN"
+  gender: 1
+
+miho_nonaka:
+  external_athlete_id: 2294
+  first_name: "Miho"
+  last_name: "Nonaka"
+  country_code: "JPN"
+  gender: 1
+
+melody_sekikawa:
+  external_athlete_id: 14008
+  first_name: "Melody"
+  last_name: "Sekikawa"
+  country_code: "JPN"
+  gender: 1
+
+chaehyun_seo:
+  external_athlete_id: 2080
+  first_name: "Chaehyun"
+  last_name: "Seo"
+  country_code: "KOR"
+  gender: 1
+
+oceania_mackenzie:
+  external_athlete_id: 2501
+  first_name: "Oceania"
+  last_name: "Mackenzie"
+  country_code: "AUS"
+  gender: 1
+
+# --- Lead Men (Wujiang 2025 finalists) ---
+# sorato_anraku already defined above
+neo_suzuki:
+  external_athlete_id: 14606
+  first_name: "Neo"
+  last_name: "Suzuki"
   country_code: "JPN"
   gender: 0
 
-speed_athlete:
-  external_athlete_id: 9000
-  first_name: "Veddriq"
-  last_name: "Leonardo"
+alberto_gines_lopez:
+  external_athlete_id: 811
+  first_name: "Alberto"
+  last_name: "Ginés López"
+  country_code: "ESP"
+  gender: 0
+
+satone_yoshida:
+  external_athlete_id: 11390
+  first_name: "Satone"
+  last_name: "Yoshida"
+  country_code: "JPN"
+  gender: 0
+
+yufei_pan:
+  external_athlete_id: 2947
+  first_name: "Yufei"
+  last_name: "Pan"
+  country_code: "CHN"
+  gender: 0
+
+luka_potocar:
+  external_athlete_id: 1170
+  first_name: "Luka"
+  last_name: "Potočar"
+  country_code: "SLO"
+  gender: 0
+
+filip_schenk:
+  external_athlete_id: 912
+  first_name: "Filip"
+  last_name: "Schenk"
+  country_code: "ITA"
+  gender: 0
+
+yannick_flohe:
+  external_athlete_id: 3131
+  first_name: "Yannick"
+  last_name: "Flohé"
+  country_code: "GER"
+  gender: 0
+
+# --- Lead Women (Wujiang 2025 finalists) ---
+# erin_mcneice, chaehyun_seo, annie_sanders, oceania_mackenzie already defined
+laura_rogora:
+  external_athlete_id: 928
+  first_name: "Laura"
+  last_name: "Rogora"
+  country_code: "ITA"
+  gender: 1
+
+yuetong_zhang:
+  external_athlete_id: 3009
+  first_name: "Yuetong"
+  last_name: "Zhang"
+  country_code: "CHN"
+  gender: 1
+
+helene_janicot:
+  external_athlete_id: 455
+  first_name: "Hélène"
+  last_name: "Janicot"
+  country_code: "FRA"
+  gender: 1
+
+anna_maria_apel:
+  external_athlete_id: 12336
+  first_name: "Anna Maria"
+  last_name: "Apel"
+  country_code: "GER"
+  gender: 1
+
+# --- Speed Men (Wujiang 2025 finalists) ---
+jianguo_long:
+  external_athlete_id: 11395
+  first_name: "Jianguo"
+  last_name: "Long"
+  country_code: "CHN"
+  gender: 0
+
+hryhorii_ilchyshyn:
+  external_athlete_id: 1547
+  first_name: "Hryhorii"
+  last_name: "Ilchyshyn"
+  country_code: "UKR"
+  gender: 0
+
+kiromal_katibin:
+  external_athlete_id: 3324
+  first_name: "Kiromal"
+  last_name: "Katibin"
   country_code: "INA"
   gender: 0
+
+samuel_watson:
+  external_athlete_id: 13034
+  first_name: "Samuel"
+  last_name: "Watson"
+  country_code: "USA"
+  gender: 0
+
+# --- Speed Women (Wujiang 2025 finalists) ---
+shaoqin_zhang:
+  external_athlete_id: 14415
+  first_name: "Shaoqin"
+  last_name: "Zhang"
+  country_code: "CHN"
+  gender: 1
+
+jimin_jeong:
+  external_athlete_id: 13154
+  first_name: "Jimin"
+  last_name: "Jeong"
+  country_code: "KOR"
+  gender: 1
+
+lijuan_deng:
+  external_athlete_id: 3014
+  first_name: "Lijuan"
+  last_name: "Deng"
+  country_code: "CHN"
+  gender: 1
+
+emma_hunt:
+  external_athlete_id: 1999
+  first_name: "Emma"
+  last_name: "Hunt"
+  country_code: "USA"
+  gender: 1
+
+# --- NSW Oceania 2026 Boulder Men finalists ---
+max_thomas:
+  external_athlete_id: 13855
+  first_name: "Max"
+  last_name: "Thomas"
+  country_code: "AUS"
+  gender: 0
+
+dylan_parks:
+  external_athlete_id: 13853
+  first_name: "Dylan"
+  last_name: "Parks"
+  country_code: "AUS"
+  gender: 0
+
+campbell_harrison:
+  external_athlete_id: 2493
+  first_name: "Campbell"
+  last_name: "Harrison"
+  country_code: "AUS"
+  gender: 0
+
+# --- NSW Oceania 2026 Boulder Women finalists ---
+maya_stasiuk:
+  external_athlete_id: 13857
+  first_name: "Maya"
+  last_name: "Stasiuk"
+  country_code: "AUS"
+  gender: 1
+
+emily_scott:
+  external_athlete_id: 13510
+  first_name: "Emily"
+  last_name: "Scott"
+  country_code: "AUS"
+  gender: 1
+
+tahnia_harris:
+  external_athlete_id: 15909
+  first_name: "Tahnia"
+  last_name: "Harris"
+  country_code: "AUS"
+  gender: 1
 
 # == Schema Information
 #

@@ -1,24 +1,84 @@
-innsbruck_boulder_men:
-  event: innsbruck_boulder
-  external_id: 5001
+# --- Keqiao 2025 ---
+keqiao_boulder_men:
+  event: keqiao_boulder
+  external_id: 6330
   name: "Boulder - Men"
   discipline: 0
   gender: 0
   age_category: "Open"
 
-innsbruck_boulder_women:
-  event: innsbruck_boulder
-  external_id: 5002
+keqiao_boulder_women:
+  event: keqiao_boulder
+  external_id: 6331
   name: "Boulder - Women"
   discipline: 0
   gender: 1
   age_category: "Open"
 
-chamonix_lead_women:
-  event: chamonix_lead
-  external_id: 5003
+# --- Wujiang 2025 ---
+wujiang_lead_men:
+  event: wujiang_lead_speed
+  external_id: 6332
+  name: "Lead - Men"
+  discipline: 1
+  gender: 0
+  age_category: "Open"
+
+wujiang_lead_women:
+  event: wujiang_lead_speed
+  external_id: 6333
   name: "Lead - Women"
   discipline: 1
+  gender: 1
+  age_category: "Open"
+
+wujiang_speed_men:
+  event: wujiang_lead_speed
+  external_id: 6334
+  name: "Speed - Men"
+  discipline: 2
+  gender: 0
+  age_category: "Open"
+
+wujiang_speed_women:
+  event: wujiang_lead_speed
+  external_id: 6335
+  name: "Speed - Women"
+  discipline: 2
+  gender: 1
+  age_category: "Open"
+
+# --- NSW Oceania 2026 ---
+nsw_boulder_men:
+  event: nsw_oceania
+  external_id: 7148
+  name: "Boulder - Men"
+  discipline: 0
+  gender: 0
+  age_category: "Open"
+
+nsw_boulder_women:
+  event: nsw_oceania
+  external_id: 7149
+  name: "Boulder - Women"
+  discipline: 0
+  gender: 1
+  age_category: "Open"
+
+# --- Keqiao 2026 (upcoming) ---
+keqiao_2026_boulder_men:
+  event: keqiao_2026
+  external_id: 7150
+  name: "Boulder - Men"
+  discipline: 0
+  gender: 0
+  age_category: "Open"
+
+keqiao_2026_boulder_women:
+  event: keqiao_2026
+  external_id: 7151
+  name: "Boulder - Women"
+  discipline: 0
   gender: 1
   age_category: "Open"
 

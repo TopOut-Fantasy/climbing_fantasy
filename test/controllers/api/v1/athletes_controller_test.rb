@@ -14,15 +14,15 @@ module Api
       end
 
       test "GET /api/v1/athletes searches by name" do
-        get api_v1_athletes_path(q: "garnbret")
+        get api_v1_athletes_path(q: "anraku")
         json = response.parsed_body
 
         assert_equal 1, json["data"].length
-        assert_equal "Garnbret", json["data"].first["last_name"]
+        assert_equal "Anraku", json["data"].first["last_name"]
       end
 
       test "GET /api/v1/athletes searches case-insensitively" do
-        get api_v1_athletes_path(q: "GARNBRET")
+        get api_v1_athletes_path(q: "ANRAKU")
         json = response.parsed_body
 
         assert_equal 1, json["data"].length
@@ -39,7 +39,7 @@ module Api
       end
 
       test "GET /api/v1/athletes/:id returns athlete with recent results" do
-        athlete = athletes(:kokoro_fujii)
+        athlete = athletes(:sorato_anraku)
         get api_v1_athlete_path(athlete)
         assert_response :success
 

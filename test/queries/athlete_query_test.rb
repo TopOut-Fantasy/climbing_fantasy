@@ -7,13 +7,13 @@ class AthleteQueryTest < ActiveSupport::TestCase
   end
 
   test "searches first_name with q param" do
-    results = AthleteQuery.call(q: "Janja")
-    assert results.any? { |a| a.first_name == "Janja" }
+    results = AthleteQuery.call(q: "Sorato")
+    assert results.any? { |a| a.first_name == "Sorato" }
   end
 
   test "searches last_name with q param" do
-    results = AthleteQuery.call(q: "Fujii")
-    assert results.any? { |a| a.last_name == "Fujii" }
+    results = AthleteQuery.call(q: "Anraku")
+    assert results.any? { |a| a.last_name == "Anraku" }
   end
 
   test "filters by country_code" do

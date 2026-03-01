@@ -1,0 +1,111 @@
+# --- Keqiao 2025 Boulder Men finalists ---
+anraku_keqiao_boulder_men:
+  category: keqiao_boulder_men
+  athlete: sorato_anraku
+
+lee_keqiao_boulder_men:
+  category: keqiao_boulder_men
+  athlete: dohyun_lee
+
+meichi_keqiao_boulder_men:
+  category: keqiao_boulder_men
+  athlete: meichi_narasaki
+
+tomoa_keqiao_boulder_men:
+  category: keqiao_boulder_men
+  athlete: tomoa_narasaki
+
+# --- Keqiao 2025 Boulder Women finalists ---
+sanders_keqiao_boulder_women:
+  category: keqiao_boulder_women
+  athlete: annie_sanders
+
+bertone_keqiao_boulder_women:
+  category: keqiao_boulder_women
+  athlete: oriane_bertone
+
+mcneice_keqiao_boulder_women:
+  category: keqiao_boulder_women
+  athlete: erin_mcneice
+
+# --- Wujiang 2025 Lead Men finalists ---
+anraku_wujiang_lead_men:
+  category: wujiang_lead_men
+  athlete: sorato_anraku
+
+suzuki_wujiang_lead_men:
+  category: wujiang_lead_men
+  athlete: neo_suzuki
+
+gines_wujiang_lead_men:
+  category: wujiang_lead_men
+  athlete: alberto_gines_lopez
+
+# --- Wujiang 2025 Lead Women finalists ---
+mcneice_wujiang_lead_women:
+  category: wujiang_lead_women
+  athlete: erin_mcneice
+
+seo_wujiang_lead_women:
+  category: wujiang_lead_women
+  athlete: chaehyun_seo
+
+sanders_wujiang_lead_women:
+  category: wujiang_lead_women
+  athlete: annie_sanders
+
+# --- Wujiang 2025 Speed Men finalists ---
+long_wujiang_speed_men:
+  category: wujiang_speed_men
+  athlete: jianguo_long
+
+ilchyshyn_wujiang_speed_men:
+  category: wujiang_speed_men
+  athlete: hryhorii_ilchyshyn
+
+katibin_wujiang_speed_men:
+  category: wujiang_speed_men
+  athlete: kiromal_katibin
+
+watson_wujiang_speed_men:
+  category: wujiang_speed_men
+  athlete: samuel_watson
+
+# --- Wujiang 2025 Speed Women finalists ---
+shaoqin_wujiang_speed_women:
+  category: wujiang_speed_women
+  athlete: shaoqin_zhang
+
+jeong_wujiang_speed_women:
+  category: wujiang_speed_women
+  athlete: jimin_jeong
+
+deng_wujiang_speed_women:
+  category: wujiang_speed_women
+  athlete: lijuan_deng
+
+# --- NSW Oceania 2026 Boulder Men finalists ---
+thomas_nsw_boulder_men:
+  category: nsw_boulder_men
+  athlete: max_thomas
+
+parks_nsw_boulder_men:
+  category: nsw_boulder_men
+  athlete: dylan_parks
+
+harrison_nsw_boulder_men:
+  category: nsw_boulder_men
+  athlete: campbell_harrison
+
+# --- NSW Oceania 2026 Boulder Women finalists ---
+stasiuk_nsw_boulder_women:
+  category: nsw_boulder_women
+  athlete: maya_stasiuk
+
+scott_nsw_boulder_women:
+  category: nsw_boulder_women
+  athlete: emily_scott
+
+harris_nsw_boulder_women:
+  category: nsw_boulder_women
+  athlete: tahnia_harris

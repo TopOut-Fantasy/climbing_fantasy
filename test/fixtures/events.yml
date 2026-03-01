@@ -1,31 +1,41 @@
-innsbruck_boulder:
-  season: season_2024
-  external_id: 1291
-  name: "IFSC World Cup Innsbruck 2024"
-  location: "Innsbruck, AUT"
-  starts_on: "2024-06-26"
-  ends_on: "2024-06-30"
+keqiao_boulder:
+  season: season_2025
+  external_id: 1405
+  name: "IFSC World Cup Keqiao 2025"
+  location: "Keqiao, CHN"
+  starts_on: "2025-04-18"
+  ends_on: "2025-04-20"
   discipline: 0
   status: 2
 
-chamonix_lead:
-  season: season_2024
-  external_id: 1292
-  name: "IFSC World Cup Chamonix 2024"
-  location: "Chamonix, FRA"
-  starts_on: "2024-07-10"
-  ends_on: "2024-07-14"
+wujiang_lead_speed:
+  season: season_2025
+  external_id: 1406
+  name: "IFSC World Cup Wujiang 2025"
+  location: "Wujiang, CHN"
+  starts_on: "2025-04-25"
+  ends_on: "2025-04-27"
   discipline: 1
   status: 2
 
-upcoming_speed:
-  season: season_2025
-  external_id: 1350
-  name: "IFSC World Cup Seoul 2025"
-  location: "Seoul, KOR"
-  starts_on: "2025-09-01"
-  ends_on: "2025-09-05"
-  discipline: 2
+nsw_oceania:
+  season: season_2026
+  external_id: 1523
+  name: "World Climbing Oceania Series New South Wales 2026"
+  location: "Gladesville, AUS"
+  starts_on: "2026-02-28"
+  ends_on: "2026-03-01"
+  discipline: 0
+  status: 2
+
+keqiao_2026:
+  season: season_2026
+  external_id: 1524
+  name: "World Climbing Series Keqiao 2026"
+  location: "Keqiao, CHN"
+  starts_on: "2026-05-01"
+  ends_on: "2026-05-03"
+  discipline: 0
   status: 0
 
 # == Schema Information

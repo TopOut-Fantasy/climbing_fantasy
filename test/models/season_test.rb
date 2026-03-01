@@ -20,15 +20,15 @@ class SeasonTest < ActiveSupport::TestCase
   end
 
   test "has many events" do
-    season = seasons(:season_2024)
-    assert_includes season.events, events(:innsbruck_boulder)
-    assert_includes season.events, events(:chamonix_lead)
+    season = seasons(:season_2025)
+    assert_includes season.events, events(:keqiao_boulder)
+    assert_includes season.events, events(:wujiang_lead_speed)
   end
 
   test "season has expected attributes" do
-    season = seasons(:season_2024)
-    assert_equal "IFSC World Cup 2024", season.name
-    assert_equal 2024, season.year
+    season = seasons(:season_2025)
+    assert_equal "IFSC World Cup 2025", season.name
+    assert_equal 2025, season.year
   end
 end
 

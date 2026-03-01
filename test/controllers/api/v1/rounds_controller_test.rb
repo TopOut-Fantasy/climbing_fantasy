@@ -4,7 +4,7 @@ module Api
   module V1
     class RoundsControllerTest < ActionDispatch::IntegrationTest
       test "GET /api/v1/rounds/:id returns round with results" do
-        round = rounds(:innsbruck_boulder_men_final)
+        round = rounds(:keqiao_boulder_men_final)
         get api_v1_round_path(round)
         assert_response :success
 
@@ -15,7 +15,7 @@ module Api
       end
 
       test "GET /api/v1/rounds/:id includes athlete data in results" do
-        round = rounds(:innsbruck_boulder_men_final)
+        round = rounds(:keqiao_boulder_men_final)
         get api_v1_round_path(round)
 
         json = response.parsed_body

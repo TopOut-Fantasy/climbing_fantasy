@@ -26,8 +26,8 @@ class AthleteTest < ActiveSupport::TestCase
   end
 
   test "validates uniqueness of external_athlete_id" do
-    existing = athletes(:janja_garnbret)
-    duplicate = Athlete.new(first_name: "X", last_name: "Y", country_code: "USA", gender: :female, external_athlete_id: existing.external_athlete_id)
+    existing = athletes(:sorato_anraku)
+    duplicate = Athlete.new(first_name: "X", last_name: "Y", country_code: "USA", gender: :male, external_athlete_id: existing.external_athlete_id)
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:external_athlete_id], "has already been taken"
   end
@@ -42,16 +42,16 @@ class AthleteTest < ActiveSupport::TestCase
   end
 
   test "has many round_results" do
-    athlete = athletes(:kokoro_fujii)
-    assert_includes athlete.round_results, round_results(:fujii_innsbruck_final)
+    athlete = athletes(:sorato_anraku)
+    assert_includes athlete.round_results, round_results(:anraku_keqiao_boulder_final)
   end
 
   test "athlete has expected attributes" do
-    athlete = athletes(:janja_garnbret)
-    assert_equal "Janja", athlete.first_name
-    assert_equal "Garnbret", athlete.last_name
-    assert_equal "SLO", athlete.country_code
-    assert_equal "female", athlete.gender
+    athlete = athletes(:tomoa_narasaki)
+    assert_equal "Tomoa", athlete.first_name
+    assert_equal "Narasaki", athlete.last_name
+    assert_equal "JPN", athlete.country_code
+    assert_equal "male", athlete.gender
   end
 
   test "height arm_span and birthday are optional" do
@@ -94,10 +94,10 @@ class AthleteTest < ActiveSupport::TestCase
   end
 
   test "fixture athlete has height arm_span and birthday" do
-    athlete = athletes(:janja_garnbret)
-    assert_equal 164.0, athlete.height
-    assert_equal 166.0, athlete.arm_span
-    assert_equal Date.parse("1999-03-12"), athlete.birthday
+    athlete = athletes(:tomoa_narasaki)
+    assert_equal 170.0, athlete.height
+    assert_equal 175.0, athlete.arm_span
+    assert_equal Date.parse("1996-06-22"), athlete.birthday
   end
 end
 

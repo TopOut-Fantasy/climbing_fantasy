@@ -1,23 +1,179 @@
-innsbruck_boulder_men_qual:
-  category: innsbruck_boulder_men
-  external_round_id: 7001
+# --- Keqiao 2025 Boulder Men ---
+keqiao_boulder_men_qual:
+  category: keqiao_boulder_men
+  external_round_id: 9381
   name: "Qualification"
   round_type: "qualification"
   status: 2
 
-innsbruck_boulder_men_final:
-  category: innsbruck_boulder_men
-  external_round_id: 7002
+keqiao_boulder_men_semi:
+  category: keqiao_boulder_men
+  external_round_id: 9953
+  name: "Semi-final"
+  round_type: "semi_final"
+  status: 2
+
+keqiao_boulder_men_final:
+  category: keqiao_boulder_men
+  external_round_id: 9955
   name: "Final"
   round_type: "final"
   status: 2
 
-chamonix_lead_women_final:
-  category: chamonix_lead_women
-  external_round_id: 7003
+# --- Keqiao 2025 Boulder Women ---
+keqiao_boulder_women_qual:
+  category: keqiao_boulder_women
+  external_round_id: 9382
+  name: "Qualification"
+  round_type: "qualification"
+  status: 2
+
+keqiao_boulder_women_semi:
+  category: keqiao_boulder_women
+  external_round_id: 9954
+  name: "Semi-final"
+  round_type: "semi_final"
+  status: 2
+
+keqiao_boulder_women_final:
+  category: keqiao_boulder_women
+  external_round_id: 9956
   name: "Final"
   round_type: "final"
   status: 2
+
+# --- Wujiang 2025 Lead Men ---
+wujiang_lead_men_qual:
+  category: wujiang_lead_men
+  external_round_id: 9383
+  name: "Qualification"
+  round_type: "qualification"
+  status: 2
+
+wujiang_lead_men_semi:
+  category: wujiang_lead_men
+  external_round_id: 9957
+  name: "Semi-final"
+  round_type: "semi_final"
+  status: 2
+
+wujiang_lead_men_final:
+  category: wujiang_lead_men
+  external_round_id: 9959
+  name: "Final"
+  round_type: "final"
+  status: 2
+
+# --- Wujiang 2025 Lead Women ---
+wujiang_lead_women_qual:
+  category: wujiang_lead_women
+  external_round_id: 9384
+  name: "Qualification"
+  round_type: "qualification"
+  status: 2
+
+wujiang_lead_women_semi:
+  category: wujiang_lead_women
+  external_round_id: 9958
+  name: "Semi-final"
+  round_type: "semi_final"
+  status: 2
+
+wujiang_lead_women_final:
+  category: wujiang_lead_women
+  external_round_id: 9960
+  name: "Final"
+  round_type: "final"
+  status: 2
+
+# --- Wujiang 2025 Speed Men ---
+wujiang_speed_men_qual:
+  category: wujiang_speed_men
+  external_round_id: 9385
+  name: "Qualification"
+  round_type: "qualification"
+  status: 2
+
+wujiang_speed_men_final:
+  category: wujiang_speed_men
+  external_round_id: 9961
+  name: "Final"
+  round_type: "final"
+  status: 2
+
+# --- Wujiang 2025 Speed Women ---
+wujiang_speed_women_qual:
+  category: wujiang_speed_women
+  external_round_id: 9386
+  name: "Qualification"
+  round_type: "qualification"
+  status: 2
+
+wujiang_speed_women_final:
+  category: wujiang_speed_women
+  external_round_id: 9962
+  name: "Final"
+  round_type: "final"
+  status: 2
+
+# --- NSW Oceania 2026 Boulder Men ---
+nsw_boulder_men_qual:
+  category: nsw_boulder_men
+  external_round_id: 10640
+  name: "Qualification"
+  round_type: "qualification"
+  status: 2
+
+nsw_boulder_men_semi:
+  category: nsw_boulder_men
+  external_round_id: 10654
+  name: "Semi-Final"
+  round_type: "semi_final"
+  status: 2
+
+nsw_boulder_men_final:
+  category: nsw_boulder_men
+  external_round_id: 10656
+  name: "Final"
+  round_type: "final"
+  status: 2
+
+# --- NSW Oceania 2026 Boulder Women ---
+nsw_boulder_women_qual:
+  category: nsw_boulder_women
+  external_round_id: 10641
+  name: "Qualification"
+  round_type: "qualification"
+  status: 2
+
+nsw_boulder_women_semi:
+  category: nsw_boulder_women
+  external_round_id: 10655
+  name: "Semi-Final"
+  round_type: "semi_final"
+  status: 2
+
+nsw_boulder_women_final:
+  category: nsw_boulder_women
+  external_round_id: 10657
+  name: "Final"
+  round_type: "final"
+  status: 2
+
+# --- Keqiao 2026 (upcoming, pending rounds) ---
+keqiao_2026_boulder_men_qual:
+  category: keqiao_2026_boulder_men
+  external_round_id: 10642
+  name: "Qualification"
+  round_type: "qualification"
+  status: 0
+
+keqiao_2026_boulder_women_qual:
+  category: keqiao_2026_boulder_women
+  external_round_id: 10643
+  name: "Qualification"
+  round_type: "qualification"
+  status: 0
 
 # == Schema Information
 #

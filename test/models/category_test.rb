@@ -2,7 +2,7 @@ require "test_helper"
 
 class CategoryTest < ActiveSupport::TestCase
   test "validates presence of name" do
-    cat = Category.new(event: events(:innsbruck_boulder), discipline: :boulder, gender: :male)
+    cat = Category.new(event: events(:keqiao_boulder), discipline: :boulder, gender: :male)
     cat.name = nil
     assert_not cat.valid?
     assert_includes cat.errors[:name], "can't be blank"
@@ -21,18 +21,18 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "belongs to event" do
-    cat = categories(:innsbruck_boulder_men)
-    assert_equal events(:innsbruck_boulder), cat.event
+    cat = categories(:keqiao_boulder_men)
+    assert_equal events(:keqiao_boulder), cat.event
   end
 
   test "has many rounds" do
-    cat = categories(:innsbruck_boulder_men)
-    assert_includes cat.rounds, rounds(:innsbruck_boulder_men_qual)
-    assert_includes cat.rounds, rounds(:innsbruck_boulder_men_final)
+    cat = categories(:keqiao_boulder_men)
+    assert_includes cat.rounds, rounds(:keqiao_boulder_men_qual)
+    assert_includes cat.rounds, rounds(:keqiao_boulder_men_final)
   end
 
   test "unique external_id within event" do
-    existing = categories(:innsbruck_boulder_men)
+    existing = categories(:keqiao_boulder_men)
     duplicate = Category.new(
       event: existing.event,
       external_id: existing.external_id,
@@ -60,7 +60,7 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "para? returns false when para_classification is nil" do
-    cat = categories(:innsbruck_boulder_men)
+    cat = categories(:keqiao_boulder_men)
     assert_not cat.para?
   end
 end

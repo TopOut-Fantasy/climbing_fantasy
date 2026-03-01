@@ -2,7 +2,7 @@ require "test_helper"
 
 class RoundTest < ActiveSupport::TestCase
   test "validates presence of name" do
-    round = Round.new(category: categories(:innsbruck_boulder_men), round_type: :qualification, status: :pending)
+    round = Round.new(category: categories(:keqiao_boulder_men), round_type: :qualification, status: :pending)
     round.name = nil
     assert_not round.valid?
     assert_includes round.errors[:name], "can't be blank"
@@ -17,19 +17,19 @@ class RoundTest < ActiveSupport::TestCase
   end
 
   test "belongs to category" do
-    round = rounds(:innsbruck_boulder_men_qual)
-    assert_equal categories(:innsbruck_boulder_men), round.category
+    round = rounds(:keqiao_boulder_men_qual)
+    assert_equal categories(:keqiao_boulder_men), round.category
   end
 
   test "has many round_results" do
-    round = rounds(:innsbruck_boulder_men_final)
-    assert_includes round.round_results, round_results(:fujii_innsbruck_final)
-    assert_includes round.round_results, round_results(:narasaki_innsbruck_final)
+    round = rounds(:keqiao_boulder_men_final)
+    assert_includes round.round_results, round_results(:anraku_keqiao_boulder_final)
+    assert_includes round.round_results, round_results(:lee_keqiao_boulder_final)
   end
 
   test "has many climbs" do
-    round = rounds(:innsbruck_boulder_men_final)
-    assert_includes round.climbs, climbs(:innsbruck_final_problem_1)
+    round = rounds(:keqiao_boulder_men_final)
+    assert_includes round.climbs, climbs(:keqiao_men_final_p1)
   end
 end
 

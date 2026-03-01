@@ -1,13 +1,76 @@
-fujii_problem_1:
-  round_result: fujii_innsbruck_final
-  climb: innsbruck_final_problem_1
+# === Anraku - Keqiao Men Final (4T 4Z, scored 99.7) ===
+anraku_keqiao_p1:
+  round_result: anraku_keqiao_boulder_final
+  climb: keqiao_men_final_p1
+  top_attempts: 2
+  zone_attempts: 1
+
+anraku_keqiao_p2:
+  round_result: anraku_keqiao_boulder_final
+  climb: keqiao_men_final_p2
+  top_attempts: 2
+  zone_attempts: 1
+
+anraku_keqiao_p3:
+  round_result: anraku_keqiao_boulder_final
+  climb: keqiao_men_final_p3
+  top_attempts: 2
+  zone_attempts: 1
+
+anraku_keqiao_p4:
+  round_result: anraku_keqiao_boulder_final
+  climb: keqiao_men_final_p4
   top_attempts: 1
   zone_attempts: 1
 
-fujii_problem_2:
-  round_result: fujii_innsbruck_final
-  climb: innsbruck_final_problem_2
-  top_attempts: 2
+# === Lee - Keqiao Men Final (4T 4Z, scored 99.3) ===
+lee_keqiao_p1:
+  round_result: lee_keqiao_boulder_final
+  climb: keqiao_men_final_p1
+  top_attempts: 1
+  zone_attempts: 1
+
+lee_keqiao_p2:
+  round_result: lee_keqiao_boulder_final
+  climb: keqiao_men_final_p2
+  top_attempts: 4
+  zone_attempts: 4
+
+lee_keqiao_p3:
+  round_result: lee_keqiao_boulder_final
+  climb: keqiao_men_final_p3
+  top_attempts: 3
+  zone_attempts: 1
+
+lee_keqiao_p4:
+  round_result: lee_keqiao_boulder_final
+  climb: keqiao_men_final_p4
+  top_attempts: 3
+  zone_attempts: 1
+
+# === Thomas - NSW Men Final (3T 4Z, scored 74.8) ===
+thomas_nsw_p1:
+  round_result: thomas_nsw_boulder_final
+  climb: nsw_men_final_p1
+  top_attempts: 3
+  zone_attempts: 1
+
+thomas_nsw_p2:
+  round_result: thomas_nsw_boulder_final
+  climb: nsw_men_final_p2
+  top_attempts: 0
+  zone_attempts: 0
+
+thomas_nsw_p3:
+  round_result: thomas_nsw_boulder_final
+  climb: nsw_men_final_p3
+  top_attempts: 1
+  zone_attempts: 1
+
+thomas_nsw_p4:
+  round_result: thomas_nsw_boulder_final
+  climb: nsw_men_final_p4
+  top_attempts: 1
   zone_attempts: 1
 
 # == Schema Information

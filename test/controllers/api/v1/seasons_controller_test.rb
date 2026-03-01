@@ -24,7 +24,7 @@ module Api
       end
 
       test "GET /api/v1/seasons/:id returns season with events" do
-        season = seasons(:season_2024)
+        season = seasons(:season_2025)
         get api_v1_season_path(season)
         assert_response :success
 
