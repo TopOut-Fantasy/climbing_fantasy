@@ -91,6 +91,9 @@ group :development, :test do
   # Validate API responses against OpenAPI spec
   gem "committee"
   gem "committee-rails"
+
+  # Pretty print Ruby objects in logs and console
+  gem "awesome_print", require: "ap"
 end
 
 group :development do
