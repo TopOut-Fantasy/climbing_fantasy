@@ -1,12 +1,15 @@
 module Ifsc
   class ApiClient
     BASE_URL = "https://ifsc.results.info"
-    SESSION_COOKIE_NAME = "_verticallife_resultservice_session"
+    SESSION_COOKIE_NAMES = [
+      "_ifsc_resultservice_session",
+      "_verticallife_resultservice_session",
+    ].freeze
 
     class ApiError < StandardError; end
 
     def initialize
-      @session_cookie = fetch_session_cookie
+      @session_cookie_name, @session_cookie = fetch_session_cookie
     end
 
     def get_season(id)
@@ -33,7 +36,7 @@ module Ifsc
 
     def connection
       @connection ||= Faraday.new(url: BASE_URL) do |f|
-        f.headers["Cookie"] = "#{SESSION_COOKIE_NAME}=#{@session_cookie}"
+        f.headers["Cookie"] = "#{@session_cookie_name}=#{@session_cookie}"
         f.headers["Referer"] = "#{BASE_URL}/"
         f.headers["Accept"] = "application/json"
       end
@@ -55,10 +58,12 @@ module Ifsc
       cookie_header = response.headers["set-cookie"]
       raise ApiError, "No session cookie returned from #{BASE_URL}" unless cookie_header
 
-      match = cookie_header.match(/#{SESSION_COOKIE_NAME}=([^;]+)/)
-      raise ApiError, "Session cookie '#{SESSION_COOKIE_NAME}' not found in response" unless match
+      SESSION_COOKIE_NAMES.each do |name|
+        match = cookie_header.match(/#{name}=([^;]+)/)
+        return [name, match[1]] if match
+      end
 
-      match[1]
+      raise ApiError, "No recognized session cookie found in response (tried: #{SESSION_COOKIE_NAMES.join(", ")})"
     rescue Faraday::Error => e
       raise ApiError, "Failed to fetch session cookie: #{e.message}"
     end
