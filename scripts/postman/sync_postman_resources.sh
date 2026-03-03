@@ -9,13 +9,20 @@ LOCAL_ENV_FILE="${POSTMAN_DIR}/environments/climbing_fantasy_local.postman_envir
 MOCK_ENV_FILE="${POSTMAN_DIR}/environments/climbing_fantasy_mock.postman_environment.json"
 STATE_FILE="${POSTMAN_DIR}/postman_resources.json"
 
+# Source .env.local if POSTMAN_API_KEY is not already set
+if [[ -z "${POSTMAN_API_KEY:-}" && -f "${ROOT_DIR}/.env.local" ]]; then
+  set -a
+  source "${ROOT_DIR}/.env.local"
+  set +a
+fi
+
 POSTMAN_API_BASE="https://api.getpostman.com"
 WORKSPACE_NAME="${POSTMAN_WORKSPACE_NAME:-Team Workspace}"
 MOCK_NAME="${POSTMAN_MOCK_NAME:-Climbing Fantasy API Mock}"
 
 if [[ -z "${POSTMAN_API_KEY:-}" ]]; then
   echo "POSTMAN_API_KEY is required."
-  echo "Example: export POSTMAN_API_KEY='PMAK-...'"
+  echo "Set it in .env.local or export it: export POSTMAN_API_KEY='PMAK-...'"
   exit 1
 fi
 
