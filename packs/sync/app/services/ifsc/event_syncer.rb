@@ -1,5 +1,7 @@
 module Ifsc
   class EventSyncer
+    SYNCABLE_DISCIPLINES = ["speed", "boulder", "lead"].freeze
+
     class << self
       def call(event:, client: ApiClient.new)
         new(event:, client:).call
@@ -14,10 +16,14 @@ module Ifsc
     def call
       data = @client.get_event(@event.external_id)
 
-      data["d_cats"].each { |d_cat| sync_category(d_cat) }
+      data["d_cats"].each do |d_cat|
+        next if SYNCABLE_DISCIPLINES.exclude?(d_cat["discipline_kind"].to_s.downcase)
+
+        sync_category(d_cat)
+      end
 
       @event.update!(
-        sync_state: :synced,
+        sync_state: :needs_results,
         info_sheet_url: data["infosheet_url"],
       )
     end
@@ -25,12 +31,11 @@ module Ifsc
     private
 
     def sync_category(d_cat)
-      category = Category.find_or_initialize_by(event: @event, external_id: d_cat["category_id"])
-      category.update!(
-        name: d_cat["dcat_name"],
-        discipline: map_discipline(d_cat["discipline_kind"]),
-        gender: parse_gender(d_cat["category_name"]),
-      )
+      category = Category.find_or_create_by!(event: @event, external_dcat_id: d_cat["dcat_id"]) do |c|
+        c.name = d_cat["dcat_name"]
+        c.discipline = map_discipline(d_cat["discipline_kind"])
+        c.gender = parse_gender(d_cat["category_name"])
+      end
 
       d_cat["category_rounds"].each { |round_data| sync_round(category, round_data) }
     end
@@ -63,9 +68,7 @@ module Ifsc
         "speed" => :speed,
         "boulder" => :boulder,
         "lead" => :lead,
-        "combined" => :combined,
-        "boulder&lead" => :boulder_and_lead,
-      }.fetch(kind.to_s.downcase, :combined)
+      }.fetch(kind.to_s.downcase)
     end
 
     def parse_gender(category_name)
