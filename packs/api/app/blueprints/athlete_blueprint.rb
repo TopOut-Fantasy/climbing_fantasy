@@ -4,10 +4,7 @@ class AthleteBlueprint < Blueprinter::Base
     :last_name,
     :country_code,
     :gender,
-    :external_athlete_id,
-    :height,
-    :arm_span,
-    :birthday
+    :external_athlete_id
 
   view :extended do
     association :round_results, blueprint: RoundResultBlueprint

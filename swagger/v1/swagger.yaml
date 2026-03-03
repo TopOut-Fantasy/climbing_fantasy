@@ -137,7 +137,7 @@ paths:
           description: Filter events by category discipline
           schema:
             type: string
-            enum: [boulder, lead, speed, combined, boulder_and_lead]
+            enum: [boulder, lead, speed]
         - name: status
           in: query
           required: false
@@ -412,9 +412,6 @@ paths:
                         country_code: "JPN"
                         gender: "male"
                         external_athlete_id: 13040
-                        height: null
-                        arm_span: null
-                        birthday: "2005-07-22"
                     - id: 789242916
                       rank: 2
                       score_raw: "99.3"
@@ -434,9 +431,6 @@ paths:
                         country_code: "KOR"
                         gender: "male"
                         external_athlete_id: 2101
-                        height: null
-                        arm_span: null
-                        birthday: null
         "404":
           description: Round not found
           content:
@@ -499,27 +493,18 @@ paths:
                     country_code: "JPN"
                     gender: "male"
                     external_athlete_id: 13040
-                    height: null
-                    arm_span: null
-                    birthday: "2005-07-22"
                   - id: 715182994
                     first_name: "Anna Maria"
                     last_name: "Apel"
                     country_code: "GER"
                     gender: "female"
                     external_athlete_id: 12336
-                    height: null
-                    arm_span: null
-                    birthday: null
                   - id: 154222274
                     first_name: "Sam"
                     last_name: "Avezou"
                     country_code: "FRA"
                     gender: "male"
                     external_athlete_id: 532
-                    height: null
-                    arm_span: null
-                    birthday: null
                 meta:
                   page: 1
                   per_page: 25
@@ -563,9 +548,6 @@ paths:
                   country_code: "JPN"
                   gender: "male"
                   external_athlete_id: 13040
-                  height: null
-                  arm_span: null
-                  birthday: "2005-07-22"
                   round_results:
                     - id: 978834716
                       rank: 1
@@ -664,10 +646,10 @@ components:
           type: string
         discipline:
           type: string
-          enum: [boulder, lead, speed, combined, boulder_and_lead]
+          enum: [boulder, lead, speed]
         gender:
           type: string
-          enum: [male, female, non_binary, other, mixed]
+          enum: [male, female]
         external_dcat_id:
           type: integer
           nullable: true
@@ -752,21 +734,9 @@ components:
           type: string
         gender:
           type: string
-          enum: [male, female, non_binary, other]
+          enum: [male, female]
         external_athlete_id:
           type: integer
-          nullable: true
-        height:
-          type: number
-          format: float
-          nullable: true
-        arm_span:
-          type: number
-          format: float
-          nullable: true
-        birthday:
-          type: string
-          format: date
           nullable: true
       required:
         - id

@@ -47,6 +47,7 @@ module Api
         assert_equal athlete.id, json["data"]["id"]
         assert_equal athlete.first_name, json["data"]["first_name"]
         assert json["data"].key?("round_results")
+        assert json["data"].key?("external_athlete_id")
       end
 
       test "GET /api/v1/athletes/:id returns 404 for missing" do

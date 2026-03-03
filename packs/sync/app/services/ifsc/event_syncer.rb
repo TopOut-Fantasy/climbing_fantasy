@@ -31,10 +31,13 @@ module Ifsc
     private
 
     def sync_category(d_cat)
+      gender = parse_gender(d_cat["category_name"])
+      return unless gender
+
       category = Category.find_or_create_by!(event: @event, external_dcat_id: d_cat["dcat_id"]) do |c|
         c.name = d_cat["dcat_name"]
         c.discipline = map_discipline(d_cat["discipline_kind"])
-        c.gender = parse_gender(d_cat["category_name"])
+        c.gender = gender
       end
 
       d_cat["category_rounds"].each { |round_data| sync_round(category, round_data) }
@@ -75,7 +78,6 @@ module Ifsc
       case category_name.to_s
       when /\bMen\b/ then :male
       when /\bWomen\b/ then :female
-      else :mixed
       end
     end
 

@@ -38,7 +38,7 @@ class AthleteTest < ActiveSupport::TestCase
   end
 
   test "gender enum values" do
-    assert_equal ["male", "female", "non_binary", "other"], Athlete.genders.keys
+    assert_equal ["male", "female"], Athlete.genders.keys
   end
 
   test "has many round_results" do
@@ -83,14 +83,10 @@ class AthleteTest < ActiveSupport::TestCase
     assert athlete.valid?
   end
 
-  test "non_binary and other gender values" do
-    nb = Athlete.new(first_name: "X", last_name: "Y", country_code: "USA", gender: :non_binary)
-    assert nb.valid?
-    assert_equal "non_binary", nb.gender
-
-    other = Athlete.new(first_name: "X", last_name: "Y", country_code: "USA", gender: :other)
-    assert other.valid?
-    assert_equal "other", other.gender
+  test "rejects unsupported gender values" do
+    assert_raises(ArgumentError) do
+      Athlete.new(first_name: "X", last_name: "Y", country_code: "USA", gender: :other)
+    end
   end
 
   test "fixture athlete has height arm_span and birthday" do

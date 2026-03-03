@@ -5,7 +5,7 @@ class Athlete < ApplicationRecord
   has_many :categories, through: :category_registrations
   has_many :climb_results, through: :round_results
 
-  enum :gender, { male: 0, female: 1, non_binary: 2, other: 3 }
+  enum :gender, { male: 0, female: 1 }
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -21,11 +21,6 @@ class Athlete < ApplicationRecord
         "last_name",
         "country_code",
         "gender",
-        "club",
-        "active_since_year",
-        "participations_count",
-        "age_last_seen",
-        "birth_year_estimate",
       ]
     end
   end

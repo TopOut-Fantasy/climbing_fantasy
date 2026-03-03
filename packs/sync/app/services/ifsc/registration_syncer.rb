@@ -47,7 +47,6 @@ module Ifsc
       case value
       when 0 then :male
       when 1 then :female
-      else :other
       end
     end
   end

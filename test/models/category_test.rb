@@ -9,11 +9,11 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "discipline enum values" do
-    assert_equal ["boulder", "lead", "speed", "combined", "boulder_and_lead"], Category.disciplines.keys
+    assert_equal ["boulder", "lead", "speed"], Category.disciplines.keys
   end
 
   test "gender enum values" do
-    assert_equal ["male", "female", "non_binary", "other", "mixed"], Category.genders.keys
+    assert_equal ["male", "female"], Category.genders.keys
   end
 
   test "belongs to event" do
