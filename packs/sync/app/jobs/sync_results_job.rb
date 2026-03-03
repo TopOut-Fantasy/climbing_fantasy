@@ -2,7 +2,7 @@ class SyncResultsJob < ApplicationJob
   queue_as :sync
 
   def perform
-    events = Event.where(status: :in_progress).or(Event.where(sync_state: :needs_results))
+    events = Event.in_progress.or(Event.needs_results)
     return if events.none?
 
     client = Ifsc::ApiClient.new
