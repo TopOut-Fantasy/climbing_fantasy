@@ -31,17 +31,17 @@ class CategoryTest < ActiveSupport::TestCase
     assert_includes Category.ransackable_attributes, "event_id"
   end
 
-  test "unique external_id within event" do
+  test "unique external_dcat_id within event" do
     existing = categories(:keqiao_boulder_men)
     duplicate = Category.new(
       event: existing.event,
-      external_id: existing.external_id,
+      external_dcat_id: existing.external_dcat_id,
       name: "Duplicate",
       discipline: :boulder,
       gender: :male,
     )
     assert_not duplicate.valid?
-    assert_includes duplicate.errors[:external_id], "has already been taken"
+    assert_includes duplicate.errors[:external_dcat_id], "has already been taken"
   end
 end
 
@@ -49,19 +49,19 @@ end
 #
 # Table name: categories
 #
-#  id          :bigint           not null, primary key
-#  discipline  :integer          not null
-#  gender      :integer          not null
-#  name        :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  event_id    :bigint           not null
-#  external_id :integer
+#  id               :bigint           not null, primary key
+#  discipline       :integer          not null
+#  gender           :integer          not null
+#  name             :string           not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  event_id         :bigint           not null
+#  external_dcat_id :integer
 #
 # Indexes
 #
-#  index_categories_on_event_id                  (event_id)
-#  index_categories_on_event_id_and_external_id  (event_id,external_id) UNIQUE
+#  index_categories_on_event_id                       (event_id)
+#  index_categories_on_event_id_and_external_dcat_id  (event_id,external_dcat_id) UNIQUE
 #
 # Foreign Keys
 #

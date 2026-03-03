@@ -19,7 +19,7 @@ module Ifsc
       end
 
       # Create only one category with the round we have a cassette for
-      @category = Category.find_or_create_by!(event: @event, external_id: 6978) do |c|
+      @category = Category.find_or_create_by!(event: @event, external_dcat_id: 490) do |c|
         c.name = "SPEED Men"
         c.discipline = :speed
         c.gender = :male

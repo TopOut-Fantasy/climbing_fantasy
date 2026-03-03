@@ -15,7 +15,7 @@ class SyncResultsJobTest < ActiveSupport::TestCase
     completed_event = events(:wujiang_lead_speed)
     completed_event.update!(status: :completed, sync_state: :synced)
 
-    scoped = Event.where(status: :in_progress).or(Event.where(sync_state: :needs_results))
+    scoped = Event.in_progress.or(Event.needs_results)
     assert_includes scoped, in_progress_event
     assert_includes scoped, needs_results_event
     assert_not_includes scoped, completed_event
@@ -24,7 +24,7 @@ class SyncResultsJobTest < ActiveSupport::TestCase
   test "is no-op when no active events" do
     Event.find_each { |e| e.update!(status: :completed, sync_state: :synced) }
 
-    scoped = Event.where(status: :in_progress).or(Event.where(sync_state: :needs_results))
+    scoped = Event.in_progress.or(Event.needs_results)
     assert_empty scoped
   end
 
@@ -35,7 +35,7 @@ class SyncResultsJobTest < ActiveSupport::TestCase
     errors_logged = 0
     events_attempted = 0
 
-    Event.where(status: :in_progress).find_each do |_event|
+    Event.in_progress.find_each do |_event|
       events_attempted += 1
       raise Ifsc::ApiClient::ApiError, "test error"
     rescue Ifsc::ApiClient::ApiError

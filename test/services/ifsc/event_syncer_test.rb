@@ -25,7 +25,7 @@ module Ifsc
       end
 
       assert @event.categories.any?
-      cat = @event.categories.find_by(external_id: 6978)
+      cat = @event.categories.find_by(external_dcat_id: 490)
       assert_not_nil cat
       assert_equal "SPEED Men", cat.name
       assert_equal "speed", cat.discipline
@@ -37,7 +37,7 @@ module Ifsc
         EventSyncer.call(event: @event, client: @client)
       end
 
-      cat = @event.categories.find_by(external_id: 6978)
+      cat = @event.categories.find_by(external_dcat_id: 490)
       assert cat.rounds.any?
 
       qual = cat.rounds.find_by(external_round_id: 10468)
@@ -52,18 +52,18 @@ module Ifsc
         EventSyncer.call(event: @event, client: @client)
       end
 
-      cat = @event.categories.find_by(external_id: 6978)
+      cat = @event.categories.find_by(external_dcat_id: 490)
       qual = cat.rounds.find_by(external_round_id: 10468)
       assert qual.climbs.any?
     end
 
-    test "marks event as synced" do
+    test "marks event as needs_results" do
       VCR.use_cassette("ifsc_api_client/get_event_1491") do
         EventSyncer.call(event: @event, client: @client)
       end
 
       @event.reload
-      assert @event.synced?
+      assert @event.needs_results?
     end
 
     test "is idempotent" do

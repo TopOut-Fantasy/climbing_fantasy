@@ -42,7 +42,7 @@ module Ifsc
         RegistrationSyncer.call(event: @event, client: @client)
       end
 
-      speed_men = @event.categories.find_by(external_id: 6978)
+      speed_men = @event.categories.find_by(external_dcat_id: 490)
       assert speed_men.category_registrations.any?
     end
 
