@@ -71,7 +71,7 @@ Season -< Competition -< Category -< Round -< RoundResult >- Athlete
 ```
 
 - **Season** — competition year (e.g., "IFSC World Cup 2024")
-- **Competition** — single event with discipline enum (boulder, lead, speed, combined, boulder_and_lead) and status enum (upcoming, in_progress, completed)
+- **Event** — single competition event with status enum (upcoming, in_progress, completed) and sync_state enum (pending_sync, synced, needs_results). Discipline lives on Category, not Event.
 - **Category** — discipline + gender combination
 - **Round** — qualification, semi_final, or final with status tracking
 - **RoundResult** — athlete's score in a round (tops, zones, attempts, lead height, speed time)
@@ -85,8 +85,8 @@ All endpoints are namespaced under `api/v1`. Controllers inherit from `Api::V1::
 ```txt
 GET /api/v1/seasons             # paginated list
 GET /api/v1/seasons/:id         # includes competitions
-GET /api/v1/competitions        # filterable: season_id, discipline, status, year
-GET /api/v1/competitions/:id    # includes season + categories
+GET /api/v1/events              # filterable: season_id, discipline (via categories), status, year
+GET /api/v1/events/:id          # includes season + categories
 GET /api/v1/categories/:id      # includes rounds
 GET /api/v1/rounds/:id          # includes results + athletes (eager loaded)
 GET /api/v1/athletes            # searchable: q (name), country
@@ -113,21 +113,25 @@ Data flows in from the IFSC results API via background jobs. No manual data entr
 
 ### IFSC services (`packs/sync/app/services/ifsc/`)
 
-- **Ifsc::Client** — Faraday HTTP wrapper around `ifsc.results.info`. Raises `Ifsc::Client::ApiError` on failures.
-- **Ifsc::SeasonFetcher** — fetches and syncs seasons
-- **Ifsc::EventFetcher** — fetches and syncs event categories
-- **Ifsc::ResultFetcher** — fetches and syncs round results
-- **Ifsc::ResultSyncer** — core synchronization logic (class methods). Handles find-or-create for all models, discipline/gender/round_type mapping, and status inference from dates.
+- **Ifsc::ApiClient** — Faraday HTTP wrapper around `ifsc.results.info`. Acquires session cookie on init. Raises `Ifsc::ApiClient::ApiError` on failures.
+- **Ifsc::SeasonSyncer** — fetches seasons by ID, upserts Season + Event records. Infers event status from dates. New events get `sync_state: :pending_sync`.
+- **Ifsc::EventSyncer** — fetches event detail, upserts Category, Round, and Climb records from `d_cats[]`. Maps discipline, gender, round_type. Marks event `sync_state: :synced`.
+- **Ifsc::RegistrationSyncer** — fetches event registrations, find-or-creates Athletes and CategoryRegistrations. Matches categories by name.
+- **Ifsc::ResultSyncer** — iterates event rounds, fetches results per round, upserts RoundResult + ClimbResult. Aggregates speed times and scores. Finalizes event status when all rounds complete.
+
+All services use `class << self` with a `call` interface and accept `client:` keyword for testability.
 
 ### Background jobs
 
-Sidekiq + sidekiq-cron. Queues: `default`, `scraping`.
+Sidekiq + sidekiq-cron. Queues: `default`, `sync`.
 
-| Job                     | Schedule         | Description                    |
-|-------------------------|------------------|--------------------------------|
-| `SyncSeasonsJob`        | Weekly (Mon 6am) | Fetch seasons and competitions |
-| `SyncEventResultsJob`   | Daily (8am UTC)  | Fetch results for events       |
-| `SyncUpcomingEventsJob` | Daily (7am UTC)  | Update upcoming event details  |
+| Job                    | Schedule                       | Description                                          |
+|------------------------|--------------------------------|------------------------------------------------------|
+| `SyncSeasonsJob`       | Mon+Thu 6am UTC (`0 6 * * 1,4`) | Discover seasons/events, sync pending event details  |
+| `SyncRegistrationsJob` | Daily 7am UTC (`0 7 * * *`)     | Sync registrations for upcoming/active events        |
+| `SyncResultsJob`       | Every 4 hours (`0 */4 * * *`)   | Poll results for active events (no-op when none)     |
+
+Each job rescues `ApiError` per-event and continues processing remaining items.
 
 Sidekiq Web UI at `/sidekiq` (super_admin only).
 
@@ -185,6 +189,7 @@ packwerk.yml          # Packwerk configuration (include_paths: app, packs/*/app)
 - **Serialization:** Blueprinter with default and extended views. No inline JSON rendering.
 - **Jobs:** Rescue from `ApiError`, log, and continue processing remaining items.
 - **Database:** PostgreSQL with UUID-less integer primary keys. Multi-database in production (Solid Cache, Solid Queue, Solid Cable).
+- **Migrations:** One migration per table. Split changes to different tables into separate migration files so each migration has a single concern.
 
 ## Commit workflow (Conventional Commits)
 
