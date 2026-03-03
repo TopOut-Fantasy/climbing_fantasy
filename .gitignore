@@ -41,5 +41,10 @@
 # Ignore node modules (used for ActiveAdmin CSS build)
 /node_modules
 
-# Ignore Claude Plans
+# Ignore Claude local settings and plans
+/.claude/settings.local.json
 /.claude/plans
+
+# Ignore Postman CLI config
+/.postman/
+/postman/globals/
