@@ -63,7 +63,7 @@ gem "activeadmin", "~> 4.0.0.beta21"
 
 # Authentication
 # ActiveAdmin 4.0.0.beta21 currently supports Devise >= 4.0 and < 5.0.
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 
 # Authorization
 gem "pundit"
