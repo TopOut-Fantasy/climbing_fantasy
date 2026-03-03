@@ -4,7 +4,7 @@ require "sidekiq/cron/web"
 Rails.application.routes.draw do
   mount Rswag::Ui::Engine => "/api-docs"
   mount Rswag::Api::Engine => "/api-docs"
-  devise_for :admin_users
+  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   authenticate :admin_user, ->(u) { u.super_admin? } do
