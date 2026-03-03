@@ -41,6 +41,20 @@ paths:
                 required:
                   - data
                   - meta
+              example:
+                data:
+                  - id: 999184339
+                    name: "World Climbing Series 2026"
+                    year: 2026
+                    external_id: 38
+                  - id: 579274347
+                    name: "IFSC World Cup 2025"
+                    year: 2025
+                    external_id: 37
+                meta:
+                  page: 1
+                  per_page: 25
+                  total: 2
 
   /api/v1/seasons/{id}:
     get:
@@ -72,12 +86,39 @@ paths:
                               $ref: "#/components/schemas/Event"
                 required:
                   - data
+              example:
+                data:
+                  id: 579274347
+                  name: "IFSC World Cup 2025"
+                  year: 2025
+                  external_id: 37
+                  events:
+                    - id: 672868979
+                      name: "IFSC World Cup Keqiao 2025"
+                      location: "Keqiao, CHN"
+                      starts_on: "2025-04-18"
+                      ends_on: "2025-04-20"
+                      status: "completed"
+                      season_id: 579274347
+                      external_id: 1405
+                      results_synced_at: null
+                    - id: 1056528741
+                      name: "IFSC World Cup Wujiang 2025"
+                      location: "Wujiang, CHN"
+                      starts_on: "2025-04-25"
+                      ends_on: "2025-04-27"
+                      status: "completed"
+                      season_id: 579274347
+                      external_id: 1406
+                      results_synced_at: null
         "404":
           description: Season not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+              example:
+                error: "Not found"
 
   /api/v1/events:
     get:
@@ -135,6 +176,39 @@ paths:
                 required:
                   - data
                   - meta
+              example:
+                data:
+                  - id: 895726900
+                    name: "World Climbing Series Keqiao 2026"
+                    location: "Keqiao, CHN"
+                    starts_on: "2026-05-01"
+                    ends_on: "2026-05-03"
+                    status: "upcoming"
+                    season_id: 999184339
+                    external_id: 1524
+                    results_synced_at: null
+                  - id: 25834392
+                    name: "World Climbing Oceania Series New South Wales 2026"
+                    location: "Gladesville, AUS"
+                    starts_on: "2026-02-28"
+                    ends_on: "2026-03-01"
+                    status: "completed"
+                    season_id: 999184339
+                    external_id: 1523
+                    results_synced_at: null
+                  - id: 1056528741
+                    name: "IFSC World Cup Wujiang 2025"
+                    location: "Wujiang, CHN"
+                    starts_on: "2025-04-25"
+                    ends_on: "2025-04-27"
+                    status: "completed"
+                    season_id: 579274347
+                    external_id: 1406
+                    results_synced_at: null
+                meta:
+                  page: 1
+                  per_page: 25
+                  total: 4
 
   /api/v1/events/{id}:
     get:
@@ -168,12 +242,51 @@ paths:
                               $ref: "#/components/schemas/Category"
                 required:
                   - data
+              example:
+                data:
+                  id: 1056528741
+                  name: "IFSC World Cup Wujiang 2025"
+                  location: "Wujiang, CHN"
+                  starts_on: "2025-04-25"
+                  ends_on: "2025-04-27"
+                  status: "completed"
+                  season_id: 579274347
+                  external_id: 1406
+                  results_synced_at: null
+                  season:
+                    id: 579274347
+                    name: "IFSC World Cup 2025"
+                    year: 2025
+                    external_id: 37
+                  categories:
+                    - id: 331850261
+                      name: "Lead - Men"
+                      discipline: "lead"
+                      gender: "male"
+                      external_dcat_id: 1
+                    - id: 767885520
+                      name: "Lead - Women"
+                      discipline: "lead"
+                      gender: "female"
+                      external_dcat_id: 5
+                    - id: 622874940
+                      name: "Speed - Men"
+                      discipline: "speed"
+                      gender: "male"
+                      external_dcat_id: 2
+                    - id: 639244710
+                      name: "Speed - Women"
+                      discipline: "speed"
+                      gender: "female"
+                      external_dcat_id: 6
         "404":
           description: Event not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+              example:
+                error: "Not found"
 
   /api/v1/categories/{id}:
     get:
@@ -205,12 +318,37 @@ paths:
                               $ref: "#/components/schemas/Round"
                 required:
                   - data
+              example:
+                data:
+                  id: 430410076
+                  name: "Boulder - Men"
+                  discipline: "boulder"
+                  gender: "male"
+                  external_dcat_id: 3
+                  rounds:
+                    - id: 801082457
+                      name: "Qualification"
+                      round_type: "qualification"
+                      status: "completed"
+                      external_round_id: 9381
+                    - id: 89087024
+                      name: "Semi-final"
+                      round_type: "semi_final"
+                      status: "completed"
+                      external_round_id: 9953
+                    - id: 572265335
+                      name: "Final"
+                      round_type: "final"
+                      status: "completed"
+                      external_round_id: 9955
         "404":
           description: Category not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+              example:
+                error: "Not found"
 
   /api/v1/rounds/{id}:
     get:
@@ -247,12 +385,66 @@ paths:
                                       $ref: "#/components/schemas/Athlete"
                 required:
                   - data
+              example:
+                data:
+                  id: 572265335
+                  name: "Final"
+                  round_type: "final"
+                  status: "completed"
+                  external_round_id: 9955
+                  round_results:
+                    - id: 978834716
+                      rank: 1
+                      score_raw: "99.7"
+                      group_label: null
+                      tops: 4
+                      zones: 4
+                      top_attempts: 7
+                      zone_attempts: 4
+                      lead_height: null
+                      lead_plus: false
+                      speed_time: null
+                      speed_eliminated_stage: null
+                      athlete:
+                        id: 806450002
+                        first_name: "Sorato"
+                        last_name: "Anraku"
+                        country_code: "JPN"
+                        gender: "male"
+                        external_athlete_id: 13040
+                        height: null
+                        arm_span: null
+                        birthday: "2005-07-22"
+                    - id: 789242916
+                      rank: 2
+                      score_raw: "99.3"
+                      group_label: null
+                      tops: 4
+                      zones: 4
+                      top_attempts: 13
+                      zone_attempts: 7
+                      lead_height: null
+                      lead_plus: false
+                      speed_time: null
+                      speed_eliminated_stage: null
+                      athlete:
+                        id: 146726437
+                        first_name: "Dohyun"
+                        last_name: "Lee"
+                        country_code: "KOR"
+                        gender: "male"
+                        external_athlete_id: 2101
+                        height: null
+                        arm_span: null
+                        birthday: null
         "404":
           description: Round not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+              example:
+                error: "Not found"
 
   /api/v1/athletes:
     get:
@@ -299,6 +491,39 @@ paths:
                 required:
                   - data
                   - meta
+              example:
+                data:
+                  - id: 806450002
+                    first_name: "Sorato"
+                    last_name: "Anraku"
+                    country_code: "JPN"
+                    gender: "male"
+                    external_athlete_id: 13040
+                    height: null
+                    arm_span: null
+                    birthday: "2005-07-22"
+                  - id: 715182994
+                    first_name: "Anna Maria"
+                    last_name: "Apel"
+                    country_code: "GER"
+                    gender: "female"
+                    external_athlete_id: 12336
+                    height: null
+                    arm_span: null
+                    birthday: null
+                  - id: 154222274
+                    first_name: "Sam"
+                    last_name: "Avezou"
+                    country_code: "FRA"
+                    gender: "male"
+                    external_athlete_id: 532
+                    height: null
+                    arm_span: null
+                    birthday: null
+                meta:
+                  page: 1
+                  per_page: 25
+                  total: 41
 
   /api/v1/athletes/{id}:
     get:
@@ -330,12 +555,50 @@ paths:
                               $ref: "#/components/schemas/RoundResult"
                 required:
                   - data
+              example:
+                data:
+                  id: 806450002
+                  first_name: "Sorato"
+                  last_name: "Anraku"
+                  country_code: "JPN"
+                  gender: "male"
+                  external_athlete_id: 13040
+                  height: null
+                  arm_span: null
+                  birthday: "2005-07-22"
+                  round_results:
+                    - id: 978834716
+                      rank: 1
+                      score_raw: "99.7"
+                      group_label: null
+                      tops: 4
+                      zones: 4
+                      top_attempts: 7
+                      zone_attempts: 4
+                      lead_height: null
+                      lead_plus: false
+                      speed_time: null
+                      speed_eliminated_stage: null
+                    - id: 1023846695
+                      rank: 1
+                      score_raw: "TOP"
+                      group_label: null
+                      tops: null
+                      zones: null
+                      top_attempts: null
+                      zone_attempts: null
+                      lead_height: "50.0"
+                      lead_plus: false
+                      speed_time: null
+                      speed_eliminated_stage: null
         "404":
           description: Athlete not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+              example:
+                error: "Not found"
 
 components:
   schemas:
