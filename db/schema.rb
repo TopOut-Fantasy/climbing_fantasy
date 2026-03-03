@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_02_000006) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_02_000003) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -74,11 +74,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_02_000006) do
     t.datetime "created_at", null: false
     t.integer "discipline", null: false
     t.bigint "event_id", null: false
-    t.integer "external_id"
+    t.integer "external_dcat_id"
     t.integer "gender", null: false
     t.string "name", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id", "external_id"], name: "index_categories_on_event_id_and_external_id", unique: true
+    t.index ["event_id", "external_dcat_id"], name: "index_categories_on_event_id_and_external_dcat_id", unique: true
     t.index ["event_id"], name: "index_categories_on_event_id"
   end
 
