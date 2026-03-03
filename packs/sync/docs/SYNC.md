@@ -6,6 +6,8 @@ This document describes how competition data flows from the IFSC results API int
 
 We only sync **World Climbing Series** events (boulder, lead, speed world cups). A single event may be a combined event with multiple disciplines (e.g., both lead and speed categories at the same competition). Para, youth, regional, and continental championship events are excluded. Filtering happens at the SeasonSyncer level by fetching events from the "World Cups and World Championships" league via the season_leagues endpoint, rather than importing all events from a season.
 
+Within each event, EventSyncer only syncs boulder, lead, and speed categories — combined and boulder&lead categories are skipped.
+
 ## IFSC API
 
 Base URL: `https://ifsc.results.info/api/v1`
@@ -27,7 +29,7 @@ Key endpoints used by the sync pipeline:
 ```
 Season
   └─ Event (status + sync_state)
-       └─ Category (discipline + gender)
+       └─ Category (discipline + gender, keyed by external_dcat_id)
             ├─ Round (round_type + status)
             │    ├─ Climb
             │    └─ RoundResult (per athlete)
@@ -65,7 +67,7 @@ All jobs run on the `sync` queue via sidekiq-cron. Each job rescues `ApiError` p
 |---|---|---|
 | `SyncSeasonsJob` | Mon+Thu 6am UTC | 1. Calls SeasonSyncer to discover/update seasons and events. 2. Calls EventSyncer on every `pending_sync` event. |
 | `SyncRegistrationsJob` | Daily 7am UTC | Calls RegistrationSyncer for events with `status: upcoming` or `in_progress`. |
-| `SyncResultsJob` | Every 4 hours | Calls ResultSyncer for events with `sync_state: needs_results`. Sets `sync_state: synced` when all rounds are completed. |
+| `SyncResultsJob` | Every 4 hours | Calls ResultSyncer for events with `status: in_progress` or `sync_state: needs_results`. Sets `sync_state: synced` when all rounds are completed. |
 
 Rake tasks for manual triggering:
 
@@ -81,17 +83,20 @@ rake sync:results       # runs SyncResultsJob inline
 
 **SeasonSyncer** fetches each season in `CURRENT_SEASON_IDS` (currently 37 and 38):
 1. Upserts the `Season` record (name, year)
-2. Finds the "World Cups and World Championships" league from the season's `leagues[]` array
+2. Finds the "World Cups and World Championships" league from the season's `leagues[]` array (matches `TARGET_LEAGUE_PATTERN = /world cup/i`)
 3. Fetches events from that league via `GET /season_leagues/:id`
 4. For each event, upserts an `Event` record with name, location, dates, and time-inferred status
 5. New events get `sync_state: pending_sync`
 
+If no matching league is found, a warning is logged and no events are created for that season.
+
 **EventSyncer** then runs on each `pending_sync` event:
 1. Fetches `GET /events/:id` for full event detail
-2. Creates/updates `Category` records from `d_cats[]` (maps discipline and gender)
-3. Creates/updates `Round` records from `category_rounds[]` (maps round_type and status)
-4. Creates `Climb` records from routes
-5. Sets `sync_state: needs_results`
+2. Filters `d_cats[]` to only boulder, lead, and speed categories (skips combined and boulder&lead)
+3. Creates/updates `Category` records keyed by `external_dcat_id` (the stable dcat ID from the API)
+4. Creates/updates `Round` records from `category_rounds[]` (maps round_type and status)
+5. Creates `Climb` records from routes
+6. Sets `sync_state: needs_results`
 
 ### 2. Registration sync (SyncRegistrationsJob)
 
@@ -103,7 +108,7 @@ rake sync:results       # runs SyncResultsJob inline
 
 ### 3. Result sync (SyncResultsJob)
 
-**ResultSyncer** runs for events with `sync_state: needs_results`:
+**ResultSyncer** runs for events with `status: in_progress` or `sync_state: needs_results`:
 1. Loads all rounds across all categories for the event
 2. For each round, fetches `GET /category_rounds/:id/results`
 3. Updates round status from the API response
@@ -131,7 +136,4 @@ All services live in `packs/sync/app/services/ifsc/` and follow the same pattern
 
 ## Known issues / TODO
 
-- **League filtering**: SeasonSyncer currently imports all events. Needs to be scoped to the "World Cups and World Championships" league via the season_leagues endpoint.
-- **EventSyncer sync_state**: Currently sets `synced` instead of `needs_results`, which means completed events never get results fetched.
-- **SyncResultsJob scope**: Currently queries `status: in_progress OR sync_state: needs_results`. Should simplify to just `sync_state: needs_results` once EventSyncer is fixed.
 - **Climb creation**: EventSyncer reads `round_data["routes"]` but boulder qualification routes are nested under `starting_groups[].routes`, so climbs are not created for those rounds.

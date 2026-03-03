@@ -190,6 +190,8 @@ packwerk.yml          # Packwerk configuration (include_paths: app, packs/*/app)
 - **Jobs:** Rescue from `ApiError`, log, and continue processing remaining items.
 - **Database:** PostgreSQL with UUID-less integer primary keys. Multi-database in production (Solid Cache, Solid Queue, Solid Cable).
 - **Migrations:** One migration per table. Split changes to different tables into separate migration files so each migration has a single concern.
+- **Enum scopes:** Prefer enum scopes (`Event.needs_results`, `Event.in_progress`) over `.where(sync_state: :needs_results)`.
+- **Sync pack docs:** When changing `packs/sync/`, update `packs/sync/docs/SYNC.md` to reflect the new behavior.
 
 ## Commit workflow (Conventional Commits)
 
