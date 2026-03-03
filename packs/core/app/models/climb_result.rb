@@ -8,6 +8,18 @@ class ClimbResult < ApplicationRecord
   validates :top_attempts, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :zone_attempts, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :high_zone_attempts, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+
+  def topped?
+    top_attempts > 0
+  end
+
+  def high_zoned?
+    high_zone_attempts.to_i > 0
+  end
+
+  def zoned?
+    zone_attempts > 0
+  end
 end
 
 # == Schema Information
