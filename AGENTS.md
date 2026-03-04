@@ -59,6 +59,7 @@ Keep Postman assets in sync with the API whenever endpoints or `swagger/v1/swagg
 
 Notes:
 - The generated Postman examples are derived from `test/fixtures/*.yml` so mocks stay realistic.
+- If fixture-backed API examples change in `test/fixtures/*.yml`, keep corresponding examples in `swagger/v1/swagger.yaml` consistent before regenerating Postman assets.
 - Default workspace name is `Team Workspace`; override with `POSTMAN_WORKSPACE_NAME`.
 - Never commit raw API keys.
 
