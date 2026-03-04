@@ -53,6 +53,67 @@ to_payload_file() {
   jq --arg wrapper_key "${wrapper_key}" '{($wrapper_key): .}' "${input_file}" > "${output_file}"
 }
 
+environment_uids_by_name() {
+  local name="$1"
+  jq -r \
+    --arg name "${name}" \
+    --argjson workspace_env_uids "${workspace_environment_uids_json}" \
+    '.environments[]?
+    | select(.name == $name and (.uid as $uid | $workspace_env_uids | index($uid)))
+    | .uid' <<<"${all_environments}"
+}
+
+select_canonical_environment_uid() {
+  local name="$1"
+  local state_uid="$2"
+  local matching_uids
+  matching_uids="$(environment_uids_by_name "${name}")"
+
+  if [[ -n "${state_uid}" ]] && grep -Fxq "${state_uid}" <<<"${matching_uids}"; then
+    echo "${state_uid}"
+    return
+  fi
+
+  if [[ -n "${matching_uids}" ]]; then
+    head -n1 <<<"${matching_uids}"
+  fi
+}
+
+remove_duplicate_environments() {
+  local name="$1"
+  local canonical_uid="$2"
+  local matching_uids
+  local uid
+  local deleted_any=0
+
+  matching_uids="$(environment_uids_by_name "${name}")"
+
+  while IFS= read -r uid; do
+    if [[ -z "${uid}" ]]; then
+      continue
+    fi
+
+    if [[ -z "${canonical_uid}" ]]; then
+      canonical_uid="${uid}"
+      continue
+    fi
+
+    if [[ "${uid}" == "${canonical_uid}" ]]; then
+      continue
+    fi
+
+    echo "Deleting duplicate environment: ${name} (${uid})" >&2
+    request DELETE "/environments/${uid}" >/dev/null
+    deleted_any=1
+  done <<<"${matching_uids}"
+
+  if [[ "${deleted_any}" -eq 1 ]]; then
+    all_environments="$(request GET "/environments")"
+  fi
+
+  echo "${canonical_uid}"
+}
+
 echo "Building fixture-backed Postman assets..."
 ruby "${ROOT_DIR}/scripts/postman/build_postman_assets.rb"
 
@@ -75,6 +136,8 @@ mock_env_name="$(jq -r '.name' "${MOCK_ENV_FILE}")"
 
 all_collections="$(request GET "/collections")"
 all_environments="$(request GET "/environments")"
+workspace_detail="$(request GET "/workspaces/${workspace_id}")"
+workspace_environment_uids_json="$(jq -c '[.workspace.environments[]?.uid]' <<<"${workspace_detail}")"
 
 collection_uid_from_state="$(jq -r '.collection_uid // ""' <<<"${state_json}")"
 if [[ -n "${collection_uid_from_state}" ]]; then
@@ -84,18 +147,12 @@ else
 fi
 
 local_env_uid_from_state="$(jq -r '.local_environment_uid // ""' <<<"${state_json}")"
-if [[ -n "${local_env_uid_from_state}" ]]; then
-  local_env_uid="${local_env_uid_from_state}"
-else
-  local_env_uid="$(jq -r --arg name "${local_env_name}" '.environments[]? | select(.name == $name) | .uid' <<<"${all_environments}" | head -n1)"
-fi
+local_env_uid="$(select_canonical_environment_uid "${local_env_name}" "${local_env_uid_from_state}")"
+local_env_uid="$(remove_duplicate_environments "${local_env_name}" "${local_env_uid}")"
 
 mock_env_uid_from_state="$(jq -r '.mock_environment_uid // ""' <<<"${state_json}")"
-if [[ -n "${mock_env_uid_from_state}" ]]; then
-  mock_env_uid="${mock_env_uid_from_state}"
-else
-  mock_env_uid="$(jq -r --arg name "${mock_env_name}" '.environments[]? | select(.name == $name) | .uid' <<<"${all_environments}" | head -n1)"
-fi
+mock_env_uid="$(select_canonical_environment_uid "${mock_env_name}" "${mock_env_uid_from_state}")"
+mock_env_uid="$(remove_duplicate_environments "${mock_env_name}" "${mock_env_uid}")"
 
 tmp_collection_payload="$(mktemp)"
 tmp_local_env_payload="$(mktemp)"
