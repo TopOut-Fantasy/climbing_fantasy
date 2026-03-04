@@ -15,6 +15,11 @@ module Ifsc
 
     def call
       data = @client.get_event(@event.external_id)
+      location = data["location"]
+
+      if location.blank?
+        raise ApiClient::ApiError, "Event #{@event.external_id} missing location in event payload"
+      end
 
       data["d_cats"].each do |d_cat|
         next if SYNCABLE_DISCIPLINES.exclude?(d_cat["discipline_kind"].to_s.downcase)
@@ -25,6 +30,7 @@ module Ifsc
       @event.update!(
         sync_state: :needs_results,
         info_sheet_url: data["infosheet_url"],
+        location:,
       )
     end
 

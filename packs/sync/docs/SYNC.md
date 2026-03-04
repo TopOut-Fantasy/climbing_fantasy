@@ -65,7 +65,7 @@ All jobs run on the `sync` queue via sidekiq-cron. Each job rescues `ApiError` p
 
 | Job | Cron | What it does |
 |---|---|---|
-| `SyncSeasonsJob` | Mon+Thu 6am UTC | 1. Calls SeasonSyncer to discover/update seasons and events. 2. Calls EventSyncer on every `pending_sync` event. |
+| `SyncSeasonsJob` | Mon+Thu 6am UTC | 1. Calls SeasonSyncer to discover/update seasons and events. 2. Calls EventSyncer on every `pending_sync` event and on events where `location == name` (placeholder location). |
 | `SyncRegistrationsJob` | Daily 7am UTC | Calls RegistrationSyncer for events with `status: upcoming` or `in_progress`. |
 | `SyncResultsJob` | Every 4 hours | Calls ResultSyncer for events with `status: in_progress` or `sync_state: needs_results`. Sets `sync_state: synced` when all rounds are completed. |
 
@@ -85,18 +85,21 @@ rake sync:results       # runs SyncResultsJob inline
 1. Upserts the `Season` record (name, year)
 2. Finds the "World Cups and World Championships" league from the season's `leagues[]` array (matches `TARGET_LEAGUE_PATTERN = /world cup/i`)
 3. Fetches events from that league via `GET /season_leagues/:id`
-4. For each event, upserts an `Event` record with name, location, dates, and time-inferred status
+4. For each event, upserts an `Event` record with name, location, dates, and time-inferred status.
+   For new events where league payload omits `location` (common in current IFSC responses), location is inferred from the event title as a fallback.
+   For existing events, SeasonSyncer preserves the current location so canonical location updates come from EventSyncer detail payloads.
 5. New events get `sync_state: pending_sync`
 
 If no matching league is found, a warning is logged and no events are created for that season.
 
-**EventSyncer** then runs on each `pending_sync` event:
+**EventSyncer** then runs on each `pending_sync` event and on events where `location == name`:
 1. Fetches `GET /events/:id` for full event detail
 2. Filters `d_cats[]` to only boulder, lead, and speed categories with men/women genders
 3. Creates/updates `Category` records keyed by `external_dcat_id` (the stable dcat ID from the API)
 4. Creates/updates `Round` records from `category_rounds[]` (maps round_type and status)
 5. Creates `Climb` records from routes
-6. Sets `sync_state: needs_results`
+6. Refreshes event metadata from detail payload (info sheet URL and canonical location)
+7. Sets `sync_state: needs_results`
 
 ### 2. Registration sync (SyncRegistrationsJob)
 

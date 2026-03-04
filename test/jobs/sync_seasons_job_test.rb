@@ -35,6 +35,23 @@ class SyncSeasonsJobTest < ActiveSupport::TestCase
     end
   end
 
+  test "syncs events that still have placeholder locations" do
+    pending_event = events(:keqiao_2026)
+    pending_event.update!(sync_state: :pending_sync)
+
+    placeholder_event = events(:wujiang_lead_speed)
+    placeholder_event.update!(sync_state: :needs_results, location: placeholder_event.name)
+
+    untouched_event = events(:keqiao_boulder)
+    untouched_event.update!(sync_state: :needs_results, location: "Keqiao, CHN")
+
+    synced_external_ids = Event.pending_sync.or(Event.where("location = name")).pluck(:external_id)
+
+    assert_includes synced_external_ids, pending_event.external_id
+    assert_includes synced_external_ids, placeholder_event.external_id
+    assert_not_includes synced_external_ids, untouched_event.external_id
+  end
+
   test "job rescues ApiError per event and continues processing" do
     event_a = events(:keqiao_2026)
     event_a.update!(sync_state: :pending_sync)

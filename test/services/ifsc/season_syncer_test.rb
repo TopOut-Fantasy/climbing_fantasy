@@ -52,6 +52,37 @@ module Ifsc
       assert new_event.pending_sync?
     end
 
+    test "parses location from event name when API location is missing for new events" do
+      VCR.use_cassette("ifsc_api_client/get_season_38") do
+        VCR.use_cassette("ifsc_api_client/get_season_league_457") do
+          SeasonSyncer.call(client: @client, season_ids: [38])
+        end
+      end
+
+      event = Event.find_by(external_id: 1525)
+      assert_not_nil event
+      assert_equal "Wujiang", event.location
+    end
+
+    test "does not overwrite existing location on subsequent season sync" do
+      VCR.use_cassette("ifsc_api_client/get_season_38") do
+        VCR.use_cassette("ifsc_api_client/get_season_league_457") do
+          SeasonSyncer.call(client: @client, season_ids: [38])
+        end
+      end
+
+      event = Event.find_by(external_id: 1525)
+      event.update!(location: "Wujiang, China")
+
+      VCR.use_cassette("ifsc_api_client/get_season_38", allow_playback_repeats: true) do
+        VCR.use_cassette("ifsc_api_client/get_season_league_457", allow_playback_repeats: true) do
+          SeasonSyncer.call(client: @client, season_ids: [38])
+        end
+      end
+
+      assert_equal "Wujiang, China", event.reload.location
+    end
+
     test "is idempotent" do
       2.times do
         VCR.use_cassette("ifsc_api_client/get_season_38", allow_playback_repeats: true) do

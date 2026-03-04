@@ -2,6 +2,13 @@ module Ifsc
   class SeasonSyncer
     CURRENT_SEASON_IDS = [37, 38].freeze
     TARGET_LEAGUE_PATTERN = /world cup/i
+    LOCATION_PREFIX_PATTERNS = [
+      /\AWorld Climbing Series\s+/i,
+      /\AWorld Climbing Oceania Series\s+/i,
+      /\AIFSC Climbing World Cup\s+/i,
+      /\AIFSC World Cup\s+/i,
+      /\AIFSC World Championships\s+/i,
+    ].freeze
 
     class << self
       def call(client: ApiClient.new, season_ids: CURRENT_SEASON_IDS)
@@ -51,11 +58,27 @@ module Ifsc
         ends_on: Date.parse(event_data["local_end_date"]),
         status: infer_status(event_data["starts_at"], event_data["ends_at"]),
       }
-      attrs[:location] = event_data["location"] if event_data["location"].present?
-      attrs[:location] ||= event_data["event"] if event.new_record?
+
+      attrs[:location] = if event.new_record?
+        event_data["location"] || parse_location_from_event_name(event_data["event"]) || event_data["event"]
+      else
+        event.location
+      end
+
       event.assign_attributes(attrs)
       event.sync_state = :pending_sync if event.new_record?
       event.save!
+    end
+
+    def parse_location_from_event_name(event_name)
+      location = event_name.to_s.strip
+      return if location.blank?
+
+      location = location.sub(/\s+\d{4}\z/, "")
+      LOCATION_PREFIX_PATTERNS.each { |pattern| location = location.sub(pattern, "") }
+
+      location = location.strip
+      location.presence
     end
 
     def infer_status(starts_at, ends_at)

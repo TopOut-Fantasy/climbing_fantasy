@@ -5,7 +5,9 @@ class SyncSeasonsJob < ApplicationJob
     client = Ifsc::ApiClient.new
     Ifsc::SeasonSyncer.call(client:)
 
-    Event.pending_sync.find_each do |event|
+    events_needing_detail_sync = Event.pending_sync.or(Event.where("location = name"))
+
+    events_needing_detail_sync.find_each do |event|
       Ifsc::EventSyncer.call(event:, client:)
     rescue Ifsc::ApiClient::ApiError => e
       Rails.logger.error("SyncSeasonsJob: Failed to sync event #{event.external_id}: #{e.message}")

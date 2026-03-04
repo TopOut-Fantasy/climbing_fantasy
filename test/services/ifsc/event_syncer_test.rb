@@ -66,6 +66,33 @@ module Ifsc
       assert @event.needs_results?
     end
 
+    test "updates event location from event detail payload" do
+      @event.update!(location: "Placeholder")
+
+      VCR.use_cassette("ifsc_api_client/get_event_1491") do
+        EventSyncer.call(event: @event, client: @client)
+      end
+
+      @event.reload
+      assert_equal "Mount Maunganui, New Zealand", @event.location
+    end
+
+    test "raises ApiError when event payload is missing location" do
+      client = Object.new
+      client.define_singleton_method(:get_event) do |_id|
+        {
+          "location" => nil,
+          "infosheet_url" => nil,
+          "d_cats" => [],
+        }
+      end
+
+      error = assert_raises(Ifsc::ApiClient::ApiError) do
+        EventSyncer.call(event: @event, client:)
+      end
+      assert_includes error.message, "missing location"
+    end
+
     test "is idempotent" do
       2.times do
         VCR.use_cassette("ifsc_api_client/get_event_1491") do
