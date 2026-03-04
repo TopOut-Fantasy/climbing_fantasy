@@ -45,14 +45,14 @@ wujiang_speed_women:
 # --- NSW Oceania 2026 ---
 nsw_boulder_men:
   event: nsw_oceania
-  external_dcat_id: 490
+  external_dcat_id: 491
   name: "Boulder - Men"
   discipline: 0
   gender: 0
 
 nsw_boulder_women:
   event: nsw_oceania
-  external_dcat_id: 510
+  external_dcat_id: 511
   name: "Boulder - Women"
   discipline: 0
   gender: 1
