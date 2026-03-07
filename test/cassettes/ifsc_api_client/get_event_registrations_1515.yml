@@ -1,0 +1,115 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ifsc.results.info/api/v1/events/1515/registrations
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - _verticallife_resultservice_session=<IFSC_SESSION_COOKIE>
+      Referer:
+      - https://ifsc.results.info/
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.14.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 07 Mar 2026 20:48:08 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      Access-Control-Allow-Headers:
+      - X-CSRF-Token, Authorization, Content-Type, X-Auth-Token
+      Access-Control-Max-Age:
+      - '1728000'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept
+      Etag:
+      - W/"9d5559fe2627c8f8418baefa4d61d4f6"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - ba6afa870229168cf7e9502f397198e6
+      X-Runtime:
+      - '0.026916'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=NyWx7A37QwrNt0tG9U3FNkpmsoWI2HxG9HmuB7EmRozyi0guwnJHy8761pBd2yedfjzv9lN%2FW%2F33yk8EnCVtefp2hQQj%2B0GItmNqVQ%2BkFRc%3D"}]}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9d8c7592ca8d7b36-DEN
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"athlete_id":3679,"firstname":"Jarrell","lastname":"SOH JIT KAI","name":"SOH
+        JIT KAI Jarrell","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":185,"name":"LEAD
+        Men"}]},{"athlete_id":3665,"firstname":"Luke","lastname":"GOH WEN BIN","name":"GOH
+        WEN BIN Luke","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":185,"name":"LEAD
+        Men"},{"id":187,"name":"BOULDER Men"}]},{"athlete_id":14719,"firstname":"Yong
+        Kang","lastname":"DYLAN SEOW","name":"DYLAN SEOW Yong Kang","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":185,"name":"LEAD
+        Men"},{"id":187,"name":"BOULDER Men"}]},{"athlete_id":14718,"firstname":"Mitchell
+        Charles","lastname":"BOYER","name":"BOYER Mitchell Charles","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":185,"name":"LEAD
+        Men"},{"id":187,"name":"BOULDER Men"}]},{"athlete_id":16662,"firstname":"Gerald","lastname":"BAYO
+        VEROSIL","name":"BAYO VEROSIL Gerald","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":185,"name":"LEAD
+        Men"},{"id":187,"name":"BOULDER Men"}]},{"athlete_id":3632,"firstname":"Vanessa
+        Si Yinn","lastname":"TENG","name":"TENG Vanessa Si Yinn","gender":1,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":189,"name":"LEAD
+        Women"},{"id":191,"name":"BOULDER Women"}]},{"athlete_id":13815,"firstname":"Natalie","lastname":"GOH
+        SIHUI","name":"GOH SIHUI Natalie","gender":1,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":189,"name":"LEAD
+        Women"},{"id":191,"name":"BOULDER Women"}]},{"athlete_id":3630,"firstname":"Lynnette","lastname":"KOH
+        SIOK HENG","name":"KOH SIOK HENG Lynnette","gender":1,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":189,"name":"LEAD
+        Women"}]},{"athlete_id":17205,"firstname":"Sharvin","lastname":"SEKAR","name":"SEKAR
+        Sharvin","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":186,"name":"SPEED
+        Men"}]},{"athlete_id":16428,"firstname":"Ezell, Qing Wei","lastname":"LOW","name":"LOW
+        Ezell, Qing Wei","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":186,"name":"SPEED
+        Men"}]},{"athlete_id":14715,"firstname":"Andre Ho","lastname":"JIN RUI","name":"JIN
+        RUI Andre Ho","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":186,"name":"SPEED
+        Men"}]},{"athlete_id":11967,"firstname":"Jit Yi","lastname":"DENZEL CHUA","name":"DENZEL
+        CHUA Jit Yi","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":186,"name":"SPEED
+        Men"}]},{"athlete_id":14721,"firstname":"Adre","lastname":"ALFIYAN","name":"ALFIYAN
+        Adre","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":186,"name":"SPEED
+        Men"}]},{"athlete_id":11361,"firstname":"Eilin","lastname":"TAN","name":"TAN
+        Eilin","gender":1,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":190,"name":"SPEED
+        Women"},{"id":191,"name":"BOULDER Women"}]},{"athlete_id":14717,"firstname":"Koh","lastname":"JEANETTE
+        FRANCES","name":"JEANETTE FRANCES Koh","gender":1,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":190,"name":"SPEED
+        Women"}]},{"athlete_id":3672,"firstname":"Asher Gavin","lastname":" CHIAM
+        KAI CHEN","name":" CHIAM KAI CHEN Asher Gavin","gender":0,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":187,"name":"BOULDER
+        Men"}]},{"athlete_id":13504,"firstname":"Xu","lastname":"LITING","name":"LITING
+        Xu","gender":1,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":191,"name":"BOULDER
+        Women"}]},{"athlete_id":14716,"firstname":"Zhenxuan","lastname":"ELISE YEE","name":"ELISE
+        YEE Zhenxuan","gender":1,"federation":"SSCMF","federation_id":51,"country":"SGP","d_cats":[{"id":191,"name":"BOULDER
+        Women"}]}]'
+  recorded_at: Sat, 07 Mar 2026 20:48:08 GMT
+recorded_with: VCR 6.4.0

@@ -1,0 +1,153 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ifsc.results.info/api/v1/events/1515
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - _verticallife_resultservice_session=<IFSC_SESSION_COOKIE>
+      Referer:
+      - https://ifsc.results.info/
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.14.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 07 Mar 2026 20:48:07 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      Access-Control-Allow-Headers:
+      - X-CSRF-Token, Authorization, Content-Type, X-Auth-Token
+      Access-Control-Max-Age:
+      - '1728000'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept
+      Etag:
+      - W/"851411d605357a346dfecd2ed6ae7732"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 419e67fc4acf0acf2e46cf8081538154
+      X-Runtime:
+      - '0.156253'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Y4s7dymaIq1p0ACL2DMcu1D2Ux%2BL5ZowTcz0251kbH1r9qvkSrtMjGhsc6cMUIXYrXdT44r2bHfwALkAzl2wfE7kqvJgbMRukUQTkKMs32o%3D"}]}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9d8c758dab624828-DEN
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":1515,"name":"World Climbing Asia Championship Meishan 2026","type":"classic","league_id":4,"rounds":[{"id":2854,"name":"Qualification"},{"id":2855,"name":"Qualification"},{"id":2856,"name":"Qualification"},{"id":2896,"name":"Semi-Final"},{"id":2895,"name":"Final"},{"id":2897,"name":"Final"}],"league_season_id":459,"season_id":38,"starts_at":"2026-04-07
+        16:00:00 UTC","ends_at":"2026-04-12 15:59:00 UTC","local_start_date":"2026-04-08","local_end_date":"2026-04-12","timezone":{"value":"Asia/Shanghai"},"location":"Meishan,
+        China","registration_url":"/api/v1/events/1515/registrations","public_information":{"organiser_name":null,"organiser_url":null,"venue_name":null,"description":null},"cup_name":"","country":"CHN","registration_deadline":"2026-03-24T00:00:00.000Z","registration_opens_at":"2025-04-08T00:00:00.000Z","removal_deadline":"2026-03-04T00:00:00.000Z","athlete_self_registration":false,"team_official_self_registration":false,"event_logo":null,"series_logo":null,"cover":null,"infosheet_url":"https://ifsc.results.info/events/1515/infosheet","additional_info_url":null,"is_paraclimbing_event":false,"self_judged":false,"d_cats":[{"dcat_id":185,"event_id":1515,"dcat_name":"LEAD
+        Men","discipline_kind":"lead","category_id":7080,"category_name":"Men","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10572,"kind":"lead","name":"Qualification","category":"Men","schedule":null,"status":"pending","status_as_of":"2025-12-16
+        14:34:10 UTC","result_url":"/api/v1/category_rounds/10572/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        2 routes","routes":[{"id":18443,"name":"1","startlist":"/api/v1/routes/18443/startlist","ranking":"/api/v1/routes/18443/results"},{"id":18444,"name":"2","startlist":"/api/v1/routes/18444/startlist","ranking":"/api/v1/routes/18444/results"}]}],"full_results_url":"/api/v1/events/1515/result/185","top_3_results":null},{"dcat_id":189,"event_id":1515,"dcat_name":"LEAD
+        Women","discipline_kind":"lead","category_id":7081,"category_name":"Women","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10573,"kind":"lead","name":"Qualification","category":"Women","schedule":null,"status":"pending","status_as_of":"2025-12-16
+        14:34:10 UTC","result_url":"/api/v1/category_rounds/10573/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        2 routes","routes":[{"id":18445,"name":"1","startlist":"/api/v1/routes/18445/startlist","ranking":"/api/v1/routes/18445/results"},{"id":18446,"name":"2","startlist":"/api/v1/routes/18446/startlist","ranking":"/api/v1/routes/18446/results"}]}],"full_results_url":"/api/v1/events/1515/result/189","top_3_results":null},{"dcat_id":186,"event_id":1515,"dcat_name":"SPEED
+        Men","discipline_kind":"speed","category_id":7082,"category_name":"Men","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10574,"kind":"speed","name":"Qualification","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:55 UTC","result_url":"/api/v1/category_rounds/10574/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC
+        2026: Qualification","routes":[{"id":19044,"name":"A","startlist":"/api/v1/routes/19044/startlist"},{"id":19045,"name":"B","startlist":"/api/v1/routes/19045/startlist"}]},{"category_round_id":10699,"kind":"speed","name":"Final","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:58 UTC","result_url":"/api/v1/category_rounds/10699/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC
+        2026+: Elimination","routes":[{"id":19048,"name":"A","startlist":"/api/v1/routes/19048/startlist"},{"id":19049,"name":"B","startlist":"/api/v1/routes/19049/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/186","top_3_results":null},{"dcat_id":190,"event_id":1515,"dcat_name":"SPEED
+        Women","discipline_kind":"speed","category_id":7083,"category_name":"Women","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10575,"kind":"speed","name":"Qualification","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:55 UTC","result_url":"/api/v1/category_rounds/10575/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC
+        2026: Qualification","routes":[{"id":19046,"name":"A","startlist":"/api/v1/routes/19046/startlist"},{"id":19047,"name":"B","startlist":"/api/v1/routes/19047/startlist"}]},{"category_round_id":10700,"kind":"speed","name":"Final","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:58 UTC","result_url":"/api/v1/category_rounds/10700/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC
+        2026+: Elimination","routes":[{"id":19050,"name":"A","startlist":"/api/v1/routes/19050/startlist"},{"id":19051,"name":"B","startlist":"/api/v1/routes/19051/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/190","top_3_results":null},{"dcat_id":187,"event_id":1515,"dcat_name":"BOULDER
+        Men","discipline_kind":"boulder","category_id":7084,"category_name":"Men","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10576,"kind":"boulder","name":"Qualification","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:06 UTC","result_url":"/api/v1/category_rounds/10576/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19052,"name":"1","startlist":"/api/v1/routes/19052/startlist"},{"id":19053,"name":"2","startlist":"/api/v1/routes/19053/startlist"},{"id":19054,"name":"3","startlist":"/api/v1/routes/19054/startlist"},{"id":19055,"name":"4","startlist":"/api/v1/routes/19055/startlist"},{"id":19056,"name":"5","startlist":"/api/v1/routes/19056/startlist"}]},{"category_round_id":10701,"kind":"boulder","name":"Semi-Final","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:09 UTC","result_url":"/api/v1/category_rounds/10701/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":11},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19062,"name":"1","startlist":"/api/v1/routes/19062/startlist"},{"id":19063,"name":"2","startlist":"/api/v1/routes/19063/startlist"},{"id":19064,"name":"3","startlist":"/api/v1/routes/19064/startlist"},{"id":19065,"name":"4","startlist":"/api/v1/routes/19065/startlist"}]},{"category_round_id":10703,"kind":"boulder","name":"Final","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:12 UTC","result_url":"/api/v1/category_rounds/10703/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC:
+        finals 2026 (points)","routes":[{"id":19070,"name":"1","startlist":"/api/v1/routes/19070/startlist"},{"id":19071,"name":"2","startlist":"/api/v1/routes/19071/startlist"},{"id":19072,"name":"3","startlist":"/api/v1/routes/19072/startlist"},{"id":19073,"name":"4","startlist":"/api/v1/routes/19073/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/187","top_3_results":null},{"dcat_id":191,"event_id":1515,"dcat_name":"BOULDER
+        Women","discipline_kind":"boulder","category_id":7085,"category_name":"Women","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10577,"kind":"boulder","name":"Qualification","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:06 UTC","result_url":"/api/v1/category_rounds/10577/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19057,"name":"1","startlist":"/api/v1/routes/19057/startlist"},{"id":19058,"name":"2","startlist":"/api/v1/routes/19058/startlist"},{"id":19059,"name":"3","startlist":"/api/v1/routes/19059/startlist"},{"id":19060,"name":"4","startlist":"/api/v1/routes/19060/startlist"},{"id":19061,"name":"5","startlist":"/api/v1/routes/19061/startlist"}]},{"category_round_id":10702,"kind":"boulder","name":"Semi-Final","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:09 UTC","result_url":"/api/v1/category_rounds/10702/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":11},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19066,"name":"1","startlist":"/api/v1/routes/19066/startlist"},{"id":19067,"name":"2","startlist":"/api/v1/routes/19067/startlist"},{"id":19068,"name":"3","startlist":"/api/v1/routes/19068/startlist"},{"id":19069,"name":"4","startlist":"/api/v1/routes/19069/startlist"}]},{"category_round_id":10704,"kind":"boulder","name":"Final","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:12 UTC","result_url":"/api/v1/category_rounds/10704/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC:
+        finals 2026 (points)","routes":[{"id":19074,"name":"1","startlist":"/api/v1/routes/19074/startlist"},{"id":19075,"name":"2","startlist":"/api/v1/routes/19075/startlist"},{"id":19076,"name":"3","startlist":"/api/v1/routes/19076/startlist"},{"id":19077,"name":"4","startlist":"/api/v1/routes/19077/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/191","top_3_results":null}],"dcats":[{"dcat_id":185,"event_id":1515,"dcat_name":"LEAD
+        Men","discipline_kind":"lead","category_id":7080,"category_name":"Men","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10572,"kind":"lead","name":"Qualification","category":"Men","schedule":null,"status":"pending","status_as_of":"2025-12-16
+        14:34:10 UTC","result_url":"/api/v1/category_rounds/10572/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        2 routes","routes":[{"id":18443,"name":"1","startlist":"/api/v1/routes/18443/startlist","ranking":"/api/v1/routes/18443/results"},{"id":18444,"name":"2","startlist":"/api/v1/routes/18444/startlist","ranking":"/api/v1/routes/18444/results"}]}],"full_results_url":"/api/v1/events/1515/result/185","top_3_results":null},{"dcat_id":189,"event_id":1515,"dcat_name":"LEAD
+        Women","discipline_kind":"lead","category_id":7081,"category_name":"Women","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10573,"kind":"lead","name":"Qualification","category":"Women","schedule":null,"status":"pending","status_as_of":"2025-12-16
+        14:34:10 UTC","result_url":"/api/v1/category_rounds/10573/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        2 routes","routes":[{"id":18445,"name":"1","startlist":"/api/v1/routes/18445/startlist","ranking":"/api/v1/routes/18445/results"},{"id":18446,"name":"2","startlist":"/api/v1/routes/18446/startlist","ranking":"/api/v1/routes/18446/results"}]}],"full_results_url":"/api/v1/events/1515/result/189","top_3_results":null},{"dcat_id":186,"event_id":1515,"dcat_name":"SPEED
+        Men","discipline_kind":"speed","category_id":7082,"category_name":"Men","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10574,"kind":"speed","name":"Qualification","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:55 UTC","result_url":"/api/v1/category_rounds/10574/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC
+        2026: Qualification","routes":[{"id":19044,"name":"A","startlist":"/api/v1/routes/19044/startlist"},{"id":19045,"name":"B","startlist":"/api/v1/routes/19045/startlist"}]},{"category_round_id":10699,"kind":"speed","name":"Final","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:58 UTC","result_url":"/api/v1/category_rounds/10699/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC
+        2026+: Elimination","routes":[{"id":19048,"name":"A","startlist":"/api/v1/routes/19048/startlist"},{"id":19049,"name":"B","startlist":"/api/v1/routes/19049/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/186","top_3_results":null},{"dcat_id":190,"event_id":1515,"dcat_name":"SPEED
+        Women","discipline_kind":"speed","category_id":7083,"category_name":"Women","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10575,"kind":"speed","name":"Qualification","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:55 UTC","result_url":"/api/v1/category_rounds/10575/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC
+        2026: Qualification","routes":[{"id":19046,"name":"A","startlist":"/api/v1/routes/19046/startlist"},{"id":19047,"name":"B","startlist":"/api/v1/routes/19047/startlist"}]},{"category_round_id":10700,"kind":"speed","name":"Final","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:00:58 UTC","result_url":"/api/v1/category_rounds/10700/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC
+        2026+: Elimination","routes":[{"id":19050,"name":"A","startlist":"/api/v1/routes/19050/startlist"},{"id":19051,"name":"B","startlist":"/api/v1/routes/19051/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/190","top_3_results":null},{"dcat_id":187,"event_id":1515,"dcat_name":"BOULDER
+        Men","discipline_kind":"boulder","category_id":7084,"category_name":"Men","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10576,"kind":"boulder","name":"Qualification","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:06 UTC","result_url":"/api/v1/category_rounds/10576/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19052,"name":"1","startlist":"/api/v1/routes/19052/startlist"},{"id":19053,"name":"2","startlist":"/api/v1/routes/19053/startlist"},{"id":19054,"name":"3","startlist":"/api/v1/routes/19054/startlist"},{"id":19055,"name":"4","startlist":"/api/v1/routes/19055/startlist"},{"id":19056,"name":"5","startlist":"/api/v1/routes/19056/startlist"}]},{"category_round_id":10701,"kind":"boulder","name":"Semi-Final","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:09 UTC","result_url":"/api/v1/category_rounds/10701/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":11},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19062,"name":"1","startlist":"/api/v1/routes/19062/startlist"},{"id":19063,"name":"2","startlist":"/api/v1/routes/19063/startlist"},{"id":19064,"name":"3","startlist":"/api/v1/routes/19064/startlist"},{"id":19065,"name":"4","startlist":"/api/v1/routes/19065/startlist"}]},{"category_round_id":10703,"kind":"boulder","name":"Final","category":"Men","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:12 UTC","result_url":"/api/v1/category_rounds/10703/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC:
+        finals 2026 (points)","routes":[{"id":19070,"name":"1","startlist":"/api/v1/routes/19070/startlist"},{"id":19071,"name":"2","startlist":"/api/v1/routes/19071/startlist"},{"id":19072,"name":"3","startlist":"/api/v1/routes/19072/startlist"},{"id":19073,"name":"4","startlist":"/api/v1/routes/19073/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/187","top_3_results":null},{"dcat_id":191,"event_id":1515,"dcat_name":"BOULDER
+        Women","discipline_kind":"boulder","category_id":7085,"category_name":"Women","status":"registration_pending","status_as_of":"2025-12-16
+        14:34:10 UTC","ranking_as_of":"NA","category_rounds":[{"category_round_id":10577,"kind":"boulder","name":"Qualification","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:06 UTC","result_url":"/api/v1/category_rounds/10577/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":10},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19057,"name":"1","startlist":"/api/v1/routes/19057/startlist"},{"id":19058,"name":"2","startlist":"/api/v1/routes/19058/startlist"},{"id":19059,"name":"3","startlist":"/api/v1/routes/19059/startlist"},{"id":19060,"name":"4","startlist":"/api/v1/routes/19060/startlist"},{"id":19061,"name":"5","startlist":"/api/v1/routes/19061/startlist"}]},{"category_round_id":10702,"kind":"boulder","name":"Semi-Final","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:09 UTC","result_url":"/api/v1/category_rounds/10702/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":11},"format":"IFSC:
+        1 group 2026 (points)","routes":[{"id":19066,"name":"1","startlist":"/api/v1/routes/19066/startlist"},{"id":19067,"name":"2","startlist":"/api/v1/routes/19067/startlist"},{"id":19068,"name":"3","startlist":"/api/v1/routes/19068/startlist"},{"id":19069,"name":"4","startlist":"/api/v1/routes/19069/startlist"}]},{"category_round_id":10704,"kind":"boulder","name":"Final","category":"Women","schedule":null,"status":"pending","status_as_of":"2026-03-06
+        12:01:12 UTC","result_url":"/api/v1/category_rounds/10704/results","starting_groups":[],"combined_stages":[],"round":{"league_round_id":12},"format":"IFSC:
+        finals 2026 (points)","routes":[{"id":19074,"name":"1","startlist":"/api/v1/routes/19074/startlist"},{"id":19075,"name":"2","startlist":"/api/v1/routes/19075/startlist"},{"id":19076,"name":"3","startlist":"/api/v1/routes/19076/startlist"},{"id":19077,"name":"4","startlist":"/api/v1/routes/19077/startlist"}]}],"full_results_url":"/api/v1/events/1515/result/191","top_3_results":null}],"disciplines":[{"id":1855,"kind":"lead","settings":null},{"id":1856,"kind":"speed","settings":null},{"id":1857,"kind":"boulder","settings":null}],"computed_combined_categories":[],"team_ranking_disciplines":[],"team_ranking_url":"/api/v1/events/1515/team_results/","time_rankings":false,"time_ranking_url":null,"custom_event_registration_fields":[]}'
+  recorded_at: Sat, 07 Mar 2026 20:48:07 GMT
+recorded_with: VCR 6.4.0
