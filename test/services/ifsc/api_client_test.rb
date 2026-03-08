@@ -83,6 +83,37 @@ module Ifsc
       end
     end
 
+    test "#search_athletes returns array of matching athletes" do
+      VCR.use_cassette("ifsc_api_client/search_athletes_janja") do
+        data = @client.search_athletes("janja")
+
+        assert_kind_of(Array, data)
+        assert_not(data.empty?)
+
+        athlete = data.first
+        assert(athlete.key?("id"))
+        assert(athlete.key?("firstname"))
+        assert(athlete.key?("lastname"))
+        assert(athlete.key?("gender"))
+        assert(athlete.key?("ioc_code"))
+      end
+    end
+
+    test "#get_athlete returns parsed athlete data" do
+      VCR.use_cassette("ifsc_api_client/get_athlete_1147") do
+        data = @client.get_athlete(1147)
+
+        assert_equal(1147, data["id"])
+        assert_equal("Janja", data["firstname"])
+        assert_equal("GARNBRET", data["lastname"])
+        assert(data.key?("country"))
+        assert(data.key?("federation"))
+        assert(data.key?("height"))
+        assert_kind_of(Array, data["discipline_podiums"])
+        assert_kind_of(Array, data["all_results"])
+      end
+    end
+
     test "raises ApiError on HTTP error response" do
       VCR.use_cassette("ifsc_api_client/error_404") do
         assert_raises(ApiClient::ApiError) do
