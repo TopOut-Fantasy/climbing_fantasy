@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ifsc.results.info/api/v1/athletes?name=janja
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - _verticallife_resultservice_session=<IFSC_SESSION_COOKIE>
+      Referer:
+      - https://ifsc.results.info/
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.14.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 08 Mar 2026 04:59:10 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE, PATCH, OPTIONS
+      Access-Control-Allow-Headers:
+      - X-CSRF-Token, Authorization, Content-Type, X-Auth-Token
+      Access-Control-Max-Age:
+      - '1728000'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept
+      Etag:
+      - W/"dd728ae86e90652e1a341bb7087cb236"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - '019efaffa7299c958865fcba9d599bbd'
+      X-Runtime:
+      - '0.070530'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Cf-Cache-Status:
+      - DYNAMIC
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=tAfL%2FrTantYVkyeArQbYq4GieNcEUKixSjk2%2B29Nq8rgARRjUNY9G57tAzdSQeeOJV7PAtFDXYGNH1GHE6rb9j7991FHfC3qbKWaSg2y"}]}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9d8f44dda8608014-DEN
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        W3siaWQiOjExNDcsImZpcnN0bmFtZSI6IkphbmphIiwibGFzdG5hbWUiOiJHQVJOQlJFVCIsImJpcnRoZGF5IjoiMTk5OS0wMy0xMiIsImdlbmRlciI6ImZlbWFsZSIsIm9yZ2FuaXNhdGlvbl9uYW1lIjoiQWxwaW5lIEFzc29jaWF0aW9uIG9mIFNsb3ZlbmlhIiwicGhvdG9fdXJsIjoiaHR0cHM6Ly9kMW4xcWo5Z2Vib3FuYi5jbG91ZGZyb250Lm5ldC9pZnNjL3B1YmxpYy83dGU5Z2lpamxzODlrcDBnYTZtNTVjNzI0cnBvIiwiaW9jX2NvZGUiOiJTTE8ifSx7ImlkIjoxMTY3LCJmaXJzdG5hbWUiOiJKYW5qYSIsImxhc3RuYW1lIjoiT0JMQUsiLCJiaXJ0aGRheSI6IjIwMDEtMDEtMDIiLCJnZW5kZXIiOiJmZW1hbGUiLCJvcmdhbmlzYXRpb25fbmFtZSI6IkFscGluZSBBc3NvY2lhdGlvbiBvZiBTbG92ZW5pYSIsInBob3RvX3VybCI6bnVsbCwiaW9jX2NvZGUiOiJTTE8ifSx7ImlkIjoxNjM5MSwiZmlyc3RuYW1lIjoiSsOhbm9zIiwibGFzdG5hbWUiOiJIQVJBTkdJIiwiYmlydGhkYXkiOiIxOTc5LTA3LTI2IiwiZ2VuZGVyIjoibWFsZSIsIm9yZ2FuaXNhdGlvbl9uYW1lIjoiSHVuZ2FyaWFuIE1vdW50YWluZWVyaW5nIGFuZCBTcG9ydCBDbGltYmluZyBGZWRlcmF0aW9uIiwicGhvdG9fdXJsIjoiaHR0cHM6Ly9kMW4xcWo5Z2Vib3FuYi5jbG91ZGZyb250Lm5ldC9pZnNjL3B1YmxpYy95M3B2djhkMnp5eHEzYnpuNXNiZ2w4N3dhbjR4IiwiaW9jX2NvZGUiOiJIVU4ifSx7ImlkIjoyMTc3LCJmaXJzdG5hbWUiOiJab2x0w6FuIiwibGFzdG5hbWUiOiJLT01Kw4FUSSIsImJpcnRoZGF5IjoiMTk4Ni0wMy0yOCIsImdlbmRlciI6Im1hbGUiLCJvcmdhbmlzYXRpb25fbmFtZSI6Ikh1bmdhcmlhbiBNb3VudGFpbmVlcmluZyBhbmQgU3BvcnQgQ2xpbWJpbmcgRmVkZXJhdGlvbiIsInBob3RvX3VybCI6bnVsbCwiaW9jX2NvZGUiOiJIVU4ifSx7ImlkIjo4MTksImZpcnN0bmFtZSI6Ikl2w6FuIiwibGFzdG5hbWUiOiJHRVJNw4FOIFBBU0NVQUwiLCJiaXJ0aGRheSI6IjE5NzMtMDItMjMiLCJnZW5kZXIiOiJtYWxlIiwib3JnYW5pc2F0aW9uX25hbWUiOiJGZWRlcmFjacOzbiBFc3Bhw7FvbGEgZGUgRGVwb3J0ZXMgZGUgTW9udGHDsWEgeSBFc2NhbGFkYSIsInBob3RvX3VybCI6bnVsbCwiaW9jX2NvZGUiOiJFU1AifSx7ImlkIjoyMTc4LCJmaXJzdG5hbWUiOiJab2x0w6FuIiwibGFzdG5hbWUiOiIgQU5EUk9WSUNTICIsImJpcnRoZGF5IjoiMTk5OC0wMy0yMSIsImdlbmRlciI6Im1hbGUiLCJvcmdhbmlzYXRpb25fbmFtZSI6Ikh1bmdhcmlhbiBNb3VudGFpbmVlcmluZyBhbmQgU3BvcnQgQ2xpbWJpbmcgRmVkZXJhdGlvbiIsInBob3RvX3VybCI6bnVsbCwiaW9jX2NvZGUiOiJIVU4ifSx7ImlkIjoyNTkxLCJmaXJzdG5hbWUiOiJDaWFyw6FuIiwibGFzdG5hbWUiOiJTQ0FOTE9OIiwiYmlydGhkYXkiOiIxOTk1LTA2LTE2IiwiZ2VuZGVyIjoibWFsZSIsIm9yZ2FuaXNhdGlvbl9uYW1lIjoiTW91bnRhaW5lZXJpbmcgSXJlbGFuZCIsInBob3RvX3VybCI6Imh0dHBzOi8vZDFuMXFqOWdlYm9xbmIuY2xvdWRmcm9udC5uZXQvaWZzYy9wdWJsaWMvb3V3ZmQ3ZGlpMWYxZGt1ZGozbjRzdGFub29sYiIsImlvY19jb2RlIjoiSVJMIn0seyJpZCI6NDIxNCwiZmlyc3RuYW1lIjoiSmF2aWVyIEl2w6FuIiwibGFzdG5hbWUiOiJNT0xJTkEgRlJBTkNPIiwiYmlydGhkYXkiOiIyMDAwLTExLTEwIiwiZ2VuZGVyIjoibWFsZSIsIm9yZ2FuaXNhdGlvbl9uYW1lIjoiRmVkZXJhY2lvbiBNZXhpY2FuYSBkZSBFc2NhbGFkYSBEZXBvcnRpdmEiLCJwaG90b191cmwiOm51bGwsImlvY19jb2RlIjoiTUVYIn0seyJpZCI6ODk5NCwiZmlyc3RuYW1lIjoixaB0xJtww6FuIiwibGFzdG5hbWUiOiJQT0NITUFOIiwiYmlydGhkYXkiOm51bGwsImdlbmRlciI6Im1hbGUiLCJvcmdhbmlzYXRpb25fbmFtZSI6IkN6ZWNoIENsaW1iaW5nIEZlZGVyYXRpb24iLCJwaG90b191cmwiOm51bGwsImlvY19jb2RlIjoiQ1pFIn0seyJpZCI6MjE3NiwiZmlyc3RuYW1lIjoiQW5kcsOhcyIsImxhc3RuYW1lIjoiU1pJSsOBUlTDkyIsImJpcnRoZGF5IjoiMTk4OS0wNy0yMyIsImdlbmRlciI6Im1hbGUiLCJvcmdhbmlzYXRpb25fbmFtZSI6Ikh1bmdhcmlhbiBNb3VudGFpbmVlcmluZyBhbmQgU3BvcnQgQ2xpbWJpbmcgRmVkZXJhdGlvbiIsInBob3RvX3VybCI6Imh0dHBzOi8vZDFuMXFqOWdlYm9xbmIuY2xvdWRmcm9udC5uZXQvaWZzYy9wdWJsaWMvOHpkeWh6NWZ1YnJ2cnNpZjNwZXF1eGl6NDByYyIsImlvY19jb2RlIjoiSFVOIn1d
+  recorded_at: Sun, 08 Mar 2026 04:59:10 GMT
+recorded_with: VCR 6.4.0

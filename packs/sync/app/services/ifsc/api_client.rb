@@ -32,6 +32,14 @@ module Ifsc
       get("/api/v1/events/#{id}/registrations")
     end
 
+    def search_athletes(name)
+      get("/api/v1/athletes?name=#{CGI.escape(name)}")
+    end
+
+    def get_athlete(id)
+      get("/api/v1/athletes/#{id}")
+    end
+
     private
 
     def connection
