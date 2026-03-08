@@ -9,6 +9,16 @@ admin.save!
 
 Rails.logger.info("Seeded AdminUser: admin@climbingfantasy.com (super_admin)")
 
+# Create demo user
+demo_user = User.find_or_initialize_by(email: "climber@topout.com")
+demo_user.assign_attributes(
+  password: "password123456",
+  password_confirmation: "password123456",
+  display_name: "DemoClimber",
+)
+demo_user.save!
+Rails.logger.info("Seeded User: climber@topout.com (DemoClimber)")
+
 unless Rails.env.production?
   fixture_path = Rails.root.join("test/fixtures")
 

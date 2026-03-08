@@ -7,6 +7,21 @@ Rails.application.routes.draw do
   devise_for :admin_users, **ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  devise_for :users,
+    path: "",
+    path_names: { sign_in: "login", sign_out: "logout", sign_up: "register" },
+    controllers: {
+      sessions: "users/sessions",
+      registrations: "users/registrations",
+      passwords: "users/passwords",
+    }
+
+  authenticated :user do
+    root to: "dashboard#index", as: :authenticated_root
+  end
+
+  root to: redirect("/login")
+
   authenticate :admin_user, ->(u) { u.super_admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end

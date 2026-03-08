@@ -1,0 +1,141 @@
+<div class="flex flex-col items-center justify-center min-h-screen px-4 py-12">
+  <%# Header %>
+  <div class="text-center mb-8">
+    <div class="flex items-center justify-center gap-3 mb-2">
+      <%= image_tag("top_out_logo.png", alt: "TopOut", class: "h-12 w-12") %>
+      <h1 class="text-3xl font-bold text-white">TopOut</h1>
+    </div>
+    <p class="text-gray-400 text-sm">Fantasy Climbing Draft Platform</p>
+  </div>
+
+  <%# Login Card %>
+  <div class="w-full max-w-md bg-gray-900 rounded-2xl p-8 border border-gray-800">
+    <h2 class="text-2xl font-bold text-white mb-1">Welcome Back</h2>
+    <p class="text-gray-400 text-sm mb-6">Sign in to continue your climbing draft journey</p>
+
+    <% if flash[:alert] %>
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
+        <p class="text-red-300 text-sm"><%= flash[:alert] %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <div class="bg-accent/10 border border-accent/30 rounded-lg p-4 mb-6">
+        <p class="text-accent text-sm"><%= flash[:notice] %></p>
+      </div>
+    <% end %>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-5" }) do |f| %>
+      <div>
+        <label for="user_email" class="block text-sm font-medium text-gray-300 mb-1.5">Email</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com", class: "w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" %>
+        </div>
+      </div>
+
+      <div>
+        <label for="user_password" class="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+        <div class="relative" data-controller="password-visibility">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Enter your password", data: { password_visibility_target: "input" }, class: "w-full bg-gray-800 border border-gray-700 rounded-lg py-2.5 pl-10 pr-10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" %>
+          <button type="button" data-action="password-visibility#toggle" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-300">
+            <svg data-password-visibility-target="showIcon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            <svg data-password-visibility-target="hideIcon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <%= f.check_box :remember_me, class: "w-4 h-4 rounded border-gray-600 bg-gray-800 text-accent focus:ring-accent focus:ring-offset-0" %>
+          <span class="text-sm text-gray-300">Remember me</span>
+        </label>
+        <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-sm text-accent hover:text-accent-hover" %>
+      </div>
+
+      <div>
+        <%= f.submit "Sign In", class: "w-full bg-accent hover:bg-accent-hover text-gray-900 font-semibold py-2.5 rounded-lg transition-colors cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <%# OAuth divider %>
+    <div class="relative my-6">
+      <div class="absolute inset-0 flex items-center">
+        <div class="w-full border-t border-gray-700"></div>
+      </div>
+      <div class="relative flex justify-center text-sm">
+        <span class="bg-gray-900 px-4 text-gray-500">Or continue with</span>
+      </div>
+    </div>
+
+    <%# OAuth placeholders %>
+    <div class="grid grid-cols-2 gap-3">
+      <button type="button" disabled class="flex items-center justify-center gap-2 bg-gray-800 border border-gray-700 rounded-lg py-2.5 text-gray-400 cursor-not-allowed opacity-60" title="Coming soon">
+        <svg class="h-5 w-5" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+          <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        Google
+      </button>
+      <button type="button" disabled class="flex items-center justify-center gap-2 bg-gray-800 border border-gray-700 rounded-lg py-2.5 text-gray-400 cursor-not-allowed opacity-60" title="Coming soon">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+        </svg>
+        Apple
+      </button>
+    </div>
+
+    <p class="text-center text-gray-400 text-sm mt-6">
+      Don't have an account?
+      <%= link_to "Create account", new_registration_path(resource_name), class: "text-accent hover:text-accent-hover font-semibold" %>
+    </p>
+  </div>
+
+  <%# Promo Banner %>
+  <div class="w-full max-w-md mt-8 text-center">
+    <h3 class="text-white font-semibold text-lg mb-3">Join the Ultimate Climbing Fantasy League</h3>
+    <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        Draft athletes
+      </div>
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        Live scoring
+      </div>
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        Compete with friends
+      </div>
+    </div>
+  </div>
+
+  <%# Footer %>
+  <div class="mt-8 text-center text-xs text-gray-600">
+    <a href="#" class="hover:text-gray-400">Terms of Service</a>
+    <span class="mx-2">|</span>
+    <a href="#" class="hover:text-gray-400">Privacy Policy</a>
+  </div>
+</div>

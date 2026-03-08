@@ -39,6 +39,12 @@ module ActiveSupport
   end
 end
 
+module ActionDispatch
+  class IntegrationTest
+    include Devise::Test::IntegrationHelpers
+  end
+end
+
 # Committee schema validation for API tests
 module CommitteeValidation
   SCHEMA_PATH = Rails.root.join("swagger/v1/swagger.yaml").to_s

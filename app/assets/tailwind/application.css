@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@source "../../../packs/auth/app/views/**/*.erb";
+
+@theme {
+  --color-accent: #C8E600;
+  --color-accent-hover: #B5CF00;
+}
