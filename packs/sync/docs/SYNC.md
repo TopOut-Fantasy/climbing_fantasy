@@ -6,6 +6,8 @@ This document describes how competition data flows from the IFSC results API int
 
 We only sync **World Climbing Series** events (boulder, lead, speed world cups). A single event may be a combined event with multiple disciplines (e.g., both lead and speed categories at the same competition). Para, youth, regional, and continental championship events are excluded. Filtering happens at the SeasonSyncer level by fetching events from the "World Cups and World Championships" league via the season_leagues endpoint, rather than importing all events from a season.
 
+USAC is not part of the scheduled sync pipeline yet. `Usac::ApiClient` exists as a standalone client for exploratory/API-shape parity work and is not called by cron jobs. See `RESULTS_APIS.md` in this folder for endpoint scope notes and payload-shape references for IFSC and USAC.
+
 Within each event, EventSyncer only syncs boulder, lead, and speed categories with men's and women's divisions. Combined / boulder&lead categories and non men/women divisions are skipped.
 
 ## IFSC API
