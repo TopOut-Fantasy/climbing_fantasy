@@ -9,15 +9,20 @@ VCR.configure do |config|
   config.hook_into(:webmock)
   config.allow_http_connections_when_no_cassette = true
   config.default_cassette_options = { re_record_interval: 7.days }
-  Ifsc::ApiClient::SESSION_COOKIE_NAMES.each do |cookie_name|
-    config.filter_sensitive_data("<IFSC_SESSION_COOKIE>") do |interaction|
+  session_cookie_names = (
+    Ifsc::ApiClient::SESSION_COOKIE_NAMES +
+    ["_usac_resultservice_session"]
+  ).uniq
+
+  session_cookie_names.each do |cookie_name|
+    config.filter_sensitive_data("<RESULTS_SESSION_COOKIE>") do |interaction|
       cookie = interaction.request.headers["Cookie"]&.first
       if cookie
         match = cookie.match(/#{cookie_name}=([^;]+)/)
         match[1] if match
       end
     end
-    config.filter_sensitive_data("<IFSC_SESSION_COOKIE>") do |interaction|
+    config.filter_sensitive_data("<RESULTS_SESSION_COOKIE>") do |interaction|
       set_cookie = interaction.response.headers["Set-Cookie"]&.first
       if set_cookie
         match = set_cookie.match(/#{cookie_name}=([^;]+)/)

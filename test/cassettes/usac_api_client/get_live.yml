@@ -1,0 +1,84 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://usac.results.info/api/v1/live
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - _usac_resultservice_session=<RESULTS_SESSION_COOKIE>
+      Referer:
+      - https://usac.results.info/
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v2.14.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 09 Mar 2026 01:19:33 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Headers:
+      - Origin, Content-Type, Accept, Authorization, Token, Auth-Token, Email, X-User-Token,
+        X-User-Email, X-Auth-Token, x-xsrf-token, x-auth-token
+      Access-Control-Max-Age:
+      - '1728000'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Vary:
+      - Accept
+      Etag:
+      - W/"ae624cc523afb13fce7e6819f1a09868"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 7a1a50b9-14db-4399-a6e5-52963b0f7de4
+      X-Runtime:
+      - '0.012288'
+      Via:
+      - 1.1 google
+      Cf-Cache-Status:
+      - DYNAMIC
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=x%2FB0xW7%2BCgm9YDJGi46TgjjXNCDJIU9Hbwuhvfh%2BMDr3PRI%2FLSjzlQQdu7jruk93BTWcNP%2FSmidad9kUb2R9BFdcpN7AyxqJ%2FHlukyUafdk%3D"}]}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9d96408abe47e76d-DEN
+    body:
+      encoding: ASCII-8BIT
+      string: '{"live":[{"category_round_id":11422,"event_name":"2026 National Team
+        Trials","event_id":448,"event_location":"Beaverton","local_start_date":"2026-03-04","starts_at":"2026-03-04T08:00:00.000Z","local_end_date":"2026-03-08","ends_at":"2026-03-09T06:59:00.000Z","category":"Men/Open","discipline_kind":"boulder","round_name":"Round
+        3","timezone":{"value":"America/Los_Angeles"}},{"category_round_id":11423,"event_name":"2026
+        National Team Trials","event_id":448,"event_location":"Beaverton","local_start_date":"2026-03-04","starts_at":"2026-03-04T08:00:00.000Z","local_end_date":"2026-03-08","ends_at":"2026-03-09T06:59:00.000Z","category":"Women","discipline_kind":"boulder","round_name":"Round
+        3","timezone":{"value":"America/Los_Angeles"}}]}'
+  recorded_at: Mon, 09 Mar 2026 01:19:33 GMT
+recorded_with: VCR 6.4.0
