@@ -61,6 +61,11 @@ examples:
                 "last_name": "Anraku",
                 "country_code": "JPN",
                 "gender": "male",
+                "source": "ifsc",
+                "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/dz9q2bkpf0i0y0gjrwcuhwta6p3q",
+                "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/JPN.png",
+                "federation": "JMA",
+                "federation_id": 25,
                 "external_athlete_id": 13040
               },
               {
@@ -69,6 +74,11 @@ examples:
                 "last_name": "Apel",
                 "country_code": "GER",
                 "gender": "female",
+                "source": "ifsc",
+                "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/y0r5m1hjqp67l8o4fnzpvn6bvmj0",
+                "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/GER.png",
+                "federation": "DAV",
+                "federation_id": 10,
                 "external_athlete_id": 12336
               },
               {
@@ -77,6 +87,11 @@ examples:
                 "last_name": "Avezou",
                 "country_code": "FRA",
                 "gender": "male",
+                "source": "ifsc",
+                "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/s23jvhg8b4w7o1dexncmufyt9kz6",
+                "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/FRA.png",
+                "federation": "FFME",
+                "federation_id": 11,
                 "external_athlete_id": 532
               },
               {
@@ -85,175 +100,25 @@ examples:
                 "last_name": "Bertone",
                 "country_code": "FRA",
                 "gender": "female",
+                "source": "ifsc",
+                "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/n8d4wj6e2x9fkm1v3hpoq5rstg7c",
+                "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/FRA.png",
+                "federation": "FFME",
+                "federation_id": 11,
                 "external_athlete_id": 11462
               },
               {
-                "id": 36,
-                "first_name": "Shouhong",
-                "last_name": "Chu",
-                "country_code": "CHN",
-                "gender": "male",
-                "external_athlete_id": 14963
-              },
-              {
-                "id": 58,
-                "first_name": "Beatrice",
-                "last_name": "Colli",
-                "country_code": "ITA",
-                "gender": "female",
-                "external_athlete_id": 1024
-              },
-              {
-                "id": 34,
-                "first_name": "Lijuan",
-                "last_name": "Deng",
-                "country_code": "CHN",
-                "gender": "female",
-                "external_athlete_id": 3014
-              },
-              {
-                "id": 23,
-                "first_name": "Yannick",
-                "last_name": "Flohé",
-                "country_code": "GER",
-                "gender": "male",
-                "external_athlete_id": 3131
-              },
-              {
-                "id": 18,
-                "first_name": "Alberto",
-                "last_name": "Ginés López",
-                "country_code": "ESP",
-                "gender": "male",
-                "external_athlete_id": 811
-              },
-              {
-                "id": 40,
-                "first_name": "Zach",
-                "last_name": "Hammer",
-                "country_code": "USA",
-                "gender": "male",
-                "external_athlete_id": 13592
-              },
-              {
-                "id": 65,
-                "first_name": "Tahnia",
-                "last_name": "Harris",
-                "country_code": "AUS",
-                "gender": "female",
-                "external_athlete_id": 15909
-              },
-              {
-                "id": 62,
-                "first_name": "Campbell",
-                "last_name": "Harrison",
-                "country_code": "AUS",
-                "gender": "male",
-                "external_athlete_id": 2493
-              },
-              {
-                "id": 35,
-                "first_name": "Emma",
-                "last_name": "Hunt",
+                "id": 9,
+                "first_name": "Annie",
+                "last_name": "Sanders",
                 "country_code": "USA",
                 "gender": "female",
-                "external_athlete_id": 1999
-              },
-              {
-                "id": 29,
-                "first_name": "Hryhorii",
-                "last_name": "Ilchyshyn",
-                "country_code": "UKR",
-                "gender": "male",
-                "external_athlete_id": 1547
-              },
-              {
-                "id": 26,
-                "first_name": "Hélène",
-                "last_name": "Janicot",
-                "country_code": "FRA",
-                "gender": "female",
-                "external_athlete_id": 455
-              },
-              {
-                "id": 7,
-                "first_name": "Paul",
-                "last_name": "Jenft",
-                "country_code": "FRA",
-                "gender": "male",
-                "external_athlete_id": 547
-              },
-              {
-                "id": 33,
-                "first_name": "Jimin",
-                "last_name": "Jeong",
-                "country_code": "KOR",
-                "gender": "female",
-                "external_athlete_id": 13154
-              },
-              {
-                "id": 50,
-                "first_name": "Natalia",
-                "last_name": "Kalucka",
-                "country_code": "POL",
-                "gender": "female",
-                "external_athlete_id": 2879
-              },
-              {
-                "id": 30,
-                "first_name": "Kiromal",
-                "last_name": "Katibin",
-                "country_code": "INA",
-                "gender": "male",
-                "external_athlete_id": 3324
-              },
-              {
-                "id": 2,
-                "first_name": "Dohyun",
-                "last_name": "Lee",
-                "country_code": "KOR",
-                "gender": "male",
-                "external_athlete_id": 2101
-              },
-              {
-                "id": 42,
-                "first_name": "Xu",
-                "last_name": "Li",
-                "country_code": "CHN",
-                "gender": "male",
-                "external_athlete_id": 13601
-              },
-              {
-                "id": 28,
-                "first_name": "Jianguo",
-                "last_name": "Long",
-                "country_code": "CHN",
-                "gender": "male",
-                "external_athlete_id": 11395
-              },
-              {
-                "id": 43,
-                "first_name": "Sebastian",
-                "last_name": "Lucke",
-                "country_code": "GER",
-                "gender": "male",
-                "external_athlete_id": 11602
-              },
-              {
-                "id": 16,
-                "first_name": "Oceania",
-                "last_name": "Mackenzie",
-                "country_code": "AUS",
-                "gender": "female",
-                "external_athlete_id": 2501
-              },
-              {
-                "id": 48,
-                "first_name": "Desak",
-                "last_name": "Made Rita Kusuma Dewi",
-                "country_code": "INA",
-                "gender": "female",
-                "external_athlete_id": 11357
+                "source": "ifsc",
+                "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/f7h2kn9p4x1rwm3oqlvet5c8sd6j",
+                "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/USA.png",
+                "federation": "USAC",
+                "federation_id": 53,
+                "external_athlete_id": 13021
               }
             ],
             "meta": {

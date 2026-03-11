@@ -47,12 +47,14 @@ examples:
                 "id": 1,
                 "name": "IFSC World Cup 2025",
                 "year": 2025,
+                "source": "ifsc",
                 "external_id": 37
               },
               {
                 "id": 2,
                 "name": "World Climbing Series 2026",
                 "year": 2026,
+                "source": "ifsc",
                 "external_id": 38
               }
             ],

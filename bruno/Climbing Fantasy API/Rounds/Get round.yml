@@ -29,13 +29,91 @@ examples:
         data: |-
           {
             "data": {
-              "id": 1,
-              "name": "Qualification",
-              "round_type": "qualification",
+              "id": 3,
+              "name": "Final",
+              "round_type": "final",
               "status": "completed",
-              "external_round_id": 9381,
+              "format": "IFSC: finals 2025 (points)",
+              "external_round_id": 9955,
               "category_id": 1,
-              "round_results": []
+              "round_results": [
+                {
+                  "id": 1,
+                  "rank": 1,
+                  "score_raw": "99.7",
+                  "group_label": null,
+                  "start_order": 8,
+                  "bib": "52",
+                  "starting_group": null,
+                  "group_rank": null,
+                  "active": false,
+                  "under_appeal": false,
+                  "tops": 4,
+                  "zones": 4,
+                  "top_attempts": 7,
+                  "zone_attempts": 4,
+                  "boulder_points": "99.7",
+                  "high_zones": null,
+                  "high_zone_attempts": null,
+                  "lead_height": null,
+                  "lead_plus": false,
+                  "speed_time": null,
+                  "speed_eliminated_stage": null,
+                  "round_id": 3,
+                  "athlete_id": 1,
+                  "athlete": {
+                    "id": 1,
+                    "first_name": "Sorato",
+                    "last_name": "Anraku",
+                    "country_code": "JPN",
+                    "gender": "male",
+                    "source": "ifsc",
+                    "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/dz9q2bkpf0i0y0gjrwcuhwta6p3q",
+                    "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/JPN.png",
+                    "federation": "JMA",
+                    "federation_id": 25,
+                    "external_athlete_id": 13040
+                  }
+                },
+                {
+                  "id": 2,
+                  "rank": 2,
+                  "score_raw": "99.3",
+                  "group_label": null,
+                  "start_order": 7,
+                  "bib": "35",
+                  "starting_group": null,
+                  "group_rank": null,
+                  "active": false,
+                  "under_appeal": false,
+                  "tops": 4,
+                  "zones": 4,
+                  "top_attempts": 13,
+                  "zone_attempts": 7,
+                  "boulder_points": "99.3",
+                  "high_zones": null,
+                  "high_zone_attempts": null,
+                  "lead_height": null,
+                  "lead_plus": false,
+                  "speed_time": null,
+                  "speed_eliminated_stage": null,
+                  "round_id": 3,
+                  "athlete_id": 2,
+                  "athlete": {
+                    "id": 2,
+                    "first_name": "Dohyun",
+                    "last_name": "Lee",
+                    "country_code": "KOR",
+                    "gender": "male",
+                    "source": "ifsc",
+                    "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/3k4hgylx3fhvqyf9lqwzx36dnb83",
+                    "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/KOR.png",
+                    "federation": "KAF",
+                    "federation_id": 20,
+                    "external_athlete_id": 2101
+                  }
+                }
+              ]
             }
           }
   - name: 404 Not Found

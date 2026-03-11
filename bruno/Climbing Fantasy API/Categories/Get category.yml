@@ -33,6 +33,7 @@ examples:
               "name": "BOULDER Men",
               "discipline": "boulder",
               "gender": "male",
+              "category_status": "finished",
               "external_dcat_id": 3,
               "event_id": 1,
               "rounds": [
@@ -41,6 +42,7 @@ examples:
                   "name": "Qualification",
                   "round_type": "qualification",
                   "status": "completed",
+                  "format": "IFSC: 2 groups 2025 (points)",
                   "external_round_id": 9381,
                   "category_id": 1
                 },
@@ -49,6 +51,7 @@ examples:
                   "name": "Semi-final",
                   "round_type": "semi_final",
                   "status": "completed",
+                  "format": "IFSC: 1 group 2025 (points)",
                   "external_round_id": 9953,
                   "category_id": 1
                 },
@@ -57,6 +60,7 @@ examples:
                   "name": "Final",
                   "round_type": "final",
                   "status": "completed",
+                  "format": "IFSC: finals 2025 (points)",
                   "external_round_id": 9955,
                   "category_id": 1
                 }

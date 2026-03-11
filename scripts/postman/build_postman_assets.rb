@@ -13,6 +13,10 @@ OUT_COLLECTION = File.join(ROOT, "postman/collections/climbing_fantasy_api.postm
 OUT_LOCAL_ENV = File.join(ROOT, "postman/environments/climbing_fantasy_local.postman_environment.json")
 OUT_MOCK_ENV = File.join(ROOT, "postman/environments/climbing_fantasy_mock.postman_environment.json")
 
+SOURCE_NAMES = {
+  0 => "ifsc",
+  1 => "usac",
+}.freeze
 EVENT_STATUSES = {
   0 => "upcoming",
   1 => "in_progress",
@@ -31,6 +35,11 @@ CATEGORY_GENDERS = {
   2 => "non_binary",
   3 => "other",
   4 => "mixed",
+}.freeze
+CATEGORY_STATUSES = {
+  0 => "not_started",
+  1 => "active",
+  2 => "finished",
 }.freeze
 ROUND_STATUSES = {
   0 => "pending",
@@ -108,6 +117,7 @@ seasons = seasons_data.map do |_label, attrs|
     id: attrs.fetch("__id"),
     name: attrs.fetch("name"),
     year: attrs.fetch("year"),
+    source: SOURCE_NAMES.fetch(attrs.fetch("source", 0)),
     external_id: attrs.fetch("external_id"),
   }
 end
@@ -119,9 +129,14 @@ events = events_data.map do |_label, attrs|
     id: attrs.fetch("__id"),
     name: attrs.fetch("name"),
     location: attrs.fetch("location"),
+    country_code: attrs["country_code"],
     starts_on: attrs.fetch("starts_on"),
     ends_on: attrs.fetch("ends_on"),
+    starts_at: attrs["starts_at"],
+    ends_at: attrs["ends_at"],
+    timezone_name: attrs["timezone_name"],
     status: EVENT_STATUSES.fetch(attrs.fetch("status")),
+    source: SOURCE_NAMES.fetch(attrs.fetch("source", 0)),
     season_id: season_id_by_label.fetch(attrs.fetch("season")),
     external_id: attrs.fetch("external_id"),
     results_synced_at: nil,
@@ -135,6 +150,7 @@ categories = categories_data.map do |_label, attrs|
     name: attrs.fetch("name"),
     discipline: CATEGORY_DISCIPLINES.fetch(attrs.fetch("discipline")),
     gender: CATEGORY_GENDERS.fetch(attrs.fetch("gender")),
+    category_status: attrs["category_status"] ? CATEGORY_STATUSES.fetch(attrs["category_status"]) : nil,
     external_dcat_id: attrs.fetch("external_dcat_id"),
     event_id: event_id_by_label.fetch(attrs.fetch("event")),
   }
@@ -147,6 +163,7 @@ rounds = rounds_data.map do |_label, attrs|
     name: attrs.fetch("name"),
     round_type: attrs.fetch("round_type"),
     status: ROUND_STATUSES.fetch(attrs.fetch("status")),
+    format: attrs["format"],
     external_round_id: attrs.fetch("external_round_id"),
     category_id: category_id_by_label.fetch(attrs.fetch("category")),
   }
@@ -158,8 +175,13 @@ athletes = athletes_data.map do |_label, attrs|
     id: attrs.fetch("__id"),
     first_name: attrs.fetch("first_name"),
     last_name: attrs.fetch("last_name"),
-    country_code: attrs.fetch("country_code"),
-    gender: ATHLETE_GENDERS.fetch(attrs.fetch("gender")),
+    country_code: attrs["country_code"],
+    gender: attrs["gender"] ? ATHLETE_GENDERS.fetch(attrs["gender"]) : nil,
+    source: SOURCE_NAMES.fetch(attrs.fetch("source", 0)),
+    photo_url: attrs["photo_url"],
+    flag_url: attrs["flag_url"],
+    federation: attrs["federation"],
+    federation_id: attrs["federation_id"],
     external_athlete_id: attrs.fetch("external_athlete_id"),
   }
 end
@@ -172,10 +194,19 @@ round_results = round_results_data.map do |_label, attrs|
     rank: attrs["rank"],
     score_raw: attrs["score_raw"],
     group_label: attrs["group_label"],
+    start_order: attrs["start_order"],
+    bib: attrs["bib"],
+    starting_group: attrs["starting_group"],
+    group_rank: attrs["group_rank"],
+    active: attrs["active"],
+    under_appeal: attrs["under_appeal"],
     tops: attrs["tops"],
     zones: attrs["zones"],
     top_attempts: attrs["top_attempts"],
     zone_attempts: attrs["zone_attempts"],
+    boulder_points: attrs["boulder_points"],
+    high_zones: attrs["high_zones"],
+    high_zone_attempts: attrs["high_zone_attempts"],
     lead_height: attrs["lead_height"],
     lead_plus: attrs["lead_plus"] || false,
     speed_time: attrs["speed_time"],

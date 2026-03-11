@@ -51,7 +51,7 @@ unless Rails.env.production?
   seasons_data.each do |key, attrs|
     seasons[key] = upsert.call(
       Season,
-      { external_id: attrs["external_id"] },
+      { source: attrs.fetch("source", 0), external_id: attrs["external_id"] },
       { name: attrs["name"], year: attrs["year"] },
     )
   end
@@ -63,7 +63,7 @@ unless Rails.env.production?
   athletes_data.each do |key, attrs|
     athletes[key] = upsert.call(
       Athlete,
-      { external_athlete_id: attrs["external_athlete_id"] },
+      { source: attrs.fetch("source", 0), external_athlete_id: attrs["external_athlete_id"] },
       {
         first_name: attrs["first_name"],
         last_name: attrs["last_name"],
@@ -81,11 +81,12 @@ unless Rails.env.production?
     season = fetch_record.call(seasons, attrs["season"], "events.yml")
     events[key] = upsert.call(
       Event,
-      { external_id: attrs["external_id"] },
+      { source: attrs.fetch("source", 0), external_id: attrs["external_id"] },
       {
         season:,
         name: attrs["name"],
         location: attrs["location"],
+        country_code: attrs["country_code"],
         starts_on: attrs["starts_on"],
         ends_on: attrs["ends_on"],
         status: attrs["status"],
@@ -153,30 +154,36 @@ unless Rails.env.production?
   end
   Rails.logger.info("Seeded #{round_results.size} round results")
 
-  # --- Climbs ---
-  climbs_data = load_fixture.call("climbs.yml")
-  climbs = {}
-  climbs_data.each do |key, attrs|
-    round = fetch_record.call(rounds, attrs["round"], "climbs.yml")
-    climbs[key] = upsert.call(Climb, { round:, number: attrs["number"] }, {})
+  # --- Routes ---
+  routes_data = load_fixture.call("routes.yml")
+  routes = {}
+  routes_data.each do |key, attrs|
+    round = fetch_record.call(rounds, attrs["round"], "routes.yml")
+    routes[key] = upsert.call(
+      Route,
+      { round:, external_route_id: attrs["external_route_id"] },
+      { route_name: attrs["route_name"], route_order: attrs["route_order"] },
+    )
   end
-  Rails.logger.info("Seeded #{climbs.size} climbs")
+  Rails.logger.info("Seeded #{routes.size} routes")
 
-  # --- Climb Results ---
-  climb_results_data = load_fixture.call("climb_results.yml")
-  climb_results_data.each do |_key, attrs|
-    round_result = fetch_record.call(round_results, attrs["round_result"], "climb_results.yml")
-    climb = fetch_record.call(climbs, attrs["climb"], "climb_results.yml")
+  # --- Ascents ---
+  ascents_data = load_fixture.call("ascents.yml")
+  ascents_data.each do |_key, attrs|
+    round_result = fetch_record.call(round_results, attrs["round_result"], "ascents.yml")
+    route = fetch_record.call(routes, attrs["route"], "ascents.yml")
     upsert.call(
-      ClimbResult,
-      { round_result:, climb: },
+      Ascent,
+      { round_result:, route: },
       {
-        top_attempts: attrs["top_attempts"],
-        zone_attempts: attrs["zone_attempts"],
+        top: attrs["top"],
+        top_tries: attrs["top_tries"],
+        zone: attrs["zone"],
+        zone_tries: attrs["zone_tries"],
       },
     )
   end
-  Rails.logger.info("Seeded #{climb_results_data.size} climb results")
+  Rails.logger.info("Seeded #{ascents_data.size} ascents")
 
   # --- Category Registrations ---
   registrations_data = load_fixture.call("category_registrations.yml")

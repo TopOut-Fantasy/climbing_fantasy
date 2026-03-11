@@ -52,23 +52,23 @@ end
 #
 # Routes for application:
 #                            Prefix Verb   URI Pattern                                                                                       Controller#Action
-#                          rswag_ui        /api-docs                                                                                         Rswag::Ui::Engine
+#                          api_docs GET    /api-docs(.:format)                                                                               redirect(301, /scalar.html)
 #                         rswag_api        /api-docs                                                                                         Rswag::Api::Engine
-#            new_admin_user_session GET    /admin_users/sign_in(.:format)                                                                    devise/sessions#new
-#                admin_user_session POST   /admin_users/sign_in(.:format)                                                                    devise/sessions#create
-#        destroy_admin_user_session DELETE /admin_users/sign_out(.:format)                                                                   devise/sessions#destroy
-#           new_admin_user_password GET    /admin_users/password/new(.:format)                                                               devise/passwords#new
-#          edit_admin_user_password GET    /admin_users/password/edit(.:format)                                                              devise/passwords#edit
-#               admin_user_password PATCH  /admin_users/password(.:format)                                                                   devise/passwords#update
-#                                   PUT    /admin_users/password(.:format)                                                                   devise/passwords#update
-#                                   POST   /admin_users/password(.:format)                                                                   devise/passwords#create
-#    cancel_admin_user_registration GET    /admin_users/cancel(.:format)                                                                     devise/registrations#cancel
-#       new_admin_user_registration GET    /admin_users/sign_up(.:format)                                                                    devise/registrations#new
-#      edit_admin_user_registration GET    /admin_users/edit(.:format)                                                                       devise/registrations#edit
-#           admin_user_registration PATCH  /admin_users(.:format)                                                                            devise/registrations#update
-#                                   PUT    /admin_users(.:format)                                                                            devise/registrations#update
-#                                   DELETE /admin_users(.:format)                                                                            devise/registrations#destroy
-#                                   POST   /admin_users(.:format)                                                                            devise/registrations#create
+#            new_admin_user_session GET    /admin/login(.:format)                                                                            active_admin/devise/sessions#new
+#                admin_user_session POST   /admin/login(.:format)                                                                            active_admin/devise/sessions#create
+#        destroy_admin_user_session DELETE /admin/logout(.:format)                                                                           active_admin/devise/sessions#destroy
+#           new_admin_user_password GET    /admin/password/new(.:format)                                                                     active_admin/devise/passwords#new
+#          edit_admin_user_password GET    /admin/password/edit(.:format)                                                                    active_admin/devise/passwords#edit
+#               admin_user_password PATCH  /admin/password(.:format)                                                                         active_admin/devise/passwords#update
+#                                   PUT    /admin/password(.:format)                                                                         active_admin/devise/passwords#update
+#                                   POST   /admin/password(.:format)                                                                         active_admin/devise/passwords#create
+#    cancel_admin_user_registration GET    /admin/cancel(.:format)                                                                           active_admin/devise/registrations#cancel
+#       new_admin_user_registration GET    /admin/sign_up(.:format)                                                                          active_admin/devise/registrations#new
+#      edit_admin_user_registration GET    /admin/edit(.:format)                                                                             active_admin/devise/registrations#edit
+#           admin_user_registration PATCH  /admin(.:format)                                                                                  active_admin/devise/registrations#update
+#                                   PUT    /admin(.:format)                                                                                  active_admin/devise/registrations#update
+#                                   DELETE /admin(.:format)                                                                                  active_admin/devise/registrations#destroy
+#                                   POST   /admin(.:format)                                                                                  active_admin/devise/registrations#create
 #                        admin_root GET    /admin(.:format)                                                                                  admin/dashboard#index
 #    batch_action_admin_admin_users POST   /admin/admin_users/batch_action(.:format)                                                         admin/admin_users#batch_action
 #                 admin_admin_users GET    /admin/admin_users(.:format)                                                                      admin/admin_users#index
@@ -97,16 +97,16 @@ end
 #                                   PATCH  /admin/categories/:id(.:format)                                                                   admin/categories#update
 #                                   PUT    /admin/categories/:id(.:format)                                                                   admin/categories#update
 #                                   DELETE /admin/categories/:id(.:format)                                                                   admin/categories#destroy
-#   batch_action_admin_competitions POST   /admin/competitions/batch_action(.:format)                                                        admin/competitions#batch_action
-#                admin_competitions GET    /admin/competitions(.:format)                                                                     admin/competitions#index
-#                                   POST   /admin/competitions(.:format)                                                                     admin/competitions#create
-#             new_admin_competition GET    /admin/competitions/new(.:format)                                                                 admin/competitions#new
-#            edit_admin_competition GET    /admin/competitions/:id/edit(.:format)                                                            admin/competitions#edit
-#                 admin_competition GET    /admin/competitions/:id(.:format)                                                                 admin/competitions#show
-#                                   PATCH  /admin/competitions/:id(.:format)                                                                 admin/competitions#update
-#                                   PUT    /admin/competitions/:id(.:format)                                                                 admin/competitions#update
-#                                   DELETE /admin/competitions/:id(.:format)                                                                 admin/competitions#destroy
 #                   admin_dashboard GET    /admin/dashboard(.:format)                                                                        admin/dashboard#index
+#         batch_action_admin_events POST   /admin/events/batch_action(.:format)                                                              admin/events#batch_action
+#                      admin_events GET    /admin/events(.:format)                                                                           admin/events#index
+#                                   POST   /admin/events(.:format)                                                                           admin/events#create
+#                   new_admin_event GET    /admin/events/new(.:format)                                                                       admin/events#new
+#                  edit_admin_event GET    /admin/events/:id/edit(.:format)                                                                  admin/events#edit
+#                       admin_event GET    /admin/events/:id(.:format)                                                                       admin/events#show
+#                                   PATCH  /admin/events/:id(.:format)                                                                       admin/events#update
+#                                   PUT    /admin/events/:id(.:format)                                                                       admin/events#update
+#                                   DELETE /admin/events/:id(.:format)                                                                       admin/events#destroy
 #  batch_action_admin_round_results POST   /admin/round_results/batch_action(.:format)                                                       admin/round_results#batch_action
 #               admin_round_results GET    /admin/round_results(.:format)                                                                    admin/round_results#index
 #                                   POST   /admin/round_results(.:format)                                                                    admin/round_results#create
@@ -138,11 +138,29 @@ end
 #                                   POST   /admin/comments(.:format)                                                                         admin/comments#create
 #                     admin_comment GET    /admin/comments/:id(.:format)                                                                     admin/comments#show
 #                                   DELETE /admin/comments/:id(.:format)                                                                     admin/comments#destroy
+#              new_user_session GET    /login(.:format)                                                                                  users/sessions#new
+#                  user_session POST   /login(.:format)                                                                                  users/sessions#create
+#          destroy_user_session DELETE /logout(.:format)                                                                                 users/sessions#destroy
+#             new_user_password GET    /password/new(.:format)                                                                           users/passwords#new
+#            edit_user_password GET    /password/edit(.:format)                                                                          users/passwords#edit
+#                 user_password PATCH  /password(.:format)                                                                               users/passwords#update
+#                                PUT    /password(.:format)                                                                               users/passwords#update
+#                                POST   /password(.:format)                                                                               users/passwords#create
+#      cancel_user_registration GET    /cancel(.:format)                                                                                 users/registrations#cancel
+#         new_user_registration GET    /register(.:format)                                                                               users/registrations#new
+#        edit_user_registration GET    /edit(.:format)                                                                                   users/registrations#edit
+#             user_registration PATCH  /                                                                                                 users/registrations#update
+#                                PUT    /                                                                                                 users/registrations#update
+#                                DELETE /                                                                                                 users/registrations#destroy
+#                                POST   /                                                                                                 users/registrations#create
+# user_registration_availability GET    /register/availability(.:format)                                                                  users/registrations#availability
+#            authenticated_root GET    /                                                                                                 dashboard#index
+#                          root GET    /                                                                                                 redirect(301, /login)
 #                       sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
 #                    api_v1_seasons GET    /api/v1/seasons(.:format)                                                                         api/v1/seasons#index
 #                     api_v1_season GET    /api/v1/seasons/:id(.:format)                                                                     api/v1/seasons#show
-#               api_v1_competitions GET    /api/v1/competitions(.:format)                                                                    api/v1/competitions#index
-#                api_v1_competition GET    /api/v1/competitions/:id(.:format)                                                                api/v1/competitions#show
+#                     api_v1_events GET    /api/v1/events(.:format)                                                                          api/v1/events#index
+#                      api_v1_event GET    /api/v1/events/:id(.:format)                                                                      api/v1/events#show
 #                   api_v1_category GET    /api/v1/categories/:id(.:format)                                                                  api/v1/categories#show
 #                      api_v1_round GET    /api/v1/rounds/:id(.:format)                                                                      api/v1/rounds#show
 #                   api_v1_athletes GET    /api/v1/athletes(.:format)                                                                        api/v1/athletes#index
@@ -160,9 +178,6 @@ end
 #                rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/disk#show
 #         update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
 #              rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
-#
-# Routes for Rswag::Ui::Engine:
-# No routes defined.
 #
 # Routes for Rswag::Api::Engine:
 # No routes defined.

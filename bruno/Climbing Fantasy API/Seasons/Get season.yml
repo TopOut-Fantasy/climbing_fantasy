@@ -32,29 +32,40 @@ examples:
               "id": 1,
               "name": "IFSC World Cup 2025",
               "year": 2025,
+              "source": "ifsc",
               "external_id": 37,
               "events": [
                 {
                   "id": 1,
                   "name": "IFSC World Cup Keqiao 2025",
                   "location": "Keqiao, CHN",
+                  "country_code": "CHN",
                   "starts_on": "2025-04-18",
                   "ends_on": "2025-04-20",
+                  "starts_at": "2025-04-17T16:00:00.000Z",
+                  "ends_at": "2025-04-20T15:59:00.000Z",
+                  "timezone_name": "Asia/Shanghai",
                   "status": "completed",
+                  "source": "ifsc",
                   "season_id": 1,
                   "external_id": 1405,
-                  "results_synced_at": null
+                  "results_synced_at": "2025-10-02T07:18:42.000Z"
                 },
                 {
                   "id": 2,
                   "name": "IFSC World Cup Wujiang 2025",
                   "location": "Wujiang, CHN",
+                  "country_code": "CHN",
                   "starts_on": "2025-04-25",
                   "ends_on": "2025-04-27",
+                  "starts_at": "2025-04-24T16:00:00.000Z",
+                  "ends_at": "2025-04-27T15:59:00.000Z",
+                  "timezone_name": "Asia/Shanghai",
                   "status": "completed",
+                  "source": "ifsc",
                   "season_id": 1,
                   "external_id": 1406,
-                  "results_synced_at": null
+                  "results_synced_at": "2025-10-05T09:30:00.000Z"
                 }
               ]
             }
