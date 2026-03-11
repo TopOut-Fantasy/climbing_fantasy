@@ -7,6 +7,7 @@ class Category < ApplicationRecord
 
   enum :discipline, { boulder: 0, lead: 1, speed: 2 }
   enum :gender, { male: 0, female: 1 }
+  enum :category_status, { not_started: 0, active: 1, finished: 2 }
 
   validates :name, presence: true
   validates :discipline, presence: true
@@ -15,7 +16,7 @@ class Category < ApplicationRecord
 
   class << self
     def ransackable_attributes(_auth_object = nil)
-      ["name", "discipline", "gender", "event_id"]
+      ["name", "discipline", "gender", "category_status", "external_dcat_id", "event_id"]
     end
 
     def ransackable_associations(_auth_object = nil)
@@ -29,6 +30,7 @@ end
 # Table name: categories
 #
 #  id               :bigint           not null, primary key
+#  category_status  :integer
 #  discipline       :integer          not null
 #  gender           :integer          not null
 #  name             :string           not null

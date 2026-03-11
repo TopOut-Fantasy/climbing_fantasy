@@ -6,6 +6,12 @@ class CreateRoundResults < ActiveRecord::Migration[8.1]
       t.integer :rank
       t.string :score_raw
       t.string :group_label
+      t.integer :start_order
+      t.string :bib
+      t.string :starting_group
+      t.integer :group_rank
+      t.boolean :active
+      t.boolean :under_appeal
 
       # Boulder fields
       t.integer :tops

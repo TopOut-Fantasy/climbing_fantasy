@@ -46,19 +46,50 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_08_050751) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "ascents", force: :cascade do |t|
+    t.string "ascent_status"
+    t.datetime "created_at", null: false
+    t.boolean "dnf"
+    t.boolean "dns"
+    t.decimal "height", precision: 5, scale: 2
+    t.boolean "low_zone"
+    t.integer "low_zone_tries"
+    t.datetime "modified_at"
+    t.boolean "plus"
+    t.decimal "points"
+    t.integer "rank"
+    t.bigint "round_result_id", null: false
+    t.bigint "route_id", null: false
+    t.string "score_raw"
+    t.integer "time_ms"
+    t.boolean "top"
+    t.integer "top_tries"
+    t.datetime "updated_at", null: false
+    t.boolean "zone"
+    t.integer "zone_tries"
+    t.index ["round_result_id", "route_id"], name: "index_ascents_on_round_result_id_and_route_id", unique: true
+    t.index ["round_result_id"], name: "index_ascents_on_round_result_id"
+    t.index ["route_id"], name: "index_ascents_on_route_id"
+  end
+
   create_table "athletes", force: :cascade do |t|
-    t.string "country_code", limit: 3, null: false
+    t.string "country_code", limit: 3
     t.datetime "created_at", null: false
     t.integer "external_athlete_id"
+    t.string "federation"
+    t.integer "federation_id"
     t.string "first_name", null: false
-    t.integer "gender", null: false
+    t.string "flag_url"
+    t.integer "gender"
     t.string "last_name", null: false
     t.string "photo_url"
+    t.integer "source", default: 0, null: false
     t.datetime "updated_at", null: false
-    t.index ["external_athlete_id"], name: "index_athletes_on_external_athlete_id", unique: true
+    t.index ["source", "external_athlete_id"], name: "index_athletes_on_source_and_external_athlete_id", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
+    t.integer "category_status"
     t.datetime "created_at", null: false
     t.integer "discipline", null: false
     t.bigint "event_id", null: false
@@ -82,37 +113,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_08_050751) do
     t.index ["category_id"], name: "index_category_registrations_on_category_id"
   end
 
-  create_table "climb_results", force: :cascade do |t|
-    t.bigint "climb_id", null: false
-    t.datetime "created_at", null: false
-    t.string "disqualification"
-    t.decimal "height", precision: 5, scale: 2
-    t.integer "high_zone_attempts"
-    t.boolean "plus"
-    t.integer "rank"
-    t.bigint "round_result_id", null: false
-    t.string "score_raw"
-    t.decimal "time", precision: 7, scale: 3
-    t.integer "top_attempts", default: 0, null: false
-    t.datetime "updated_at", null: false
-    t.integer "zone_attempts", default: 0, null: false
-    t.index ["climb_id"], name: "index_climb_results_on_climb_id"
-    t.index ["round_result_id", "climb_id"], name: "index_climb_results_on_round_result_id_and_climb_id", unique: true
-    t.index ["round_result_id"], name: "index_climb_results_on_round_result_id"
-  end
-
-  create_table "climbs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "group_label"
-    t.integer "number", null: false
-    t.bigint "round_id", null: false
-    t.datetime "updated_at", null: false
-    t.index ["round_id", "group_label", "number"], name: "index_climbs_on_round_id_and_group_label_and_number", unique: true
-    t.index ["round_id"], name: "index_climbs_on_round_id"
-  end
-
   create_table "events", force: :cascade do |t|
+    t.string "country_code", limit: 3
     t.datetime "created_at", null: false
+    t.datetime "ends_at"
     t.date "ends_on", null: false
     t.integer "external_id"
     t.string "location", null: false
@@ -120,19 +124,26 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_08_050751) do
     t.datetime "registrations_last_checked_at"
     t.datetime "results_synced_at"
     t.bigint "season_id", null: false
+    t.integer "source", default: 0, null: false
+    t.datetime "starts_at"
     t.date "starts_on", null: false
     t.integer "status", default: 0, null: false
     t.integer "sync_state", default: 0, null: false
+    t.string "timezone_name"
     t.datetime "updated_at", null: false
     t.index ["season_id"], name: "index_events_on_season_id"
+    t.index ["source", "external_id"], name: "index_events_on_source_and_external_id", unique: true
     t.index ["sync_state"], name: "index_events_on_sync_state"
   end
 
   create_table "round_results", force: :cascade do |t|
+    t.boolean "active"
     t.bigint "athlete_id", null: false
+    t.string "bib"
     t.decimal "boulder_points"
     t.datetime "created_at", null: false
     t.string "group_label"
+    t.integer "group_rank"
     t.integer "high_zone_attempts"
     t.integer "high_zones"
     t.decimal "lead_height"
@@ -142,8 +153,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_08_050751) do
     t.string "score_raw"
     t.string "speed_eliminated_stage"
     t.decimal "speed_time"
+    t.integer "start_order"
+    t.string "starting_group"
     t.integer "top_attempts"
     t.integer "tops"
+    t.boolean "under_appeal"
     t.datetime "updated_at", null: false
     t.integer "zone_attempts"
     t.integer "zones"
@@ -156,19 +170,35 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_08_050751) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.integer "external_round_id"
+    t.string "format"
     t.string "name", null: false
     t.string "round_type", null: false
     t.integer "status", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_rounds_on_category_id"
+    t.index ["external_round_id"], name: "index_rounds_on_external_round_id", unique: true
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "external_route_id", null: false
+    t.string "group_label"
+    t.bigint "round_id", null: false
+    t.string "route_name"
+    t.integer "route_order"
+    t.datetime "updated_at", null: false
+    t.index ["round_id", "group_label", "external_route_id"], name: "index_routes_on_round_id_and_group_label_and_ext_route_id", unique: true
+    t.index ["round_id"], name: "index_routes_on_round_id"
   end
 
   create_table "seasons", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "external_id"
     t.string "name"
+    t.integer "source", default: 0, null: false
     t.datetime "updated_at", null: false
     t.integer "year"
+    t.index ["source", "external_id"], name: "index_seasons_on_source_and_external_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -185,14 +215,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_08_050751) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ascents", "round_results"
+  add_foreign_key "ascents", "routes"
   add_foreign_key "categories", "events"
   add_foreign_key "category_registrations", "athletes"
   add_foreign_key "category_registrations", "categories"
-  add_foreign_key "climb_results", "climbs"
-  add_foreign_key "climb_results", "round_results"
-  add_foreign_key "climbs", "rounds"
   add_foreign_key "events", "seasons"
   add_foreign_key "round_results", "athletes"
   add_foreign_key "round_results", "rounds"
   add_foreign_key "rounds", "categories"
+  add_foreign_key "routes", "rounds"
 end

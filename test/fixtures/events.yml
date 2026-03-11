@@ -1,35 +1,43 @@
 keqiao_boulder:
   season: season_2025
+  source: 0
   external_id: 1405
   name: "IFSC World Cup Keqiao 2025"
   location: "Keqiao, CHN"
+  country_code: "CHN"
   starts_on: "2025-04-18"
   ends_on: "2025-04-20"
   status: 2
 
 wujiang_lead_speed:
   season: season_2025
+  source: 0
   external_id: 1406
   name: "IFSC World Cup Wujiang 2025"
   location: "Wujiang, CHN"
+  country_code: "CHN"
   starts_on: "2025-04-25"
   ends_on: "2025-04-27"
   status: 2
 
 nsw_oceania:
   season: season_2026
+  source: 0
   external_id: 1523
   name: "World Climbing Oceania Series New South Wales 2026"
   location: "Gladesville, AUS"
+  country_code: "AUS"
   starts_on: "2026-02-28"
   ends_on: "2026-03-01"
   status: 2
 
 keqiao_2026:
   season: season_2026
+  source: 0
   external_id: 1524
   name: "World Climbing Series Keqiao 2026"
   location: "Keqiao, CHN"
+  country_code: "CHN"
   starts_on: "2026-05-01"
   ends_on: "2026-05-03"
   status: 0
@@ -39,14 +47,19 @@ keqiao_2026:
 # Table name: events
 #
 #  id                            :bigint           not null, primary key
+#  country_code                  :string(3)
+#  ends_at                       :datetime
 #  ends_on                       :date             not null
 #  location                      :string           not null
 #  name                          :string           not null
 #  registrations_last_checked_at :datetime
 #  results_synced_at             :datetime
+#  source                        :integer          default("ifsc"), not null
+#  starts_at                     :datetime
 #  starts_on                     :date             not null
 #  status                        :integer          default("upcoming"), not null
 #  sync_state                    :integer          default("pending_sync"), not null
+#  timezone_name                 :string
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
 #  external_id                   :integer
@@ -54,8 +67,9 @@ keqiao_2026:
 #
 # Indexes
 #
-#  index_events_on_season_id   (season_id)
-#  index_events_on_sync_state  (sync_state)
+#  index_events_on_season_id               (season_id)
+#  index_events_on_source_and_external_id  (source,external_id) UNIQUE
+#  index_events_on_sync_state              (sync_state)
 #
 # Foreign Keys
 #

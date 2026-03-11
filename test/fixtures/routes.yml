@@ -1,0 +1,97 @@
+# --- Keqiao 2025 Boulder Men Final (4 problems) ---
+keqiao_men_final_p1:
+  round: keqiao_boulder_men_final
+  external_route_id: 1
+  route_name: "1"
+  route_order: 0
+
+keqiao_men_final_p2:
+  round: keqiao_boulder_men_final
+  external_route_id: 2
+  route_name: "2"
+  route_order: 1
+
+keqiao_men_final_p3:
+  round: keqiao_boulder_men_final
+  external_route_id: 3
+  route_name: "3"
+  route_order: 2
+
+keqiao_men_final_p4:
+  round: keqiao_boulder_men_final
+  external_route_id: 4
+  route_name: "4"
+  route_order: 3
+
+# --- Keqiao 2025 Boulder Women Final (4 problems) ---
+keqiao_women_final_p1:
+  round: keqiao_boulder_women_final
+  external_route_id: 5
+  route_name: "1"
+  route_order: 0
+
+keqiao_women_final_p2:
+  round: keqiao_boulder_women_final
+  external_route_id: 6
+  route_name: "2"
+  route_order: 1
+
+keqiao_women_final_p3:
+  round: keqiao_boulder_women_final
+  external_route_id: 7
+  route_name: "3"
+  route_order: 2
+
+keqiao_women_final_p4:
+  round: keqiao_boulder_women_final
+  external_route_id: 8
+  route_name: "4"
+  route_order: 3
+
+# --- NSW 2026 Boulder Men Final (4 problems) ---
+nsw_men_final_p1:
+  round: nsw_boulder_men_final
+  external_route_id: 9
+  route_name: "1"
+  route_order: 0
+
+nsw_men_final_p2:
+  round: nsw_boulder_men_final
+  external_route_id: 10
+  route_name: "2"
+  route_order: 1
+
+nsw_men_final_p3:
+  round: nsw_boulder_men_final
+  external_route_id: 11
+  route_name: "3"
+  route_order: 2
+
+nsw_men_final_p4:
+  round: nsw_boulder_men_final
+  external_route_id: 12
+  route_name: "4"
+  route_order: 3
+
+# == Schema Information
+#
+# Table name: routes
+#
+#  id                :bigint           not null, primary key
+#  group_label       :string
+#  route_name        :string
+#  route_order       :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  external_route_id :integer          not null
+#  round_id          :bigint           not null
+#
+# Indexes
+#
+#  index_routes_on_round_id                                   (round_id)
+#  index_routes_on_round_id_and_group_label_and_ext_route_id  (round_id,group_label,external_route_id) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (round_id => rounds.id)
+#

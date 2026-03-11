@@ -1,9 +1,11 @@
 season_2025:
+  source: 0
   external_id: 37
   name: "IFSC World Cup 2025"
   year: 2025
 
 season_2026:
+  source: 0
   external_id: 38
   name: "World Climbing Series 2026"
   year: 2026
@@ -14,8 +16,13 @@ season_2026:
 #
 #  id          :bigint           not null, primary key
 #  name        :string
+#  source      :integer          default("ifsc"), not null
 #  year        :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  external_id :integer
+#
+# Indexes
+#
+#  index_seasons_on_source_and_external_id  (source,external_id) UNIQUE
 #

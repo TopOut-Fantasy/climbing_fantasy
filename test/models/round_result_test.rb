@@ -69,8 +69,11 @@ end
 # Table name: round_results
 #
 #  id                     :bigint           not null, primary key
+#  active                 :boolean
+#  bib                    :string
 #  boulder_points         :decimal(, )
 #  group_label            :string
+#  group_rank             :integer
 #  high_zone_attempts     :integer
 #  high_zones             :integer
 #  lead_height            :decimal(, )
@@ -79,8 +82,11 @@ end
 #  score_raw              :string
 #  speed_eliminated_stage :string
 #  speed_time             :decimal(, )
+#  start_order            :integer
+#  starting_group         :string
 #  top_attempts           :integer
 #  tops                   :integer
+#  under_appeal           :boolean
 #  zone_attempts          :integer
 #  zones                  :integer
 #  created_at             :datetime         not null

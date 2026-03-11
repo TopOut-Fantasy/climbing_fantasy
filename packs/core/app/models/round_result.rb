@@ -1,7 +1,7 @@
 class RoundResult < ApplicationRecord
   belongs_to :round
   belongs_to :athlete
-  has_many :climb_results, dependent: :destroy
+  has_many :ascents, dependent: :destroy
 
   enum :group_label, { a: "A", b: "B" }, prefix: :group
 
@@ -14,6 +14,16 @@ class RoundResult < ApplicationRecord
   validates :high_zone_attempts, numericality: { only_integer: true }, allow_nil: true
   validates :boulder_points, numericality: true, allow_nil: true
   validates :athlete_id, uniqueness: { scope: :round_id }
+
+  class << self
+    def ransackable_attributes(_auth_object = nil)
+      ["rank", "score_raw", "round_id", "athlete_id"]
+    end
+
+    def ransackable_associations(_auth_object = nil)
+      ["round", "athlete", "ascents"]
+    end
+  end
 end
 
 # == Schema Information
@@ -21,8 +31,11 @@ end
 # Table name: round_results
 #
 #  id                     :bigint           not null, primary key
+#  active                 :boolean
+#  bib                    :string
 #  boulder_points         :decimal(, )
 #  group_label            :string
+#  group_rank             :integer
 #  high_zone_attempts     :integer
 #  high_zones             :integer
 #  lead_height            :decimal(, )
@@ -31,8 +44,11 @@ end
 #  score_raw              :string
 #  speed_eliminated_stage :string
 #  speed_time             :decimal(, )
+#  start_order            :integer
+#  starting_group         :string
 #  top_attempts           :integer
 #  tops                   :integer
+#  under_appeal           :boolean
 #  zone_attempts          :integer
 #  zones                  :integer
 #  created_at             :datetime         not null

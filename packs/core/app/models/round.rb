@@ -2,7 +2,7 @@ class Round < ApplicationRecord
   belongs_to :category
   has_many :round_results, dependent: :destroy
   has_many :athletes, through: :round_results
-  has_many :climbs, dependent: :destroy
+  has_many :routes, dependent: :destroy
 
   enum :round_type, {
     qualification: "qualification",
@@ -17,6 +17,16 @@ class Round < ApplicationRecord
   validates :name, presence: true
   validates :round_type, presence: true
   validates :status, presence: true
+
+  class << self
+    def ransackable_attributes(_auth_object = nil)
+      ["name", "round_type", "status", "format", "external_round_id", "category_id"]
+    end
+
+    def ransackable_associations(_auth_object = nil)
+      ["category", "round_results", "athletes", "routes"]
+    end
+  end
 end
 
 # == Schema Information
@@ -24,6 +34,7 @@ end
 # Table name: rounds
 #
 #  id                :bigint           not null, primary key
+#  format            :string
 #  name              :string           not null
 #  round_type        :string           not null
 #  status            :integer          default("pending"), not null
@@ -34,7 +45,8 @@ end
 #
 # Indexes
 #
-#  index_rounds_on_category_id  (category_id)
+#  index_rounds_on_category_id        (category_id)
+#  index_rounds_on_external_round_id  (external_round_id) UNIQUE
 #
 # Foreign Keys
 #

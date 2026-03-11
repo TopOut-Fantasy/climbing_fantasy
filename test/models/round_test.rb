@@ -27,9 +27,9 @@ class RoundTest < ActiveSupport::TestCase
     assert_includes round.round_results, round_results(:lee_keqiao_boulder_final)
   end
 
-  test "has many climbs" do
+  test "has many routes" do
     round = rounds(:keqiao_boulder_men_final)
-    assert_includes round.climbs, climbs(:keqiao_men_final_p1)
+    assert_includes round.routes, routes(:keqiao_men_final_p1)
   end
 end
 
@@ -38,6 +38,7 @@ end
 # Table name: rounds
 #
 #  id                :bigint           not null, primary key
+#  format            :string
 #  name              :string           not null
 #  round_type        :string           not null
 #  status            :integer          default("pending"), not null
@@ -48,7 +49,8 @@ end
 #
 # Indexes
 #
-#  index_rounds_on_category_id  (category_id)
+#  index_rounds_on_category_id        (category_id)
+#  index_rounds_on_external_round_id  (external_round_id) UNIQUE
 #
 # Foreign Keys
 #

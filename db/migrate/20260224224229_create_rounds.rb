@@ -6,7 +6,11 @@ class CreateRounds < ActiveRecord::Migration[8.1]
       t.string :name, null: false
       t.string :round_type, null: false
       t.integer :status, default: 0, null: false
+      t.string :format
+
       t.timestamps
     end
+
+    add_index :rounds, :external_round_id, unique: true
   end
 end

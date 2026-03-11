@@ -50,6 +50,7 @@ end
 # Table name: categories
 #
 #  id               :bigint           not null, primary key
+#  category_status  :integer
 #  discipline       :integer          not null
 #  gender           :integer          not null
 #  name             :string           not null

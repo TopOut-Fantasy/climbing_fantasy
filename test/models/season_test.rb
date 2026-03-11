@@ -38,8 +38,13 @@ end
 #
 #  id          :bigint           not null, primary key
 #  name        :string
+#  source      :integer          default("ifsc"), not null
 #  year        :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  external_id :integer
+#
+# Indexes
+#
+#  index_seasons_on_source_and_external_id  (source,external_id) UNIQUE
 #

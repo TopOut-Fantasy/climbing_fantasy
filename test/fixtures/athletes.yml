@@ -5,6 +5,8 @@ sorato_anraku:
   last_name: "Anraku"
   country_code: "JPN"
   gender: 0
+  photo_url: "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/dz9q2bkpf0i0y0gjrwcuhwta6p3q"
+  flag_url: "https://d1n1qj9geboqnb.cloudfront.net/flags/JPN.png"
 
 dohyun_lee:
   external_athlete_id: 2101
@@ -12,6 +14,8 @@ dohyun_lee:
   last_name: "Lee"
   country_code: "KOR"
   gender: 0
+  photo_url: "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/3k4hgylx3fhvqyf9lqwzx36dnb83"
+  flag_url: "https://d1n1qj9geboqnb.cloudfront.net/flags/KOR.png"
 
 meichi_narasaki:
   external_athlete_id: 2307
@@ -19,6 +23,8 @@ meichi_narasaki:
   last_name: "Narasaki"
   country_code: "JPN"
   gender: 0
+  photo_url: "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/q7m3wj5k8v1xn2h4f6pdrtc9og0e"
+  flag_url: "https://d1n1qj9geboqnb.cloudfront.net/flags/JPN.png"
 
 tomoa_narasaki:
   external_athlete_id: 2276
@@ -40,6 +46,8 @@ sam_avezou:
   last_name: "Avezou"
   country_code: "FRA"
   gender: 0
+  photo_url: "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/s23jvhg8b4w7o1dexncmufyt9kz6"
+  flag_url: "https://d1n1qj9geboqnb.cloudfront.net/flags/FRA.png"
 
 paul_jenft:
   external_athlete_id: 547
@@ -62,6 +70,8 @@ annie_sanders:
   last_name: "Sanders"
   country_code: "USA"
   gender: 1
+  photo_url: "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/f7h2kn9p4x1rwm3oqlvet5c8sd6j"
+  flag_url: "https://d1n1qj9geboqnb.cloudfront.net/flags/USA.png"
 
 oriane_bertone:
   external_athlete_id: 11462
@@ -69,6 +79,8 @@ oriane_bertone:
   last_name: "Bertone"
   country_code: "FRA"
   gender: 1
+  photo_url: "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/n8d4wj6e2x9fkm1v3hpoq5rstg7c"
+  flag_url: "https://d1n1qj9geboqnb.cloudfront.net/flags/FRA.png"
 
 erin_mcneice:
   external_athlete_id: 11468
@@ -192,6 +204,8 @@ anna_maria_apel:
   last_name: "Apel"
   country_code: "GER"
   gender: 1
+  photo_url: "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/y0r5m1hjqp67l8o4fnzpvn6bvmj0"
+  flag_url: "https://d1n1qj9geboqnb.cloudfront.net/flags/GER.png"
 
 # --- Speed Men (Wujiang 2025 finalists) ---
 jianguo_long:
@@ -470,16 +484,20 @@ tahnia_harris:
 # Table name: athletes
 #
 #  id                  :bigint           not null, primary key
-#  country_code        :string(3)        not null
+#  country_code        :string(3)
+#  federation          :string
 #  first_name          :string           not null
-#  gender              :integer          not null
+#  flag_url            :string
+#  gender              :integer
 #  last_name           :string           not null
 #  photo_url           :string
+#  source              :integer          default("ifsc"), not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  external_athlete_id :integer
+#  federation_id       :integer
 #
 # Indexes
 #
-#  index_athletes_on_external_athlete_id  (external_athlete_id) UNIQUE
+#  index_athletes_on_source_and_external_athlete_id  (source,external_athlete_id) UNIQUE
 #
