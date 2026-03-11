@@ -698,7 +698,40 @@
             "url": "{{ifscBaseUrl}}/api/v1/athletes/{{ifscAthleteId}}",
             "description": "Full athlete profile with photo, federation, discipline podiums, cup rankings, and all results."
           },
-          "response": []
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Cookie",
+                    "value": "{{ifscCookieHeader}}"
+                  },
+                  {
+                    "key": "Referer",
+                    "value": "{{ifscBaseUrl}}/"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{ifscBaseUrl}}/api/v1/athletes/{{ifscAthleteId}}",
+                "description": "Full athlete profile with photo, federation, discipline podiums, cup rankings, and all results."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1147,\n  \"firstname\": \"Janja\",\n  \"lastname\": \"GARNBRET\",\n  \"gender\": \"w\",\n  \"birthday\": \"1999-03-12\",\n  \"country\": \"SLO\",\n  \"city\": \"Ljubljana\",\n  \"height\": 164,\n  \"weight\": null,\n  \"website\": null,\n  \"instagram\": \"https://www.instagram.com/jabornik\",\n  \"flag_url\": \"https://d1n1qj9geboqnb.cloudfront.net/flags/SLO.png\",\n  \"photo_url\": \"https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/7te9giijls89kp0ga6m55c724rpo\",\n  \"action_photo_url\": \"https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/3o7uxnj7q1j3sxi1g2btdgqb9r0u\",\n  \"federation\": {\n    \"id\": 15,\n    \"name\": \"Alpine Association of Slovenia\",\n    \"abbreviation\": \"PZS\",\n    \"url\": \"www.pzs.si\"\n  },\n  \"discipline_podiums\": [\n    {\n      \"discipline\": \"boulder\",\n      \"gold\": 50,\n      \"silver\": 10,\n      \"bronze\": 2\n    },\n    {\n      \"discipline\": \"lead\",\n      \"gold\": 50,\n      \"silver\": 7,\n      \"bronze\": 3\n    }\n  ],\n  \"cup_rankings\": [],\n  \"all_results\": []\n}"
+            }
+          ]
         },
         {
           "name": "Search Athletes",
@@ -721,7 +754,40 @@
             "url": "{{ifscBaseUrl}}/api/v1/athletes?search={{ifscAthleteSearch}}",
             "description": "Search athletes by name. Returns id, firstname, lastname, birthday, gender, organisation_name, photo_url, ioc_code."
           },
-          "response": []
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Cookie",
+                    "value": "{{ifscCookieHeader}}"
+                  },
+                  {
+                    "key": "Referer",
+                    "value": "{{ifscBaseUrl}}/"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": "{{ifscBaseUrl}}/api/v1/athletes?search={{ifscAthleteSearch}}",
+                "description": "Search athletes by name. Returns id, firstname, lastname, birthday, gender, organisation_name, photo_url, ioc_code."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1147,\n    \"firstname\": \"Janja\",\n    \"lastname\": \"GARNBRET\",\n    \"birthday\": \"1999-03-12\",\n    \"gender\": \"w\",\n    \"organisation_name\": \"PZS\",\n    \"photo_url\": \"https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/7te9giijls89kp0ga6m55c724rpo\",\n    \"ioc_code\": \"SLO\"\n  }\n]"
+            }
+          ]
         }
       ]
     }

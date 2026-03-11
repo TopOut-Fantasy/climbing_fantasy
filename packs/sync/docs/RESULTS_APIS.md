@@ -73,8 +73,59 @@ For event `448` and active boulder category `338`:
 - `GET /api/v1/events/:id`
 - `GET /api/v1/events/:id/registrations`
 - `GET /api/v1/category_rounds/:id/results`
+- `GET /api/v1/athletes/:id`
+- `GET /api/v1/athletes?search=:name`
 
 These are wired in `Ifsc::ApiClient` and mirrored by `Usac::ApiClient` where endpoints exist.
+
+### Athlete endpoints
+
+`GET /api/v1/athletes/:id` returns the full athlete profile:
+
+```json
+{
+  "id": 1147,
+  "firstname": "Janja",
+  "lastname": "GARNBRET",
+  "gender": "w",
+  "birthday": "1999-03-12",
+  "country": "SLO",
+  "city": "Ljubljana",
+  "height": 164,
+  "flag_url": "https://d1n1qj9geboqnb.cloudfront.net/flags/SLO.png",
+  "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/7te9giijls89kp0ga6m55c724rpo",
+  "federation": {
+    "id": 15,
+    "name": "Alpine Association of Slovenia",
+    "abbreviation": "PZS",
+    "url": "www.pzs.si"
+  },
+  "discipline_podiums": [...],
+  "cup_rankings": [...],
+  "all_results": [...]
+}
+```
+
+Used by `RegistrationSyncer` to enrich athletes with `photo_url` and `flag_url` after creation.
+
+`GET /api/v1/athletes?search=:name` returns a lightweight search array:
+
+```json
+[
+  {
+    "id": 1147,
+    "firstname": "Janja",
+    "lastname": "GARNBRET",
+    "birthday": "1999-03-12",
+    "gender": "w",
+    "organisation_name": "PZS",
+    "photo_url": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/7te9giijls89kp0ga6m55c724rpo",
+    "ioc_code": "SLO"
+  }
+]
+```
+
+Note: The registration endpoint (`GET /events/:id/registrations`) does **not** return `photo_url` or `flag_url`. The round results endpoint (`GET /category_rounds/:id/results`) returns `flag_url` in ranking entries but not `photo_url`.
 
 ## Postman assets
 
