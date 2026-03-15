@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
 @source "../../../packs/auth/app/views/**/*.erb";
-@source "../../views/pages/**/*.erb";
-@source "../../views/layouts/landing.html.erb";
 
 @theme {
   --color-accent: #C8E600;
