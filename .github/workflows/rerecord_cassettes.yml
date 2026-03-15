@@ -45,6 +45,7 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          RERECORD_IFSC_SESSION_CASSETTE: "1"
         run: bin/rails test test/services/ifsc/api_client_test.rb
 
       - name: Open or update failure issue
