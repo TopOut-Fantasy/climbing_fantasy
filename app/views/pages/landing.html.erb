@@ -1,0 +1,385 @@
+<div class="relative flex min-h-screen w-full flex-col">
+  <%# Navigation %>
+  <header class="sticky top-0 z-50 w-full border-b border-slate-border/50 bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-4">
+    <div class="mx-auto flex max-w-7xl items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-background-dark">
+          <span class="material-symbols-outlined font-bold">landscape</span>
+        </div>
+        <h2 class="text-2xl font-black tracking-tighter uppercase italic">Top Out</h2>
+      </div>
+      <nav class="hidden md:flex items-center gap-8">
+        <a class="text-sm font-semibold hover:text-primary transition-colors uppercase tracking-wider" href="#draft">Draft</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors uppercase tracking-wider" href="#events">Events</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors uppercase tracking-wider" href="#leaderboard">Leaderboard</a>
+        <a class="text-sm font-semibold hover:text-primary transition-colors uppercase tracking-wider" href="#how-it-works">How It Works</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <%= link_to "Sign In", new_user_session_path, class: "hidden sm:flex text-sm font-semibold hover:text-primary transition-colors uppercase tracking-wider" %>
+        <%= link_to new_user_registration_path, class: "hidden sm:flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-black uppercase tracking-widest text-background-dark hover:brightness-110 transition-all" do %>
+          Join the League
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <%# Hero Section %>
+  <section class="relative w-full">
+    <div class="relative h-[85vh] w-full overflow-hidden">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: linear-gradient(to right, rgba(15, 23, 42, 0.95) 20%, rgba(15, 23, 42, 0.4) 50%, rgba(15, 23, 42, 0) 100%), url('/images/landing/chamonix-mirrored.png');">
+      </div>
+      <div class="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-20">
+        <div class="max-w-3xl space-y-6">
+          <div class="inline-flex items-center rounded-full bg-primary/10 border border-primary/20 px-3 py-1">
+            <span class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Season 2025 Now Live</span>
+          </div>
+          <h1 class="text-5xl font-black leading-[1.1] tracking-tighter text-white sm:text-7xl lg:text-8xl uppercase italic">
+            REACH THE PEAK OF <span class="text-primary">FANTASY CLIMBING</span>
+          </h1>
+          <p class="max-w-xl text-lg text-slate-300 md:text-xl leading-relaxed">
+            Experience the thrill of the world climbing league. Build your elite 10-climber squad, compete head-to-head, and dominate the vertical world.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <%= link_to new_user_registration_path, class: "flex h-14 min-w-[200px] items-center justify-center rounded-lg bg-primary px-8 text-base font-black uppercase tracking-widest text-background-dark hover:scale-105 transition-transform" do %>
+              JOIN THE LEAGUE
+            <% end %>
+            <a href="#how-it-works" class="flex h-14 min-w-[200px] items-center justify-center rounded-lg border-2 border-white/20 bg-white/5 px-8 text-base font-black uppercase tracking-widest text-white hover:bg-white/10 transition-colors">
+              HOW IT WORKS
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%# Bottom Stat bar %>
+    <div class="bg-primary py-4">
+      <div class="mx-auto flex max-w-7xl flex-wrap justify-around gap-6 px-6 text-background-dark">
+        <div class="flex flex-col items-center">
+          <span class="text-2xl font-black italic">50K+</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest">Active Managers</span>
+        </div>
+        <div class="flex flex-col items-center border-x border-background-dark/20 px-10">
+          <span class="text-2xl font-black italic">$100K</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest">Season Prizes</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-2xl font-black italic">IFSC</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest">Official Events</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%# Draft Section %>
+  <section id="draft" class="py-24 px-6 lg:px-20 bg-slate-900/50">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="space-y-4">
+          <h2 class="text-4xl font-black uppercase italic tracking-tight">Draft Your Elite Team</h2>
+          <p class="text-slate-400 max-w-xl text-lg">Select 10 pros for your roster. Balance specialists in Lead, Bouldering, and Speed to maximize your season points.</p>
+        </div>
+        <a href="#" class="text-primary flex items-center gap-2 font-bold uppercase tracking-widest text-sm hover:underline underline-offset-8">
+          View All Athletes <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <%# Athlete Card 1 %>
+        <div class="group relative overflow-hidden rounded-xl bg-slate-accent border border-slate-border hover:border-primary/50 transition-all">
+          <div class="aspect-[4/5] w-full overflow-hidden">
+            <img alt="Adam Ondra" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="/images/landing/adam.jpeg">
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold">Adam Ondra</h3>
+              <span class="bg-primary/20 text-primary text-[10px] font-black px-2 py-0.5 rounded uppercase">Elite</span>
+            </div>
+            <p class="text-slate-400 text-sm font-medium">Lead Specialist / Czechia</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-primary font-bold">9.8 FP/AVG</span>
+              <button class="rounded bg-slate-800 p-2 text-primary hover:bg-primary hover:text-background-dark transition-colors">
+                <span class="material-symbols-outlined text-sm">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <%# Athlete Card 2 %>
+        <div class="group relative overflow-hidden rounded-xl bg-slate-accent border border-slate-border hover:border-primary/50 transition-all">
+          <div class="aspect-[4/5] w-full overflow-hidden">
+            <img alt="Janja Garnbret" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="/images/landing/janja.jpeg">
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold">Janja Garnbret</h3>
+              <span class="bg-primary/20 text-primary text-[10px] font-black px-2 py-0.5 rounded uppercase">Elite</span>
+            </div>
+            <p class="text-slate-400 text-sm font-medium">World Champ / Slovenia</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-primary font-bold">10.2 FP/AVG</span>
+              <button class="rounded bg-slate-800 p-2 text-primary hover:bg-primary hover:text-background-dark transition-colors">
+                <span class="material-symbols-outlined text-sm">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <%# Athlete Card 3 %>
+        <div class="group relative overflow-hidden rounded-xl bg-slate-accent border border-slate-border hover:border-primary/50 transition-all">
+          <div class="aspect-[4/5] w-full overflow-hidden">
+            <img alt="Brooke Raboutou" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="/images/landing/brooke.jpeg">
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold">Brooke Raboutou</h3>
+              <span class="bg-primary/20 text-primary text-[10px] font-black px-2 py-0.5 rounded uppercase">Pro</span>
+            </div>
+            <p class="text-slate-400 text-sm font-medium">Olympic Medalist / USA</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-primary font-bold">8.5 FP/AVG</span>
+              <button class="rounded bg-slate-800 p-2 text-primary hover:bg-primary hover:text-background-dark transition-colors">
+                <span class="material-symbols-outlined text-sm">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <%# Athlete Card 4 %>
+        <div class="group relative overflow-hidden rounded-xl bg-slate-accent border border-slate-border hover:border-primary/50 transition-all">
+          <div class="aspect-[4/5] w-full overflow-hidden">
+            <img alt="Toby Roberts" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" src="/images/landing/toby.jpeg">
+          </div>
+          <div class="p-5">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold">Toby Roberts</h3>
+              <span class="bg-primary/20 text-primary text-[10px] font-black px-2 py-0.5 rounded uppercase">Pro</span>
+            </div>
+            <p class="text-slate-400 text-sm font-medium">Rising Star / UK</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-primary font-bold">8.1 FP/AVG</span>
+              <button class="rounded bg-slate-800 p-2 text-primary hover:bg-primary hover:text-background-dark transition-colors">
+                <span class="material-symbols-outlined text-sm">add</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%# Events Section %>
+  <section id="events" class="py-24 px-6 lg:px-20 bg-background-dark overflow-hidden relative">
+    <div class="absolute right-0 top-0 h-full w-1/3 bg-primary/5 blur-[120px] rounded-full -mr-20"></div>
+    <div class="mx-auto max-w-7xl">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <div id="how-it-works" class="space-y-4">
+            <h2 class="text-4xl font-black uppercase italic tracking-tight">Follow Every Event</h2>
+            <p class="text-slate-400 text-lg leading-relaxed">Stay on top of the action with real-time scoring and live updates from every IFSC event worldwide. Every top, every zone, and every fall counts.</p>
+          </div>
+          <div class="space-y-4">
+            <div class="flex gap-5 p-5 rounded-xl bg-slate-accent border border-slate-border group hover:bg-slate-800 transition-colors">
+              <div class="h-12 w-12 shrink-0 flex items-center justify-center rounded-lg bg-primary text-background-dark group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined">timer</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold">Live Scoring</h4>
+                <p class="text-slate-400 text-sm">Real-time point updates as your athletes progress through qualifiers and finals.</p>
+              </div>
+            </div>
+            <div class="flex gap-5 p-5 rounded-xl bg-slate-accent border border-slate-border group hover:bg-slate-800 transition-colors">
+              <div class="h-12 w-12 shrink-0 flex items-center justify-center rounded-lg bg-primary text-background-dark group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined">notifications_active</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold">Event Alerts</h4>
+                <p class="text-slate-400 text-sm">Get push notifications the moment your drafted climbers hit the wall.</p>
+              </div>
+            </div>
+            <div class="flex gap-5 p-5 rounded-xl bg-slate-accent border border-slate-border group hover:bg-slate-800 transition-colors">
+              <div class="h-12 w-12 shrink-0 flex items-center justify-center rounded-lg bg-primary text-background-dark group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined">public</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold">Global Coverage</h4>
+                <p class="text-slate-400 text-sm">Every major competition tracked 24/7. From Salt Lake City to Seoul.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative bg-slate-accent rounded-2xl border border-slate-border p-4 shadow-2xl">
+          <div class="flex items-center justify-between mb-4 border-b border-slate-border pb-4">
+            <span class="text-xs font-black uppercase tracking-widest text-primary">Live Now: Innsbruck WC</span>
+            <span class="flex items-center gap-1.5 text-xs text-red-500 font-bold uppercase"><span class="h-2 w-2 rounded-full bg-red-500 animate-pulse"></span> Live Update</span>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between bg-background-dark p-4 rounded-lg">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-slate-500">01</span>
+                <span class="font-bold">A. Ondra</span>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <span class="text-[10px] text-slate-500 uppercase font-black">Hold</span>
+                  <span class="font-black text-primary italic">42+</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <span class="text-[10px] text-slate-500 uppercase font-black">Points</span>
+                  <span class="font-black italic">145</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between bg-background-dark p-4 rounded-lg">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-slate-500">02</span>
+                <span class="font-bold">S. McNeice</span>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <span class="text-[10px] text-slate-500 uppercase font-black">Hold</span>
+                  <span class="font-black text-primary italic">38</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <span class="text-[10px] text-slate-500 uppercase font-black">Points</span>
+                  <span class="font-black italic">122</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between bg-background-dark p-4 rounded-lg border-l-4 border-primary">
+              <div class="flex items-center gap-3">
+                <span class="font-bold text-slate-500">03</span>
+                <span class="font-bold">J. Schubert</span>
+              </div>
+              <div class="flex gap-3">
+                <div class="flex flex-col items-center">
+                  <span class="text-[10px] text-slate-500 uppercase font-black">Hold</span>
+                  <span class="font-black text-primary italic">In Wall</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <span class="text-[10px] text-slate-500 uppercase font-black">Points</span>
+                  <span class="font-black italic">98*</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%# Leaderboard Section %>
+  <section id="leaderboard" class="py-24 px-6 lg:px-20 bg-background-dark">
+    <div class="mx-auto max-w-7xl">
+      <div class="text-center space-y-4 mb-16">
+        <h2 class="text-4xl font-black uppercase italic tracking-tight">Dominate the Leaderboard</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto text-lg">Rise through the global ranks, join private leagues with friends, and prove you're the ultimate climbing strategist.</p>
+      </div>
+      <div class="overflow-hidden rounded-2xl border border-slate-border bg-slate-accent">
+        <table class="w-full text-left border-collapse">
+          <thead class="bg-background-dark/50">
+            <tr>
+              <th class="p-6 text-xs font-black uppercase tracking-widest text-slate-500">Rank</th>
+              <th class="p-6 text-xs font-black uppercase tracking-widest text-slate-500">Manager</th>
+              <th class="p-6 text-xs font-black uppercase tracking-widest text-slate-500 hidden sm:table-cell">Team Name</th>
+              <th class="p-6 text-xs font-black uppercase tracking-widest text-slate-500 hidden md:table-cell">Events</th>
+              <th class="p-6 text-xs font-black uppercase tracking-widest text-slate-500 text-right">Total Points</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-border">
+            <tr class="hover:bg-slate-800 transition-colors">
+              <td class="p-6 font-black italic text-primary text-xl">01</td>
+              <td class="p-6">
+                <div class="flex items-center gap-3">
+                  <div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary text-xs border border-primary/30">JD</div>
+                  <span class="font-bold">Julian D.</span>
+                </div>
+              </td>
+              <td class="p-6 text-slate-400 font-medium hidden sm:table-cell">Crimpy Dynos</td>
+              <td class="p-6 text-slate-400 hidden md:table-cell">12/12</td>
+              <td class="p-6 text-right font-black italic text-xl">2,842</td>
+            </tr>
+            <tr class="hover:bg-slate-800 transition-colors bg-primary/5">
+              <td class="p-6 font-black italic text-primary text-xl">02</td>
+              <td class="p-6">
+                <div class="flex items-center gap-3">
+                  <div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary text-xs border border-primary/30">SM</div>
+                  <span class="font-bold">Sarah M.</span>
+                </div>
+              </td>
+              <td class="p-6 text-slate-400 font-medium hidden sm:table-cell">Bouldering Queens</td>
+              <td class="p-6 text-slate-400 hidden md:table-cell">12/12</td>
+              <td class="p-6 text-right font-black italic text-xl">2,795</td>
+            </tr>
+            <tr class="hover:bg-slate-800 transition-colors">
+              <td class="p-6 font-black italic text-primary text-xl">03</td>
+              <td class="p-6">
+                <div class="flex items-center gap-3">
+                  <div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary text-xs border border-primary/30">KL</div>
+                  <span class="font-bold">Kevin L.</span>
+                </div>
+              </td>
+              <td class="p-6 text-slate-400 font-medium hidden sm:table-cell">Slab Master FC</td>
+              <td class="p-6 text-slate-400 hidden md:table-cell">11/12</td>
+              <td class="p-6 text-right font-black italic text-xl">2,651</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-12 text-center">
+        <%= link_to new_user_registration_path, class: "bg-primary/10 border border-primary/20 text-primary px-8 py-3 rounded-lg font-bold uppercase tracking-widest text-sm hover:bg-primary hover:text-background-dark transition-all" do %>
+          Join a Private League
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <%# CTA Section %>
+  <section class="py-20 px-6 lg:px-20 border-t border-slate-border/50">
+    <div class="mx-auto max-w-5xl rounded-3xl bg-gradient-to-br from-primary via-primary/90 to-lime-500 p-12 text-center text-background-dark shadow-[0_0_50px_rgba(212,255,0,0.2)]">
+      <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-6 leading-none">Ready to start your ascent?</h2>
+      <p class="text-background-dark/80 text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10">Free to play. Easy to start. Impossible to put down. Join the fastest growing climbing community today.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <%= link_to new_user_registration_path, class: "bg-background-dark text-white h-16 px-10 rounded-xl font-black uppercase tracking-widest hover:scale-105 transition-transform flex items-center justify-center" do %>
+          Get Started Now
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <%# Footer %>
+  <footer class="bg-background-dark pt-20 pb-10 px-6 lg:px-20 border-t border-slate-border/50">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="col-span-2 space-y-6">
+          <div class="flex items-center gap-2">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-background-dark">
+              <span class="material-symbols-outlined font-bold">landscape</span>
+            </div>
+            <h2 class="text-2xl font-black tracking-tighter uppercase italic">Top Out</h2>
+          </div>
+          <p class="text-slate-400 max-w-sm">The world's premier fantasy climbing experience. Dedicated to bringing fans closer to the vertical athletes they follow.</p>
+        </div>
+        <div class="space-y-4">
+          <h4 class="font-black uppercase tracking-widest text-sm text-primary">Quick Links</h4>
+          <ul class="space-y-2 text-slate-400">
+            <li><a class="hover:text-primary transition-colors" href="#draft">The Draft</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#events">World Tour</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#leaderboard">Leaderboard</a></li>
+            <li><a class="hover:text-primary transition-colors" href="#">IFSC News</a></li>
+          </ul>
+        </div>
+        <div class="space-y-4">
+          <h4 class="font-black uppercase tracking-widest text-sm text-primary">Connect</h4>
+          <div class="flex gap-4">
+            <a class="h-10 w-10 flex items-center justify-center rounded-full bg-slate-accent hover:text-primary transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+            <a class="h-10 w-10 flex items-center justify-center rounded-full bg-slate-accent hover:text-primary transition-all" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+            <a class="h-10 w-10 flex items-center justify-center rounded-full bg-slate-accent hover:text-primary transition-all" href="#"><span class="material-symbols-outlined">forum</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-slate-border/30 pt-10 flex flex-col md:flex-row justify-between gap-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+        <p>&copy; <%= Date.current.year %> Top Out Fantasy League. All rights reserved.</p>
+        <div class="flex gap-8">
+          <a class="hover:text-slate-300" href="#">Privacy Policy</a>
+          <a class="hover:text-slate-300" href="#">Terms of Play</a>
+          <a class="hover:text-slate-300" href="#">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

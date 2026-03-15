@@ -1,8 +1,27 @@
 @import "tailwindcss";
 
 @source "../../../packs/auth/app/views/**/*.erb";
+@source "../../views/pages/**/*.erb";
+@source "../../views/layouts/landing.html.erb";
 
 @theme {
   --color-accent: #C8E600;
   --color-accent-hover: #B5CF00;
+  --color-primary: #d4ff00;
+  --color-background-dark: #0f172a;
+  --color-slate-accent: #1e293b;
+  --color-slate-border: #334155;
+  --font-display: "Lexend", sans-serif;
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility text-neon {
+  color: #d4ff00;
+}
+
+@utility bg-neon {
+  background-color: #d4ff00;
 }

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     root to: "dashboard#index", as: :authenticated_root
   end
 
-  root to: redirect("/login")
+  root to: "pages#landing"
 
   authenticate :admin_user, ->(u) { u.super_admin? } do
     mount Sidekiq::Web => "/sidekiq"
