@@ -54,7 +54,9 @@ Shared durable agent state lives in:
 
 1. **Shared State Lives in `.agents/`**: Put cross-agent guidance and durable notes in `.agents/`.
 2. **Lessons Are Shared**: Update `.agents/lessons.md` after corrections so Claude, Codex, and future agents read the same history.
-3. **Tasks Are Ephemeral**: Do not create persistent task-tracking files in the repo. Keep plans in your tool state or working context unless the user explicitly asks for a checked-in task document.
+3. **Plans Live in `.agents/plans/<feature>/`**: Each feature gets its own folder with:
+   - `plan.md` — high-level design document (architecture, data model, decisions, rationale)
+   - `todo.md` — implementation checklist with checkable items
 4. **Keep Shared Files Focused**: `.agents/` should contain durable agent guidance, not per-task scratch notes.
 
 ## Core Principles
