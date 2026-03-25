@@ -427,7 +427,7 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    redis-client (0.26.4)
+    redis-client (0.28.0)
       connection_pool
     regexp_parser (2.11.3)
     reline (0.6.3)
@@ -478,7 +478,7 @@ GEM
       websocket (~> 1.0)
     shoulda-matchers (7.0.1)
       activesupport (>= 7.1)
-    sidekiq (8.1.1)
+    sidekiq (8.1.2)
       connection_pool (>= 3.0.0)
       json (>= 2.16.0)
       logger (>= 1.7.0)
@@ -789,7 +789,7 @@ CHECKSUMS
   rake (13.3.1) sha256=8c9e89d09f66a26a01264e7e3480ec0607f0c497a861ef16063604b1b08eb19c
   ransack (4.4.1) sha256=6aeaac36fc19088570e10da1044e6cfd88c740e20f871b84566fd30e32b7a63d
   rdoc (7.2.0) sha256=8650f76cd4009c3b54955eb5d7e3a075c60a57276766ebf36f9085e8c9f23192
-  redis-client (0.26.4) sha256=3ad70beff5da2653e02dfeae996e7d8d7147a558da12b16b2282ad345e4c7120
+  redis-client (0.28.0) sha256=888892f9cd8787a41c0ece00bdf5f556dfff7770326ce40bb2bc11f1bfec824b
   regexp_parser (2.11.3) sha256=ca13f381a173b7a93450e53459075c9b76a10433caadcb2f1180f2c741fc55a4
   reline (0.6.3) sha256=1198b04973565b36ec0f11542ab3f5cfeeec34823f4e54cebde90968092b1835
   responders (3.2.0) sha256=89c2d6ac0ae16f6458a11524cae4a8efdceba1a3baea164d28ee9046bd3df55a
@@ -806,7 +806,7 @@ CHECKSUMS
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.41.0) sha256=cdc1173cd55cf186022cea83156cc2d0bec06d337e039b02ad25d94e41bedd22
   shoulda-matchers (7.0.1) sha256=b4bfd8744c10e0a36c8ac1a687f921ee7e25ed529e50488d61b79a8688749c77
-  sidekiq (8.1.1) sha256=afdf2736883e1e80c1c9b7c47afe0387e1a4997c87170978a45560d35d429151
+  sidekiq (8.1.2) sha256=4a1266f22bb1dad675d77bf32e8d4c04e990640e3b271650f47ea7299c38fceb
   sidekiq-cron (2.3.1) sha256=96ab3da372289a30dc744c1daa2ae2e85960b2444a6f6ed68df1ff7882c44aac
   smart_properties (1.17.0) sha256=f9323f8122e932341756ddec8e0ac9ec6e238408a7661508be99439ca6d6384b
   solid_cable (3.0.12) sha256=a168a54731a455d5627af48d8441ea3b554b8c1f6e6cd6074109de493e6b0460
